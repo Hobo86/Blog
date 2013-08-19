@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 随笔 | Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/blog/categories/sui-bi/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2013-08-19T20:03:56+08:00</updated>
+  <updated>2013-08-19T20:08:26+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -19,23 +19,44 @@
     <updated>2013-08-19T18:39:00+08:00</updated>
     <id>http://blog.devhobo.com/blog/2013/08/19/di-[?]-pian-octopress-blog</id>
     <content type="html"><![CDATA[<p>备忘
-rake preview
-rake generate
-rake deploy</p>
-
-<p>git add .
-git commit -m &lsquo;update&rsquo;
-git push origin master</p>
-
-<p>rake new_post[&ldquo;title&rdquo;]</p>
-
-<p>rake new_page[super-awesome]</p>
-
-<h1>creates /source/super-awesome/index.markdown</h1>
-
-<p>rake new_page[super-awesome/page.html]</p>
-
-<h1>creates /source/super-awesome/page.html</h1>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake preview
+</span><span class='line'>rake generate
+</span><span class='line'>rake deploy&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>git add .
+</span><span class='line'>git commit -m &lsquo;update&rsquo;
+</span><span class='line'>git push origin master&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>rake new_post[&ldquo;title&rdquo;]&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>rake new_page[super-awesome]&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>creates /source/super-awesome/index.markdown&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>rake new_page[super-awesome/page.html]&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>creates /source/super-awesome/page.html&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 ]]></content>
   </entry>
   

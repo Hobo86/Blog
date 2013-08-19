@@ -4,7 +4,7 @@
   <title><![CDATA[Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2013-08-19T20:03:56+08:00</updated>
+  <updated>2013-08-19T20:08:26+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -18,24 +18,41 @@
     <link href="http://blog.devhobo.com/blog/2013/08/19/di-%5B%3F%5D-pian-octopress-blog/"/>
     <updated>2013-08-19T18:39:00+08:00</updated>
     <id>http://blog.devhobo.com/blog/2013/08/19/di-[?]-pian-octopress-blog</id>
-    <content type="html"><![CDATA[<p>备忘
-rake preview
-rake generate
-rake deploy</p>
+    <content type="html"><![CDATA[<p>备忘</p>
 
-<p>git add .
-git commit -m &lsquo;update&rsquo;
-git push origin master</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake preview
+</span><span class='line'>rake generate
+</span><span class='line'>rake deploy
+</span><span class='line'>
+</span><span class='line'>git add .
+</span><span class='line'>git commit -m 'update'
+</span><span class='line'>git push origin master
+</span><span class='line'>
+</span><span class='line'>rake new_post["title"]
+</span><span class='line'>
+</span><span class='line'>rake new_page[super-awesome]
+</span><span class='line'># creates /source/super-awesome/index.markdown
+</span><span class='line'>
+</span><span class='line'>rake new_page[super-awesome/page.html]
+</span><span class='line'># creates /source/super-awesome/page.html</span></code></pre></td></tr></table></div></figure>
 
-<p>rake new_post[&ldquo;title&rdquo;]</p>
 
-<p>rake new_page[super-awesome]</p>
 
-<h1>creates /source/super-awesome/index.markdown</h1>
-
-<p>rake new_page[super-awesome/page.html]</p>
-
-<h1>creates /source/super-awesome/page.html</h1>
 ]]></content>
   </entry>
   
