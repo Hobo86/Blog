@@ -7,18 +7,23 @@ categories:
 - 随笔
 autor: Hobo
 ---
-备忘
-rake generate
-rake deploy
-
+{% codeblock Git command lang:ruby %}
 git add .
 git commit -m 'update'
 git push origin master
+{% endcodeblock %}
+
+{% codeblock Rake command lang:objc %}
+rake preview
+rake generate
+rake deploy
 
 rake new_post["title"]
 
 rake new_page[super-awesome]
 # creates /source/super-awesome/index.markdown
-
 rake new_page[super-awesome/page.html]
 # creates /source/super-awesome/page.html
+{% endcodeblock %}
+
+
