@@ -4,7 +4,7 @@
   <title><![CDATA[Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2013-08-19T18:25:39+08:00</updated>
+  <updated>2013-08-19T18:45:42+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -12,5 +12,14 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[第一篇Octopress Blog]]></title>
+    <link href="http://blog.devhobo.com/blog/2013/08/19/di-%5B%3F%5D-pian-octopress-blog/"/>
+    <updated>2013-08-19T18:39:00+08:00</updated>
+    <id>http://blog.devhobo.com/blog/2013/08/19/di-[?]-pian-octopress-blog</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
 </feed>
