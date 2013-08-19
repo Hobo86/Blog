@@ -2,10 +2,10 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://Hobo86.github.io/Blog
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+url: http://blog.devhobo.com
+title: Hobo Blog
+subtitle: A coder
+author: Hobo
 simple_search: http://google.com/search
 description:
 
