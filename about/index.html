@@ -9,7 +9,7 @@
   <meta name="author" content="Hobo">
 
   
-  <meta name="description" content=" About Aug 19th, 2013 陈洪波 成都云创新科技有限公司 Aug 19th, 2013 Recent Posts 第一篇Octopress Blog ">
+  <meta name="description" content="About Aug 19th, 2013 陈洪波 成都云创新科技有限公司 Aug 19th, 2013 Recent Posts 第一篇Octopress Blog GitHub Repos Status updating... @Hobo86 on GitHub $(document). &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -126,6 +126,35 @@
       </li>
     
   </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/Hobo86">@Hobo86</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'Hobo86',
+            count: 2,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 
