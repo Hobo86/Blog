@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Hobo Blog]]></title>
+  <link href="http://blog.devhobo.com/atom.xml" rel="self"/>
+  <link href="http://blog.devhobo.com/"/>
+  <updated>2013-08-19T17:56:11+08:00</updated>
+  <id>http://blog.devhobo.com/</id>
+  <author>
+    <name><![CDATA[Hobo]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+</feed>
