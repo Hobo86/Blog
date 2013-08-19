@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://Hobo86.github.io/Blog/sitemap.xml 
+Sitemap: http://blog.devhobo.com/sitemap.xml 
