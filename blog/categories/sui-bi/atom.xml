@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 随笔 | Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/blog/categories/sui-bi/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2013-08-19T20:08:26+08:00</updated>
+  <updated>2013-08-19T20:17:07+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -18,8 +18,17 @@
     <link href="http://blog.devhobo.com/blog/2013/08/19/di-%5B%3F%5D-pian-octopress-blog/"/>
     <updated>2013-08-19T18:39:00+08:00</updated>
     <id>http://blog.devhobo.com/blog/2013/08/19/di-[?]-pian-octopress-blog</id>
-    <content type="html"><![CDATA[<p>备忘
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+    <content type="html"><![CDATA[<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Git command </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+</span><span class='line'><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">update</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span><span class='line'><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Rake command </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -34,29 +43,22 @@
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake preview
-</span><span class='line'>rake generate
-</span><span class='line'>rake deploy&lt;/p>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">rake</span> <span class="n">preview</span>
+</span><span class='line'><span class="n">rake</span> <span class="n">generate</span>
+</span><span class='line'><span class="n">rake</span> <span class="n">deploy</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p>git add .
-</span><span class='line'>git commit -m &lsquo;update&rsquo;
-</span><span class='line'>git push origin master&lt;/p>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">rake</span> <span class="n">new_post</span><span class="p">[</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">title</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;]</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p>rake new_post[&ldquo;title&rdquo;]&lt;/p>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">rake</span> <span class="n">new_page</span><span class="p">[</span><span class="n">super</span><span class="o">-</span><span class="n">awesome</span><span class="p">]</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p>rake new_page[super-awesome]&lt;/p>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">creates</span> <span class="o">/</span><span class="n">source</span><span class="o">/</span><span class="n">super</span><span class="o">-</span><span class="n">awesome</span><span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">markdown</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;h1>creates /source/super-awesome/index.markdown&lt;/h1>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">rake</span> <span class="n">new_page</span><span class="p">[</span><span class="n">super</span><span class="o">-</span><span class="n">awesome</span><span class="o">/</span><span class="n">page</span><span class="p">.</span><span class="n">html</span><span class="p">]</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p>rake new_page[super-awesome/page.html]&lt;/p>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">creates</span> <span class="o">/</span><span class="n">source</span><span class="o">/</span><span class="n">super</span><span class="o">-</span><span class="n">awesome</span><span class="o">/</span><span class="n">page</span><span class="p">.</span><span class="n">html</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;h1>creates /source/super-awesome/page.html&lt;/h1>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 ]]></content>
   </entry>
   
