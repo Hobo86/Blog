@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://blog.devhobo.com/blog/archives/</loc>
+        <loc>http://Hobo86.github.io/Blog/blog/archives/</loc>
         <lastmod>2013-08-19T17:55:54+08:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.devhobo.com/</loc>
+        <loc>http://Hobo86.github.io/Blog/</loc>
         <lastmod>2013-08-19T17:55:54+08:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.devhobo.com/robots.txt</loc>
+        <loc>http://Hobo86.github.io/Blog/robots.txt</loc>
         <lastmod>2013-08-19T17:55:54+08:00</lastmod>
     </url>
 </urlset>
