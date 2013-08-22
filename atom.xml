@@ -4,7 +4,7 @@
   <title><![CDATA[Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2013-08-21T07:34:37+08:00</updated>
+  <updated>2013-08-22T15:01:31+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -55,6 +55,12 @@
 
 <p>再推荐个Mac小工具Go2Shell，安装后添加到Finder的工具栏上，直接在当前目录下启动终端，没用过的同学可以装下，很方便<br>
 <a href="https://itunes.apple.com/cn/app/go2shell/id445770608?mt=12">https://itunes.apple.com/cn/app/go2shell/id445770608?mt=12</a></p>
+
+<p class='post-footer'>
+      原文地址
+      <a href='http://blog.devhobo.com/blog/2013/08/20/go-revel-kai-fa-huan-jing/'>http://blog.devhobo.com/blog/2013/08/20/go-revel-kai-fa-huan-jing/</a><br/>
+      </p>
+
 ]]></content>
   </entry>
   
@@ -101,6 +107,12 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+
+
+<p class='post-footer'>
+      原文地址
+      <a href='http://blog.devhobo.com/blog/2013/08/19/di-%5B%3F%5D-pian-octopress-blog/'>http://blog.devhobo.com/blog/2013/08/19/di-%5B%3F%5D-pian-octopress-blog/</a><br/>
+      </p>
 
 ]]></content>
   </entry>

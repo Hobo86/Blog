@@ -6,14 +6,11 @@
 <head>
   <meta charset="utf-8">
   <title>Go-Revel:开发环境 - Hobo Blog</title>
+  
   <meta name="author" content="Hobo">
-
   
-  <meta name="description" content="环境安装都直接看官方文档最靠谱，经他人加工后的经常容易误导，后面也会有一些安装体会分享 Go
-英文http://golang.org/doc/install#osx （墙）
-中文http://zh.golanger.com/doc/install#osx Revel
-http://robfig. &hellip;">
-  
+  <meta name="description" content="Go以及Revel框架的搭建">
+  <meta name="keywords" content="Go, Revel, 开发环境">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -33,7 +30,30 @@ http://robfig. &hellip;">
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+<!-- 新窗口打开连接-->
+<script type="text/javascript">
+	function addBlankTargetForLinks () {
+	  $('a[href^="http"]').each(function(){
+	      $(this).attr('target', '_blank');
+	  });
+	}
+	$(document).bind('DOMNodeInserted', function(event) {
+	  addBlankTargetForLinks();
+	});
+</script>
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-22847501-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -131,6 +151,12 @@ http://robfig. &hellip;">
 
 <p>再推荐个Mac小工具Go2Shell，安装后添加到Finder的工具栏上，直接在当前目录下启动终端，没用过的同学可以装下，很方便<br>
 <a href="https://itunes.apple.com/cn/app/go2shell/id445770608?mt=12">https://itunes.apple.com/cn/app/go2shell/id445770608?mt=12</a></p>
+
+<p class='post-footer'>
+      原文地址
+      <a href='http://blog.devhobo.com/blog/2013/08/20/go-revel-kai-fa-huan-jing/'>http://blog.devhobo.com/blog/2013/08/20/go-revel-kai-fa-huan-jing/</a><br/>
+      </p>
+
 </div>
 
 
@@ -139,7 +165,9 @@ http://robfig. &hellip;">
       
   
 
+
 <span class="byline author vcard">Posted by <span class="fn">Hobo</span></span>
+
 
       
 
@@ -160,7 +188,7 @@ http://robfig. &hellip;">
   
     <a class='category' href='/blog/categories/go/'>Go</a>, <a class='category' href='/blog/categories/revel/'>Revel</a>
   
-</span>
+</span><br>
 
 
     </p>
@@ -168,6 +196,32 @@ http://robfig. &hellip;">
       <div class="sharing">
   
   
+  
+  
+    <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_32x32">
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_fav"></a>
+	<a href="http://www.jiathis.com/share?uid=1830844" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+	data_track_clickback:true,
+	summary:"",
+	shortUrl:true,
+	hideMore:false
+}
+</script>
+
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1830844" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1830844"></script>
+<!-- UY END -->
   
 </div>
 
@@ -198,6 +252,10 @@ http://robfig. &hellip;">
       </li>
     
   </ul>
+</section>
+<section>
+  <h1>Categories</h1>
+    <ul id="category-list"><li><a href='/blog/categories/go/'>Go (1)</a></li><li><a href='/blog/categories/revel/'>Revel (1)</a></li><li><a href='/blog/categories/sui-bi/'>随笔 (1)</a></li></ul>
 </section>
 
 

@@ -6,8 +6,8 @@
 <head>
   <meta charset="utf-8">
   <title>第一篇Octopress Blog - Hobo Blog</title>
+  
   <meta name="author" content="Hobo">
-
   
   <meta name="description" content="Git command 1
 2
@@ -27,7 +27,7 @@ git push origin master Rake command 1
 rake preview
 rake generate
 rake &hellip;">
-  
+  <meta name="keywords" content="">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -47,7 +47,30 @@ rake &hellip;">
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+<!-- 新窗口打开连接-->
+<script type="text/javascript">
+	function addBlankTargetForLinks () {
+	  $('a[href^="http"]').each(function(){
+	      $(this).attr('target', '_blank');
+	  });
+	}
+	$(document).bind('DOMNodeInserted', function(event) {
+	  addBlankTargetForLinks();
+	});
+</script>
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-22847501-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -147,6 +170,12 @@ rake &hellip;">
 
 
 
+
+<p class='post-footer'>
+      原文地址
+      <a href='http://blog.devhobo.com/blog/2013/08/19/di-%5B%3F%5D-pian-octopress-blog/'>http://blog.devhobo.com/blog/2013/08/19/di-%5B%3F%5D-pian-octopress-blog/</a><br/>
+      </p>
+
 </div>
 
 
@@ -155,7 +184,9 @@ rake &hellip;">
       
   
 
+
 <span class="byline author vcard">Posted by <span class="fn">Hobo</span></span>
+
 
       
 
@@ -176,7 +207,7 @@ rake &hellip;">
   
     <a class='category' href='/blog/categories/sui-bi/'>随笔</a>
   
-</span>
+</span><br>
 
 
     </p>
@@ -184,6 +215,32 @@ rake &hellip;">
       <div class="sharing">
   
   
+  
+  
+    <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_32x32">
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_fav"></a>
+	<a href="http://www.jiathis.com/share?uid=1830844" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+	data_track_clickback:true,
+	summary:"",
+	shortUrl:true,
+	hideMore:false
+}
+</script>
+
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1830844" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1830844"></script>
+<!-- UY END -->
   
 </div>
 
@@ -214,6 +271,10 @@ rake &hellip;">
       </li>
     
   </ul>
+</section>
+<section>
+  <h1>Categories</h1>
+    <ul id="category-list"><li><a href='/blog/categories/go/'>Go (1)</a></li><li><a href='/blog/categories/revel/'>Revel (1)</a></li><li><a href='/blog/categories/sui-bi/'>随笔 (1)</a></li></ul>
 </section>
 
 
