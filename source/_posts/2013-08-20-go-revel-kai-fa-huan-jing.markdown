@@ -6,6 +6,8 @@ comments: true
 categories: 
 - Go
 - Revel
+keywords: Go, Revel, 开发环境
+description: Go以及Revel框架的搭建
 ---
 
 环境安装都直接看官方文档最靠谱，经他人加工后的经常容易误导，后面也会有一些安装体会分享
