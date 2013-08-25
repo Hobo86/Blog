@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Revel | Hobo Blog]]></title>
-  <link href="http://blog.devhobo.com/blog/categories/revel/atom.xml" rel="self"/>
+  <title><![CDATA[Category: MySQL | Hobo Blog]]></title>
+  <link href="http://blog.devhobo.com/blog/categories/mysql/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
   <updated>2013-08-25T16:20:46+08:00</updated>
   <id>http://blog.devhobo.com/</id>
@@ -442,55 +442,6 @@
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">go</span> <span class="n">run</span> <span class="n">app_name</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Go-Revel:开发环境]]></title>
-    <link href="http://blog.devhobo.com/blog/2013/08/20/go-revel-kai-fa-huan-jing/"/>
-    <updated>2013-08-20T16:38:00+08:00</updated>
-    <id>http://blog.devhobo.com/blog/2013/08/20/go-revel-kai-fa-huan-jing</id>
-    <content type="html"><![CDATA[<p>环境安装都直接看官方文档最靠谱，经他人加工后的经常容易误导，后面也会有一些安装体会分享</p>
-
-<p>Go<br>
-英文<a href="http://golang.org/doc/install#osx">http://golang.org/doc/install#osx</a> （墙）<br>
-中文<a href="http://zh.golanger.com/doc/install#osx">http://zh.golanger.com/doc/install#osx</a></p>
-
-<p>Revel<br>
-<a href="http://robfig.github.io/revel/tutorial/gettingstarted.html">http://robfig.github.io/revel/tutorial/gettingstarted.html</a></p>
-
-<p>Revel配置过程中GOPATH和Revel command的配置可以直接编辑.bash_profile，个人感觉这样更简单直接
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>编辑.bash_profile </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">vi</span> <span class="o">~</span><span class="sr">/.bash_profile</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;添加两行&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">export</span> <span class="no">GOPATH</span><span class="o">=</span><span class="n">gocode_path</span>           <span class="c1">#gocode_path自己的工作目录</span>
-</span><span class='line'><span class="n">export</span> <span class="no">PATH</span><span class="o">=</span><span class="vg">$PATH</span><span class="p">:</span><span class="vg">$GOPATH</span><span class="o">/</span><span class="n">bin</span>       <span class="c1">#PATH可能原来也有其他的配置，继续追加就行，&quot;:&amp;ldquo;分割&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">编辑完成，重启终端</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>开发工具我还是喜欢Sublime Text 2，LiteIDE也试过，感觉一般<br>
-<a href="http://www.sublimetext.com/">http://www.sublimetext.com/</a></p>
-
-<p>再推荐个Mac小工具Go2Shell，安装后添加到Finder的工具栏上，直接在当前目录下启动终端，没用过的同学可以装下，很方便<br>
-<a href="https://itunes.apple.com/cn/app/go2shell/id445770608?mt=12">https://itunes.apple.com/cn/app/go2shell/id445770608?mt=12</a></p>
 ]]></content>
   </entry>
   

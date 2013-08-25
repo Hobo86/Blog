@@ -9,10 +9,14 @@
   
   <meta name="author" content="Hobo">
   
-  <meta name="description" content="环境安装都直接看官方文档最靠谱，经他人加工后的经常容易误导，后面也会有一些安装体会分享 Go
-英文http://golang.org/doc/install#osx （墙）
-中文http://zh.golanger.com/doc/install#osx Revel
-http://robfig. &hellip;">
+  <meta name="description" content="Revel连接数据库可以参考官方的Booking示例 除了Revel需要Gorp和MySQL驱动两个库 1
+2
+3
+4
+5
+#Gorp
+go get github.com/coopernurse/gorp #MySQL驱动
+go get github.com/go-sql-driver/mysql &hellip;">
   <meta name="keywords" content="">
 
   <!-- http://t.co/dKP3o1e -->
@@ -91,6 +95,357 @@ http://robfig. &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/24/go-revel-gorplian-jie-mysql/">Go-Revel:Gorp连接MySQL</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-24T09:22:00+08:00" pubdate data-updated="true">Aug 24<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Revel连接数据库可以参考官方的Booking示例</p>
+
+<p>除了Revel需要Gorp和MySQL驱动两个库</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#Gorp</span>
+</span><span class='line'><span class="n">go</span> <span class="n">get</span> <span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">coopernurse</span><span class="o">/</span><span class="n">gorp</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#MySQL驱动</span>
+</span><span class='line'><span class="n">go</span> <span class="n">get</span> <span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">go</span><span class="o">-</span><span class="n">sql</span><span class="o">-</span><span class="n">driver</span><span class="o">/</span><span class="n">mysql</span>  <span class="c1">#也可以用其他的驱动库</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>创建一个新的Revel工程app_name</p>
+
+<p>配置conf/app.conf</p>
+
+<figure class='code'><figcaption><span>数据库配置 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># DB username:@tcp(yourhost:port)/dbname</span>
+</span><span class='line'><span class="n">db</span><span class="o">.</span><span class="n">import</span> <span class="o">=</span> <span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="no">Go</span><span class="o">-</span><span class="no">SQL</span><span class="o">-</span><span class="no">Driver</span><span class="o">/</span><span class="n">mysql</span>
+</span><span class='line'><span class="n">db</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">mysql</span>
+</span><span class='line'><span class="n">db</span><span class="o">.</span><span class="n">spec</span>   <span class="o">=</span> <span class="ss">root</span><span class="p">:</span><span class="vi">@tcp</span><span class="p">(</span><span class="ss">localhost</span><span class="p">:</span><span class="mi">3306</span><span class="p">)</span><span class="o">/</span><span class="n">db_name</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>创建models/user.go，先只定义几个测试字段</p>
+
+<figure class='code'><figcaption><span>user.go </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">package</span> <span class="n">models</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">type</span> <span class="no">Post</span> <span class="n">struct</span> <span class="p">{</span>
+</span><span class='line'>  <span class="no">UserId</span>                          <span class="n">int</span>
+</span><span class='line'>  <span class="no">Name</span>                <span class="n">string</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>创建controllers/init.go</p>
+
+<figure class='code'><figcaption><span>init.go </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">package</span> <span class="n">controllers</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">import</span> <span class="s2">&quot;github.com/robfig/revel&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">func</span> <span class="n">init</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">revel</span><span class="o">.</span><span class="n">OnAppStart</span><span class="p">(</span><span class="no">Init</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">revel</span><span class="o">.</span><span class="n">InterceptMethod</span><span class="p">((</span><span class="o">*</span><span class="no">GorpController</span><span class="p">)</span><span class="o">.</span><span class="n">Begin</span><span class="p">,</span> <span class="n">revel</span><span class="o">.</span><span class="n">BEFORE</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">revel</span><span class="o">.</span><span class="n">InterceptMethod</span><span class="p">((</span><span class="o">*</span><span class="no">GorpController</span><span class="p">)</span><span class="o">.</span><span class="n">Commit</span><span class="p">,</span> <span class="n">revel</span><span class="o">.</span><span class="n">AFTER</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">revel</span><span class="o">.</span><span class="n">InterceptMethod</span><span class="p">((</span><span class="o">*</span><span class="no">GorpController</span><span class="p">)</span><span class="o">.</span><span class="n">Rollback</span><span class="p">,</span> <span class="n">revel</span><span class="o">.</span><span class="n">FINALLY</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>创建controllers/gorp.go</p>
+
+<figure class='code'><figcaption><span>gorp.go </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">package</span> <span class="n">controllers</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">import</span> <span class="p">(</span>
+</span><span class='line'>  <span class="s2">&quot;database/sql&quot;</span>
+</span><span class='line'>  <span class="s2">&quot;github.com/coopernurse/gorp&quot;</span>
+</span><span class='line'>  <span class="n">_</span> <span class="s2">&quot;github.com/Go-SQL-Driver/mysql&quot;</span>
+</span><span class='line'>  <span class="n">r</span> <span class="s2">&quot;github.com/robfig/revel&quot;</span>
+</span><span class='line'>  <span class="s2">&quot;github.com/robfig/revel/modules/db/app&quot;</span>
+</span><span class='line'>  <span class="s2">&quot;app_name/app/models&quot;</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">var</span> <span class="p">(</span>
+</span><span class='line'>  <span class="no">Dbm</span> <span class="o">*</span><span class="n">gorp</span><span class="o">.</span><span class="n">DbMap</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">func</span> <span class="no">Init</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">db</span><span class="o">.</span><span class="n">Init</span><span class="p">()</span>
+</span><span class='line'>  <span class="sr">//</span><span class="no">MySQL</span> <span class="no">InnoDB</span> <span class="no">UTF8</span>
+</span><span class='line'>  <span class="no">Dbm</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">gorp</span><span class="o">.</span><span class="n">DbMap</span><span class="p">{</span><span class="ss">Db</span><span class="p">:</span> <span class="n">db</span><span class="o">.</span><span class="n">Db</span><span class="p">,</span> <span class="ss">Dialect</span><span class="p">:</span> <span class="n">gorp</span><span class="o">.</span><span class="n">MySQLDialect</span><span class="p">{</span><span class="s2">&quot;InnoDB&quot;</span><span class="p">,</span> <span class="s2">&quot;UTF8&quot;</span><span class="p">}}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">setColumnSizes</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span><span class="n">gorp</span><span class="o">.</span><span class="n">TableMap</span><span class="p">,</span> <span class="n">colSizes</span> <span class="n">map</span><span class="o">[</span><span class="n">string</span><span class="o">]</span><span class="n">int</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">size</span> <span class="p">:</span><span class="o">=</span> <span class="n">range</span> <span class="n">colSizes</span> <span class="p">{</span>
+</span><span class='line'>          <span class="n">t</span><span class="o">.</span><span class="n">ColMap</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">MaxSize</span> <span class="o">=</span> <span class="n">size</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="sr">//</span><span class="err">创建一个</span><span class="no">User</span><span class="err">测试表</span>
+</span><span class='line'>  <span class="n">t</span> <span class="p">:</span><span class="o">=</span> <span class="no">Dbm</span><span class="o">.</span><span class="n">AddTable</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="p">{})</span><span class="o">.</span><span class="n">SetKeys</span><span class="p">(</span><span class="kp">true</span><span class="p">,</span> <span class="s2">&quot;UserId&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">setColumnSizes</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">map</span><span class="o">[</span><span class="n">string</span><span class="o">]</span><span class="n">int</span><span class="p">{</span>
+</span><span class='line'>      <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+</span><span class='line'>  <span class="p">})</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="no">Dbm</span><span class="o">.</span><span class="n">TraceOn</span><span class="p">(</span><span class="s2">&quot;[gorp]&quot;</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+</span><span class='line'>  <span class="no">Dbm</span><span class="o">.</span><span class="n">CreateTables</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="sr">//</span><span class="err">插入一组测试数据</span>
+</span><span class='line'>  <span class="n">demoUser</span> <span class="p">:</span><span class="o">=</span> <span class="o">&amp;</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Hobo&quot;</span><span class="p">}</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="no">Dbm</span><span class="o">.</span><span class="n">Insert</span><span class="p">(</span><span class="n">demoUser</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="kp">nil</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">panic</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">type</span> <span class="no">GorpController</span> <span class="n">struct</span> <span class="p">{</span>
+</span><span class='line'>  <span class="o">*</span><span class="n">r</span><span class="o">.</span><span class="n">Controller</span>
+</span><span class='line'>  <span class="no">Txn</span> <span class="o">*</span><span class="n">gorp</span><span class="o">.</span><span class="n">Transaction</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">func</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="no">GorpController</span><span class="p">)</span> <span class="no">Begin</span><span class="p">()</span> <span class="n">r</span><span class="o">.</span><span class="n">Result</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">txn</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="no">Dbm</span><span class="o">.</span><span class="n">Begin</span><span class="p">()</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="kp">nil</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">panic</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="n">c</span><span class="o">.</span><span class="n">Txn</span> <span class="o">=</span> <span class="n">txn</span>
+</span><span class='line'>  <span class="k">return</span> <span class="kp">nil</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">func</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="no">GorpController</span><span class="p">)</span> <span class="no">Commit</span><span class="p">()</span> <span class="n">r</span><span class="o">.</span><span class="n">Result</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">Txn</span> <span class="o">==</span> <span class="kp">nil</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="kp">nil</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">Txn</span><span class="o">.</span><span class="n">Commit</span><span class="p">();</span> <span class="n">err</span> <span class="o">!=</span> <span class="kp">nil</span> <span class="o">&amp;&amp;</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">sql</span><span class="o">.</span><span class="n">ErrTxDone</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">panic</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="n">c</span><span class="o">.</span><span class="n">Txn</span> <span class="o">=</span> <span class="kp">nil</span>
+</span><span class='line'>  <span class="k">return</span> <span class="kp">nil</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">func</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="no">GorpController</span><span class="p">)</span> <span class="no">Rollback</span><span class="p">()</span> <span class="n">r</span><span class="o">.</span><span class="n">Result</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">Txn</span> <span class="o">==</span> <span class="kp">nil</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="kp">nil</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">Txn</span><span class="o">.</span><span class="n">Rollback</span><span class="p">();</span> <span class="n">err</span> <span class="o">!=</span> <span class="kp">nil</span> <span class="o">&amp;&amp;</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">sql</span><span class="o">.</span><span class="n">ErrTxDone</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">panic</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="n">c</span><span class="o">.</span><span class="n">Txn</span> <span class="o">=</span> <span class="kp">nil</span>
+</span><span class='line'>  <span class="k">return</span> <span class="kp">nil</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>修改controllers/app.go</p>
+
+<figure class='code'><figcaption><span>修改app.go </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#import添加</span>
+</span><span class='line'>  <span class="s2">&quot;app_name/app/models&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#包含GorpController</span>
+</span><span class='line'><span class="n">type</span> <span class="no">App</span> <span class="n">struct</span> <span class="p">{</span>
+</span><span class='line'>  <span class="no">GorpController</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#测试查询</span>
+</span><span class='line'><span class="n">func</span> <span class="p">(</span><span class="n">c</span> <span class="no">App</span><span class="p">)</span> <span class="no">Index</span><span class="p">()</span> <span class="n">revel</span><span class="o">.</span><span class="n">Result</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">greeting</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;It works!&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">users</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">Txn</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="p">{},</span> <span class="sb">`select * from user where Name=&quot;Hobo&quot;`</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">len</span><span class="p">(</span><span class="n">users</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Null&quot;</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">user</span> <span class="p">:</span><span class="o">=</span> <span class="n">users</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="p">(</span><span class="o">*</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">greeting</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">Name</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="kp">nil</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">panic</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="n">Render</span><span class="p">(</span><span class="n">greeting</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>修改views/App/Index.html</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#&lt;h1&gt;It works&lt;/h1&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="sr">/{/</span><span class="p">{</span><span class="o">.</span><span class="n">greeting</span><span class="o">/</span><span class="p">}</span><span class="o">/</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/h1&gt;      #去掉反斜杠</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行测试下</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">go</span> <span class="n">run</span> <span class="n">app_name</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p class='post-footer'>
+      原文地址
+      <a href='http://blog.devhobo.com/blog/2013/08/24/go-revel-gorplian-jie-mysql/'>http://blog.devhobo.com/blog/2013/08/24/go-revel-gorplian-jie-mysql/</a><br/>
+      </p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -263,6 +618,10 @@ http://robfig. &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/08/24/go-revel-gorplian-jie-mysql/">Go-Revel:Gorp连接MySQL</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/08/20/go-revel-kai-fa-huan-jing/">Go-Revel:开发环境</a>
       </li>
     
@@ -274,7 +633,7 @@ http://robfig. &hellip;">
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/go/'>Go (1)</a></li><li><a href='/blog/categories/revel/'>Revel (1)</a></li><li><a href='/blog/categories/sui-bi/'>随笔 (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/go/'>Go (2)</a></li><li><a href='/blog/categories/gorp/'>Gorp (1)</a></li><li><a href='/blog/categories/mysql/'>MySQL (1)</a></li><li><a href='/blog/categories/revel/'>Revel (2)</a></li><li><a href='/blog/categories/sui-bi/'>随笔 (1)</a></li></ul>
 </section>
 
 
