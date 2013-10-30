@@ -9,14 +9,12 @@
   
   <meta name="author" content="Hobo">
   
-  <meta name="description" content="Revel连接数据库可以参考官方的Booking示例 除了Revel需要Gorp和MySQL驱动两个库 1
-2
-3
-4
-5
-#Gorp
-go get github.com/coopernurse/gorp #MySQL驱动
-go get github.com/go-sql-driver/mysql &hellip;">
+  <meta name="description" content="登入
+mysql -h192.168.1.110 -uroot -ppassword 登出
+quit/exit 查看数据库
+show databases; 用户权限
+添加
+grant select on db.table to &lsquo;user&rsquo;@&lsquo;host& &hellip;">
   <meta name="keywords" content="">
 
   <!-- http://t.co/dKP3o1e -->
@@ -95,6 +93,128 @@ go get github.com/go-sql-driver/mysql &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/">MySQL:常用命令行</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-30T08:58:00+08:00" pubdate data-updated="true">Oct 30<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>登入
+mysql -h192.168.1.110  -uroot -ppassword</p>
+
+<p>登出
+quit/exit</p>
+
+<p>查看数据库
+show databases;</p>
+
+<p>用户权限
+添加
+grant select on db.table to &lsquo;user&rsquo;@&lsquo;host&rsquo;;
+grant select,update on <em>.</em> to &lsquo;test&rsquo;@&lsquo;%&rsquo;;
+撤销
+revoke all on <em>.</em> from &lsquo;test&rsquo;@&lsquo;%&rsquo;;
+查看
+show grants;
+show grants for user@localhost</p>
+
+<p>删除用户
+delete from mysql.user where user=&lsquo;&rsquo; and host=&lsquo;&rsquo;;</p>
+
+<p>设置密码
+update mysql.user set password=PASSWORD(&lsquo;123456&rsquo;) where user=&lsquo;root&rsquo;;</p>
+
+<p>配置远程连接
+GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIFIED BY &lsquo;password&rsquo; WITH GRANT OPTION;</p>
+
+<p>导出
+用mysqldump命令行<br/>
+命令格式<br/>
+mysqldump -u　用户名 -p 数据库名 > 数据库名.sql<br/>
+范例：<br/>
+mysqldump -u　root -p dbname > filepath.sql<br/>
+//To export tofile(data only)
+mysqldump -u [user]-p[pass]&mdash;no-create-db &mdash;no-create-info mydb > mydb.sql
+//To export tofile(structure only)
+mysqldump -u [user]-p[pass]&mdash;no-data mydb > mydb.sql
+//To import todatabase
+mysql -u [user]-p[pass] mydb &lt; mydb.sql</p>
+
+<p>导入
+mysql> use dbname             #切到要导入的数据库
+mysql> source filepath.sql</p>
+
+<p>变量查看/修改
+show variables like &lsquo;%slow%&rsquo;;
+set global slow_query_log= &lsquo;ON&rsquo;;</p>
+
+<p>查看状态
+如show status like &lsquo;Qca%&rsquo;;</p>
+
+<p>查看SQL中select条数
+show status like &lsquo;Com_sel%&rsquo;; 显示的是一次会话的值！
+show global status like &ldquo;Com_select&rdquo;;</p>
+
+<p> 找回密码？
+1、kill -TERM mysqld
+2、conf中加入skip-grant-tables
+3、service mysqld restart
+4、mysql -uroot -p
+5、修改密码
+6、改回原配置并重启</p>
+
+<p>Binlog：<a href="http://dev.mysql.com/doc/refman/5.7/en/mysqlbinlog.html">http://dev.mysql.com/doc/refman/5.7/en/mysqlbinlog.html</a>
+删除mysql-bin日志
+<a href="http://dev.mysql.com/doc/refman/5.7/en/purge-binary-logs.html">http://dev.mysql.com/doc/refman/5.7/en/purge-binary-logs.html</a>
+PURGE BINARY LOGS TO &lsquo;mysql-bin.010&rsquo;;
+PURGE BINARY LOGS BEFORE &lsquo;2008-04-02 22:46:26&rsquo;;</p>
+
+<p>清空表并使自增归0
+TRUNCATE TABLE tablename</p>
+
+<p>Mac无法登陆
+Can&rsquo;t connect to MySQL server on &lsquo;127.0.0.1&rsquo; (61)
+StevenMacBookAir:~ Hobo$ sudo su &ndash;
+StevenMacBookAir:~ root# nohup /usr/local/mysql/bin/mysqld_safe &amp;
+[1] 464
+StevenMacBookAir:~ root# appending output to nohup.out
+exit
+logout
+StevenMacBookAir:~ Hobo$ <p class='post-footer'></p>
+
+<pre><code>  原文地址
+  &lt;a href='http://blog.devhobo.com/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/'&gt;http://blog.devhobo.com/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/&lt;/a&gt;&lt;br/&gt;
+  &lt;/p&gt;
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -618,6 +738,10 @@ go get github.com/go-sql-driver/mysql &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/">MySQL:常用命令行</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/08/24/go-revel-gorplian-jie-mysql/">Go-Revel:Gorp连接MySQL</a>
       </li>
     
@@ -633,7 +757,7 @@ go get github.com/go-sql-driver/mysql &hellip;">
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/go/'>Go (2)</a></li><li><a href='/blog/categories/gorp/'>Gorp (1)</a></li><li><a href='/blog/categories/mysql/'>MySQL (1)</a></li><li><a href='/blog/categories/revel/'>Revel (2)</a></li><li><a href='/blog/categories/sui-bi/'>随笔 (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/go/'>Go (2)</a></li><li><a href='/blog/categories/gorp/'>Gorp (1)</a></li><li><a href='/blog/categories/mysql/'>MySQL (2)</a></li><li><a href='/blog/categories/revel/'>Revel (2)</a></li><li><a href='/blog/categories/sui-bi/'>随笔 (1)</a></li></ul>
 </section>
 
 
