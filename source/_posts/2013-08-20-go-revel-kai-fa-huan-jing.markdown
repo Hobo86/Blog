@@ -19,6 +19,8 @@ Go<br>
 Revel<br>
 http://robfig.github.io/revel/tutorial/gettingstarted.html
 
+<!--more-->  
+
 Revel配置过程中GOPATH和Revel command的配置可以直接编辑.bash_profile，个人感觉这样更简单直接
 {% codeblock 编辑.bash_profile lang:ruby %}
 $ vi ~/.bash_profile

@@ -37,6 +37,8 @@ update mysql.user set password=PASSWORD('123456') where user='root';
 配置远程连接
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION; 
  
+<!--more-->  
+
 导出
 用mysqldump命令行  
 命令格式  

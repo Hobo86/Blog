@@ -25,6 +25,8 @@ go get github.com/go-sql-driver/mysql  #也可以用其他的驱动库
 
 创建一个新的Revel工程app_name
 
+<!--more-->  
+
 配置conf/app.conf
 {% codeblock 数据库配置 lang:ruby %}
 # DB username:@tcp(yourhost:port)/dbname
