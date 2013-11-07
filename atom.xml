@@ -4,7 +4,7 @@
   <title><![CDATA[Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2013-11-07T18:25:54+08:00</updated>
+  <updated>2013-11-07T18:30:12+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -22,32 +22,51 @@
 Centos 6.4
 2.安装svn</p>
 
-<h1>yum install subversion</h1>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#yum install subversion</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>3.建立版本库</p>
 
-<h1>mkdir /mnt/svndata</h1>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#mkdir /mnt/svndata</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>启动服务</p>
 
-<h1>svnserve -d -r /mnt/svndata</h1>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#svnserve -d -r /mnt/svndata</span>
+</span><span class='line'><span class="c1">#svnadmin create /mnt/svndata/svn</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<h1>svnadmin create /mnt/svndata/svn</h1>
 
 <p>4.修改配置</p>
 
-<h1>cd /mnt/svndata/svn/conf</h1>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#cd /mnt/svndata/svn/conf</span>
+</span><span class='line'><span class="c1">#vi svnserve.conf</span>
+</span><span class='line'><span class="n">anon</span><span class="o">-</span><span class="n">access</span><span class="o">=</span><span class="n">none</span>
+</span><span class='line'><span class="n">auth</span><span class="o">-</span><span class="n">access</span><span class="o">=</span><span class="n">write</span>
+</span><span class='line'><span class="n">password</span><span class="o">-</span><span class="n">db</span><span class="o">=</span><span class="n">passwd</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#vi passwd</span>
+</span><span class='line'><span class="o">[</span><span class="n">users</span><span class="o">]</span>
+</span><span class='line'><span class="n">hobo</span><span class="o">=</span><span class="mi">123456</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<h1>vi svnserve.conf</h1>
 
-<p>anon-access=none
-auth-access=write
-password-db=passwd</p>
 
-<h1>vi passwd</h1>
-
-<p>[users]
-hobo=123456</p>
 
 <!--more-->
 
@@ -56,35 +75,56 @@ hobo=123456</p>
 5.实现SVN与WEB同步
 1)checkout一个test项目</p>
 
-<h1>svn co svn://localhost/svn /mnt/www/webroot/test</h1>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#svn co svn://localhost/svn /mnt/www/webroot/test</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>2)修改权限为WEB用户</p>
 
-<h1>chown -R apache:apache /mnt/www/webroot/test</h1>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#chown -R apache:apache /mnt/www/webroot/test</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>3)建立同步脚本</p>
 
-<h1>cd /mnt/svndata/svn/hooks/</h1>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#cd /mnt/svndata/svn/hooks/</span>
+</span><span class='line'><span class="c1">#cp post-commit.tmpl post-commit</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<h1>cp post-commit.tmpl post-commit</h1>
 
 <p>4)编辑post-commit，添加同步脚本</p>
 
-<h1>vi post-commit</h1>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#vi post-commit</span>
+</span><span class='line'><span class="n">export</span> <span class="no">LANG</span><span class="o">=</span><span class="n">en_US</span><span class="o">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
+</span><span class='line'><span class="no">SVN</span><span class="o">=</span><span class="sr">/usr/</span><span class="n">bin</span><span class="o">/</span><span class="n">svn</span>
+</span><span class='line'><span class="no">WEB_TEST</span><span class="o">=</span><span class="sr">/mnt/</span><span class="n">www</span><span class="o">/</span><span class="n">webroot</span><span class="o">/</span><span class="nb">test</span>
+</span><span class='line'><span class="vg">$SVN</span> <span class="n">update</span> <span class="vg">$WEB_TEST</span> <span class="err">–</span><span class="n">username</span> <span class="n">hobo</span> <span class="err">–</span><span class="n">password</span> <span class="mi">123456</span>
+</span><span class='line'><span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="ss">apache</span><span class="p">:</span><span class="n">apache</span> <span class="vg">$WEB</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>export LANG=en_US.UTF-8
-SVN=/usr/bin/svn
-WEB_TEST=/mnt/www/webroot/test
-$SVN update $WEB_TEST –username hobo –password 123456
-chown -R apache:apache $WEB
-5)增加脚本执行权限</p>
 
-<h1>chmod +x post-commit<p class='post-footer'></h1>
+<p>5)增加脚本执行权限</p>
 
-<pre><code>  原文地址
-  &lt;a href='http://blog.devhobo.com/blog/2013/11/07/svnshi-yong/'&gt;http://blog.devhobo.com/blog/2013/11/07/svnshi-yong/&lt;/a&gt;&lt;br/&gt;
-  &lt;/p&gt;
-</code></pre>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#chmod +x post-commit</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p class='post-footer'>
+      原文地址
+      <a href='http://blog.devhobo.com/blog/2013/11/07/svnshi-yong/'>http://blog.devhobo.com/blog/2013/11/07/svnshi-yong/</a><br/>
+      </p>
+
 ]]></content>
   </entry>
   
