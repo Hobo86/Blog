@@ -4,7 +4,7 @@
   <title><![CDATA[Category: SVN | Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/blog/categories/svn/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2013-11-07T18:30:12+08:00</updated>
+  <updated>2013-11-07T18:34:12+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -19,8 +19,9 @@
     <updated>2013-11-07T18:15:00+08:00</updated>
     <id>http://blog.devhobo.com/blog/2013/11/07/svnshi-yong</id>
     <content type="html"><![CDATA[<p>1.系统
-Centos 6.4
-2.安装svn
+Centos 6.4</p>
+
+<p>2.安装svn
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -95,8 +96,9 @@ Centos 6.4
 
 
 <p>
-5.实现SVN与WEB同步
-1)checkout一个test项目
+5.实现SVN与WEB同步</p>
+
+<p>1)checkout一个test项目
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>

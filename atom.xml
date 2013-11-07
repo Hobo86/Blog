@@ -4,7 +4,7 @@
   <title><![CDATA[Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2013-11-07T18:30:12+08:00</updated>
+  <updated>2013-11-07T18:34:12+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -19,8 +19,9 @@
     <updated>2013-11-07T18:15:00+08:00</updated>
     <id>http://blog.devhobo.com/blog/2013/11/07/svnshi-yong</id>
     <content type="html"><![CDATA[<p>1.系统
-Centos 6.4
-2.安装svn</p>
+Centos 6.4</p>
+
+<p>2.安装svn</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#yum install subversion</span>
@@ -72,8 +73,9 @@ Centos 6.4
 
 
 <p>
-5.实现SVN与WEB同步
-1)checkout一个test项目</p>
+5.实现SVN与WEB同步</p>
+
+<p>1)checkout一个test项目</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#svn co svn://localhost/svn /mnt/www/webroot/test</span>
