@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Revel | Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/blog/categories/revel/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2013-10-30T09:04:16+08:00</updated>
+  <updated>2013-11-07T18:25:54+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -42,6 +42,11 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>创建一个新的Revel工程app_name</p>
+
+<!--more-->
+
+
+<p></p>
 
 <p>配置conf/app.conf
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>数据库配置 </span></figcaption>
@@ -458,6 +463,11 @@
 
 <p>Revel<br>
 <a href="http://robfig.github.io/revel/tutorial/gettingstarted.html">http://robfig.github.io/revel/tutorial/gettingstarted.html</a></p>
+
+<!--more-->
+
+
+<p></p>
 
 <p>Revel配置过程中GOPATH和Revel command的配置可以直接编辑.bash_profile，个人感觉这样更简单直接
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>编辑.bash_profile </span></figcaption>

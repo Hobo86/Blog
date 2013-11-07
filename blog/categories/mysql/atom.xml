@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MySQL | Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/blog/categories/mysql/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2013-10-30T09:04:16+08:00</updated>
+  <updated>2013-11-07T18:25:54+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -45,6 +45,11 @@ update mysql.user set password=PASSWORD(&lsquo;123456&rsquo;) where user=&lsquo;
 
 <p>配置远程连接
 GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIFIED BY &lsquo;password&rsquo; WITH GRANT OPTION;</p>
+
+<!--more-->
+
+
+<p></p>
 
 <p>导出
 用mysqldump命令行<br/>
@@ -132,6 +137,11 @@ StevenMacBookAir:~ Hobo$</p>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>创建一个新的Revel工程app_name</p>
+
+<!--more-->
+
+
+<p></p>
 
 <p>配置conf/app.conf
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>数据库配置 </span></figcaption>

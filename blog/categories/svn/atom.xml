@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: SVN | Hobo Blog]]></title>
+  <link href="http://blog.devhobo.com/blog/categories/svn/atom.xml" rel="self"/>
+  <link href="http://blog.devhobo.com/"/>
+  <updated>2013-11-07T18:25:54+08:00</updated>
+  <id>http://blog.devhobo.com/</id>
+  <author>
+    <name><![CDATA[Hobo]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SVN使用]]></title>
+    <link href="http://blog.devhobo.com/blog/2013/11/07/svnshi-yong/"/>
+    <updated>2013-11-07T18:15:00+08:00</updated>
+    <id>http://blog.devhobo.com/blog/2013/11/07/svnshi-yong</id>
+    <content type="html"><![CDATA[<p>1.系统
+Centos 6.4
+2.安装svn</p>
+
+<h1>yum install subversion</h1>
+
+<p>3.建立版本库</p>
+
+<h1>mkdir /mnt/svndata</h1>
+
+<p>启动服务</p>
+
+<h1>svnserve -d -r /mnt/svndata</h1>
+
+<h1>svnadmin create /mnt/svndata/svn</h1>
+
+<p>4.修改配置</p>
+
+<h1>cd /mnt/svndata/svn/conf</h1>
+
+<h1>vi svnserve.conf</h1>
+
+<p>anon-access=none
+auth-access=write
+password-db=passwd</p>
+
+<h1>vi passwd</h1>
+
+<p>[users]
+hobo=123456</p>
+
+<!--more-->
+
+
+<p>
+5.实现SVN与WEB同步
+1)checkout一个test项目</p>
+
+<h1>svn co svn://localhost/svn /mnt/www/webroot/test</h1>
+
+<p>2)修改权限为WEB用户</p>
+
+<h1>chown -R apache:apache /mnt/www/webroot/test</h1>
+
+<p>3)建立同步脚本</p>
+
+<h1>cd /mnt/svndata/svn/hooks/</h1>
+
+<h1>cp post-commit.tmpl post-commit</h1>
+
+<p>4)编辑post-commit，添加同步脚本</p>
+
+<h1>vi post-commit</h1>
+
+<p>export LANG=en_US.UTF-8
+SVN=/usr/bin/svn
+WEB_TEST=/mnt/www/webroot/test
+$SVN update $WEB_TEST –username hobo –password 123456
+chown -R apache:apache $WEB
+5)增加脚本执行权限</p>
+
+<h1>chmod +x post-commit</h1>
+]]></content>
+  </entry>
+  
+</feed>

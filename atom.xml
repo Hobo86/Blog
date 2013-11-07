@@ -4,7 +4,7 @@
   <title><![CDATA[Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2013-10-30T09:04:16+08:00</updated>
+  <updated>2013-11-07T18:25:54+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -12,6 +12,81 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[SVN使用]]></title>
+    <link href="http://blog.devhobo.com/blog/2013/11/07/svnshi-yong/"/>
+    <updated>2013-11-07T18:15:00+08:00</updated>
+    <id>http://blog.devhobo.com/blog/2013/11/07/svnshi-yong</id>
+    <content type="html"><![CDATA[<p>1.系统
+Centos 6.4
+2.安装svn</p>
+
+<h1>yum install subversion</h1>
+
+<p>3.建立版本库</p>
+
+<h1>mkdir /mnt/svndata</h1>
+
+<p>启动服务</p>
+
+<h1>svnserve -d -r /mnt/svndata</h1>
+
+<h1>svnadmin create /mnt/svndata/svn</h1>
+
+<p>4.修改配置</p>
+
+<h1>cd /mnt/svndata/svn/conf</h1>
+
+<h1>vi svnserve.conf</h1>
+
+<p>anon-access=none
+auth-access=write
+password-db=passwd</p>
+
+<h1>vi passwd</h1>
+
+<p>[users]
+hobo=123456</p>
+
+<!--more-->
+
+
+<p>
+5.实现SVN与WEB同步
+1)checkout一个test项目</p>
+
+<h1>svn co svn://localhost/svn /mnt/www/webroot/test</h1>
+
+<p>2)修改权限为WEB用户</p>
+
+<h1>chown -R apache:apache /mnt/www/webroot/test</h1>
+
+<p>3)建立同步脚本</p>
+
+<h1>cd /mnt/svndata/svn/hooks/</h1>
+
+<h1>cp post-commit.tmpl post-commit</h1>
+
+<p>4)编辑post-commit，添加同步脚本</p>
+
+<h1>vi post-commit</h1>
+
+<p>export LANG=en_US.UTF-8
+SVN=/usr/bin/svn
+WEB_TEST=/mnt/www/webroot/test
+$SVN update $WEB_TEST –username hobo –password 123456
+chown -R apache:apache $WEB
+5)增加脚本执行权限</p>
+
+<h1>chmod +x post-commit<p class='post-footer'></h1>
+
+<pre><code>  原文地址
+  &lt;a href='http://blog.devhobo.com/blog/2013/11/07/svnshi-yong/'&gt;http://blog.devhobo.com/blog/2013/11/07/svnshi-yong/&lt;/a&gt;&lt;br/&gt;
+  &lt;/p&gt;
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MySQL:常用命令行]]></title>
@@ -45,6 +120,11 @@ update mysql.user set password=PASSWORD(&lsquo;123456&rsquo;) where user=&lsquo;
 
 <p>配置远程连接
 GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIFIED BY &lsquo;password&rsquo; WITH GRANT OPTION;</p>
+
+<!--more-->
+
+
+<p></p>
 
 <p>导出
 用mysqldump命令行<br/>
@@ -131,6 +211,11 @@ StevenMacBookAir:~ Hobo$ <p class='post-footer'></p>
 
 
 <p>创建一个新的Revel工程app_name</p>
+
+<!--more-->
+
+
+<p></p>
 
 <p>配置conf/app.conf</p>
 
@@ -445,6 +530,11 @@ StevenMacBookAir:~ Hobo$ <p class='post-footer'></p>
 
 <p>Revel<br>
 <a href="http://robfig.github.io/revel/tutorial/gettingstarted.html">http://robfig.github.io/revel/tutorial/gettingstarted.html</a></p>
+
+<!--more-->
+
+
+<p></p>
 
 <p>Revel配置过程中GOPATH和Revel command的配置可以直接编辑.bash_profile，个人感觉这样更简单直接</p>
 
