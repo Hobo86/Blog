@@ -4,7 +4,7 @@
   <title><![CDATA[Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2013-11-07T18:34:12+08:00</updated>
+  <updated>2013-11-07T18:45:55+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -14,7 +14,104 @@
 
   
   <entry>
-    <title type="html"><![CDATA[SVN使用]]></title>
+    <title type="html"><![CDATA[日志统计分析-Shell/Goaccess]]></title>
+    <link href="http://blog.devhobo.com/blog/2013/11/07/ri-zhi-tong-ji-fen-xi-shell-slash-goaccess/"/>
+    <updated>2013-11-07T18:36:00+08:00</updated>
+    <id>http://blog.devhobo.com/blog/2013/11/07/ri-zhi-tong-ji-fen-xi-shell-slash-goaccess</id>
+    <content type="html"><![CDATA[<p>对Nginx或其他日志进行简单的统计分析</p>
+
+<p>Shell
+对某一列进行统计，可以分析Status Code,URL等</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#cat access.log | awk &#39;{print $9}&#39;|sort|uniq -c | sort -r -n &gt; stat.log</span>
+</span><span class='line'><span class="err">或</span>
+</span><span class='line'><span class="c1">#cat access.log |grep &quot;200&quot; | awk &#39;{print $7}&#39;|sort|uniq -c | sort -r -n &gt; stat.log</span>
+</span><span class='line'><span class="c1">#vi stat.log</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>指定String统计</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#cat access.log|grep &quot;200&quot;|wc -l </span>
+</span><span class='line'><span class="c1">#cat access.log|grep &quot;www.localhost.com&quot;|wc -l</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Goaccess工具</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#goaccess -f access.log</span>
+</span><span class='line'><span class="c1">#goaccess -f access.log -a -s -b</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Goaccess分析压缩日志</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">zcat</span> <span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="o">-</span><span class="mi">20130123</span><span class="o">.</span><span class="n">gz</span> <span class="o">|</span> <span class="n">goaccess</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p class='post-footer'>
+      原文地址
+      <a href='http://blog.devhobo.com/blog/2013/11/07/ri-zhi-tong-ji-fen-xi-shell-slash-goaccess/'>http://blog.devhobo.com/blog/2013/11/07/ri-zhi-tong-ji-fen-xi-shell-slash-goaccess/</a><br/>
+      </p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MySql:优化工具]]></title>
+    <link href="http://blog.devhobo.com/blog/2013/11/07/mysql-you-hua-gong-ju/"/>
+    <updated>2013-11-07T18:36:00+08:00</updated>
+    <id>http://blog.devhobo.com/blog/2013/11/07/mysql-you-hua-gong-ju</id>
+    <content type="html"><![CDATA[<p>脚本优化tuning-primer.sh</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#cd /etc/   (my.conf所在目录)</span>
+</span><span class='line'><span class="c1">#wget http://www.day32.com/MySQL/tuning-primer.sh</span>
+</span><span class='line'><span class="c1">#chmod +x tuning-primer.sh</span>
+</span><span class='line'><span class="c1">#./tuning-primer.sh</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>优化工具Mysqltuner</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">安装：</span>
+</span><span class='line'><span class="c1">#yum install -y mysqltuner</span>
+</span><span class='line'><span class="err">运行：</span>
+</span><span class='line'><span class="c1">#mysqltuner</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p class='post-footer'>
+      原文地址
+      <a href='http://blog.devhobo.com/blog/2013/11/07/mysql-you-hua-gong-ju/'>http://blog.devhobo.com/blog/2013/11/07/mysql-you-hua-gong-ju/</a><br/>
+      </p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SVN:使用]]></title>
     <link href="http://blog.devhobo.com/blog/2013/11/07/svnshi-yong/"/>
     <updated>2013-11-07T18:15:00+08:00</updated>
     <id>http://blog.devhobo.com/blog/2013/11/07/svnshi-yong</id>

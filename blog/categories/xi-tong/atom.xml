@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 系统 | Hobo Blog]]></title>
+  <link href="http://blog.devhobo.com/blog/categories/xi-tong/atom.xml" rel="self"/>
+  <link href="http://blog.devhobo.com/"/>
+  <updated>2013-11-07T18:45:55+08:00</updated>
+  <id>http://blog.devhobo.com/</id>
+  <author>
+    <name><![CDATA[Hobo]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[日志统计分析-Shell/Goaccess]]></title>
+    <link href="http://blog.devhobo.com/blog/2013/11/07/ri-zhi-tong-ji-fen-xi-shell-slash-goaccess/"/>
+    <updated>2013-11-07T18:36:00+08:00</updated>
+    <id>http://blog.devhobo.com/blog/2013/11/07/ri-zhi-tong-ji-fen-xi-shell-slash-goaccess</id>
+    <content type="html"><![CDATA[<p>对Nginx或其他日志进行简单的统计分析</p>
+
+<p>Shell
+对某一列进行统计，可以分析Status Code,URL等
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;cat access.log | awk &amp;lsquo;{print $9}&amp;rsquo;|sort|uniq -c | sort -r -n &gt; stat.log&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="err">或</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;cat access.log |grep &amp;ldquo;200&amp;rdquo; | awk &amp;lsquo;{print $7}&amp;rsquo;|sort|uniq -c | sort -r -n &gt; stat.log&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">vi</span> <span class="n">stat</span><span class="o">.</span><span class="n">log</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>指定String统计
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;cat access.log|grep &amp;ldquo;200&amp;rdquo;|wc -l&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">cat</span> <span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="o">|</span><span class="n">grep</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">www</span><span class="o">.</span><span class="n">localhost</span><span class="o">.</span><span class="n">com</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">|</span><span class="n">wc</span> <span class="o">-</span><span class="n">l</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Goaccess工具
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;goaccess -f access.log&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">goaccess</span> <span class="o">-</span><span class="n">f</span> <span class="n">access</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">s</span> <span class="o">-</span><span class="n">b</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Goaccess分析压缩日志
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">zcat</span> <span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="o">-</span><span class="mi">20130123</span><span class="o">.</span><span class="n">gz</span> <span class="o">|</span> <span class="n">goaccess</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MySQL | Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/blog/categories/mysql/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2013-11-07T18:34:12+08:00</updated>
+  <updated>2013-11-07T18:45:55+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[MySql:优化工具]]></title>
+    <link href="http://blog.devhobo.com/blog/2013/11/07/mysql-you-hua-gong-ju/"/>
+    <updated>2013-11-07T18:36:00+08:00</updated>
+    <id>http://blog.devhobo.com/blog/2013/11/07/mysql-you-hua-gong-ju</id>
+    <content type="html"><![CDATA[<p>脚本优化tuning-primer.sh
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;cd /e</span><span class="n">tc</span><span class="o">/</span>   <span class="p">(</span><span class="n">my</span><span class="o">.</span><span class="n">conf</span><span class="err">所在目录</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;wget &lt;a href=&quot;http:/</span><span class="o">/</span><span class="n">www</span><span class="o">.</span><span class="n">day32</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="no">MySQL</span><span class="o">/</span><span class="n">tuning</span><span class="o">-</span><span class="n">primer</span><span class="o">.</span><span class="n">sh</span><span class="s2">&quot;&gt;http://www.day32.com/MySQL/tuning-primer.sh&lt;/a&gt;&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;h1&gt;chmod +x tuning-primer.sh&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;h1&gt;./tuning-primer.sh&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>优化工具Mysqltuner
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">安装：</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;yum install -y mysqltuner&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="err">运行：</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;mysqltuner&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MySQL:常用命令行]]></title>

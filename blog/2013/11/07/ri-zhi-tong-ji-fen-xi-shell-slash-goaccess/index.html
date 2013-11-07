@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>About - Hobo Blog</title>
+  <title>日志统计分析-Shell/Goaccess - Hobo Blog</title>
   
   <meta name="author" content="Hobo">
   
-  <meta name="description" content="成都云创新科技有限公司，陈洪波，iOS、Php开发">
-  <meta name="keywords" content="简介, 陈洪波, Hobo, iOS, 云创新">
+  <meta name="description" content="使用Shell和Goaccess简单统计分析日志文件">
+  <meta name="keywords" content="日志, Goaccess, Shell">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.devhobo.com/about">
+  <link rel="canonical" href="http://blog.devhobo.com/blog/2013/11/07/ri-zhi-tong-ji-fen-xi-shell-slash-goaccess">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Hobo Blog" type="application/atom+xml">
@@ -87,34 +87,15 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">About</h1>
-    <p class="meta">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-19T18:54:00+08:00" pubdate data-updated="true">Aug 19<span>th</span>, 2013</time></p>
-  </header>
-  
-  <p>陈洪波</p>
-
-<p>成都云创新科技有限公司</p>
-
-  
-    <footer>
+    
+      <h1 class="entry-title">日志统计分析-Shell/Goaccess</h1>
+    
+    
       <p class="meta">
         
-        
 
 
 
@@ -126,12 +107,141 @@
   
 
 
-<time datetime="2013-08-19T18:54:00+08:00" pubdate data-updated="true">Aug 19<span>th</span>, 2013</time>
+<time datetime="2013-11-07T18:36:00+08:00" pubdate data-updated="true">Nov 7<span>th</span>, 2013</time>
         
       </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>对Nginx或其他日志进行简单的统计分析</p>
+
+<p>Shell
+对某一列进行统计，可以分析Status Code,URL等</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#cat access.log | awk &#39;{print $9}&#39;|sort|uniq -c | sort -r -n &gt; stat.log</span>
+</span><span class='line'><span class="err">或</span>
+</span><span class='line'><span class="c1">#cat access.log |grep &quot;200&quot; | awk &#39;{print $7}&#39;|sort|uniq -c | sort -r -n &gt; stat.log</span>
+</span><span class='line'><span class="c1">#vi stat.log</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>指定String统计</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#cat access.log|grep &quot;200&quot;|wc -l </span>
+</span><span class='line'><span class="c1">#cat access.log|grep &quot;www.localhost.com&quot;|wc -l</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Goaccess工具</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#goaccess -f access.log</span>
+</span><span class='line'><span class="c1">#goaccess -f access.log -a -s -b</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Goaccess分析压缩日志</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">zcat</span> <span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="o">-</span><span class="mi">20130123</span><span class="o">.</span><span class="n">gz</span> <span class="o">|</span> <span class="n">goaccess</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p class='post-footer'>
+      原文地址
+      <a href='http://blog.devhobo.com/blog/2013/11/07/ri-zhi-tong-ji-fen-xi-shell-slash-goaccess/'>http://blog.devhobo.com/blog/2013/11/07/ri-zhi-tong-ji-fen-xi-shell-slash-goaccess/</a><br/>
+      </p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
       
-    </footer>
   
+
+
+<span class="byline author vcard">Posted by <span class="fn">Hobo</span></span>
+
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-07T18:36:00+08:00" pubdate data-updated="true">Nov 7<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/xi-tong/'>系统</a>
+  
+</span><br>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+  
+  <style>
+    .flash-video{display:none;}
+  </style>
+    <!-- JiaThis Button BEGIN -->
+<div id="ckepop">
+	<span class="jiathis_txt">分享：</span>
+	<a class="jiathis_button_weixin">微信</a>
+	<a class="jiathis_button_tsina">新浪微博</a>
+	<a class="jiathis_button_t163">网易微博</a>
+	<a class="jiathis_button_douban">豆瓣</a>
+	<a href="http://www.jiathis.com/share?uid=1830844" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+    data_track_clickback:true,
+    sm:"cqq,qzone,tqq,renren,ishare",
+    summary:"",
+    hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v2.jiathis.com/code_mini/jia.js?uid=1830844" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1830844"></script>
+<!-- UY END -->
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/11/07/mysql-you-hua-gong-ju/" title="Previous Post: MySql:优化工具">&laquo; MySql:优化工具</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
