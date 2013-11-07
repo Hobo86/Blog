@@ -4,7 +4,7 @@
   <title><![CDATA[Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2013-11-07T18:45:55+08:00</updated>
+  <updated>2013-11-07T18:47:51+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -55,7 +55,7 @@
 <p>Goaccess分析压缩日志</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">zcat</span> <span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="o">-</span><span class="mi">20130123</span><span class="o">.</span><span class="n">gz</span> <span class="o">|</span> <span class="n">goaccess</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#zcat access.log-20130123.gz | goaccess</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
