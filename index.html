@@ -9,13 +9,11 @@
   
   <meta name="author" content="Hobo">
   
-  <meta name="description" content="对Nginx或其他日志进行简单的统计分析 Shell
-对某一列进行统计，可以分析Status Code,URL等 1
-2
-3
-4
-#cat access.log | awk &#39;{print $9}&#39;|sort|uniq -c | sort -r -n &gt; stat.log
-或 &hellip;">
+  <meta name="description" content="配置ThinkPHP开发环境
+1、开启Rewrite支持.htaccess
+2、自定义工程路径
+3、自定义本地域名访问 WAMP安装
+http://www.wampserver.com/en/#download-wrapper 编辑wamp/bin/apache/Apache2.x.x/conf/ &hellip;">
   <meta name="keywords" content="">
 
   <!-- http://t.co/dKP3o1e -->
@@ -94,6 +92,73 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/05/wamppei-zhi/">WAMP+ThinkPHP配置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-05T18:30:00+08:00" pubdate data-updated="true">Mar 5<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>配置ThinkPHP开发环境
+</br>1、开启Rewrite支持.htaccess
+</br>2、自定义工程路径
+</br>3、自定义本地域名访问</p>
+
+<p>WAMP安装
+</br><a href="http://www.wampserver.com/en/#download-wrapper">http://www.wampserver.com/en/#download-wrapper</a></p>
+
+<figure class='code'><figcaption><span>编辑wamp/bin/apache/Apache2.x.x/conf/httpd.conf </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#开启rewrite，支持.htaccess</span>
+</span><span class='line'><span class="c1">#LoadModule rewrite_module modules/mod_rewrite.so去掉注释</span>
+</span><span class='line'><span class="no">LoadModule</span> <span class="n">rewrite_module</span> <span class="n">modules</span><span class="o">/</span><span class="n">mod_rewrite</span><span class="o">.</span><span class="n">so</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#开启httpd-vhosts，自定义域名和工程路径</span>
+</span><span class='line'><span class="c1">#Include conf/extra/httpd-vhosts.conf去掉注释</span>
+</span><span class='line'><span class="no">Include</span> <span class="n">conf</span><span class="o">/</span><span class="n">extra</span><span class="o">/</span><span class="n">httpd</span><span class="o">-</span><span class="n">vhosts</span><span class="o">.</span><span class="n">conf</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/05/wamppei-zhi/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -275,7 +340,7 @@
 
 
   <div class="entry-content"><p>1.系统
-Centos 6.4</p>
+</br>Centos 6.4</p>
 
 <p>2.安装svn</p>
 
@@ -365,32 +430,32 @@ Centos 6.4</p>
 
 
   <div class="entry-content"><p>登入
-mysql -h192.168.1.110  -uroot -ppassword</p>
+</br>mysql -h192.168.1.110  -uroot -ppassword</p>
 
 <p>登出
-quit/exit</p>
+</br>quit/exit</p>
 
 <p>查看数据库
-show databases;</p>
+</br>show databases;</p>
 
 <p>用户权限
-添加
-grant select on db.table to &lsquo;user&rsquo;@&lsquo;host&rsquo;;
-grant select,update on <em>.</em> to &lsquo;test&rsquo;@&lsquo;%&rsquo;;
-撤销
-revoke all on <em>.</em> from &lsquo;test&rsquo;@&lsquo;%&rsquo;;
-查看
-show grants;
-show grants for user@localhost</p>
+</br>添加
+</br>grant select on db.table to &lsquo;user&rsquo;@&lsquo;host&rsquo;;
+</br>grant select,update on <em>.</em> to &lsquo;test&rsquo;@&lsquo;%&rsquo;;
+</br>撤销
+</br>revoke all on <em>.</em> from &lsquo;test&rsquo;@&lsquo;%&rsquo;;
+</br>查看
+</br>show grants;
+</br>show grants for user@localhost</p>
 
 <p>删除用户
-delete from mysql.user where user=&lsquo;&rsquo; and host=&lsquo;&rsquo;;</p>
+</br>delete from mysql.user where user=&lsquo;&rsquo; and host=&lsquo;&rsquo;;</p>
 
 <p>设置密码
-update mysql.user set password=PASSWORD(&lsquo;123456&rsquo;) where user=&lsquo;root&rsquo;;</p>
+</br>update mysql.user set password=PASSWORD(&lsquo;123456&rsquo;) where user=&lsquo;root&rsquo;;</p>
 
 <p>配置远程连接
-GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIFIED BY &lsquo;password&rsquo; WITH GRANT OPTION;</p>
+</br>GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIFIED BY &lsquo;password&rsquo; WITH GRANT OPTION;</p>
 
 </div>
   
@@ -514,7 +579,7 @@ GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIF
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/08/19/di-%5B%3F%5D-pian-octopress-blog/">第一篇Octopress Blog</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/08/19/octopress-shiyong/">Octopress 使用</a></h1>
     
     
       <p class="meta">
@@ -562,10 +627,16 @@ GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIF
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">rake</span> <span class="n">preview</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#预览</span>
+</span><span class='line'><span class="n">rake</span> <span class="n">preview</span>
+</span><span class='line'><span class="cp">#发布</span>
 </span><span class='line'><span class="n">rake</span> <span class="n">generate</span>
 </span><span class='line'><span class="n">rake</span> <span class="n">deploy</span>
 </span><span class='line'>
+</span><span class='line'><span class="cp">#创建文章</span>
 </span><span class='line'><span class="n">rake</span> <span class="n">new_post</span><span class="p">[</span><span class="s">&quot;title&quot;</span><span class="p">]</span>
 </span><span class='line'>
 </span><span class='line'><span class="n">rake</span> <span class="n">new_page</span><span class="p">[</span><span class="n">super</span><span class="o">-</span><span class="n">awesome</span><span class="p">]</span>
@@ -579,7 +650,7 @@ GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIF
 
 <p class='post-footer'>
       原文地址
-      <a href='http://blog.devhobo.com/blog/2013/08/19/di-%5B%3F%5D-pian-octopress-blog/'>http://blog.devhobo.com/blog/2013/08/19/di-%5B%3F%5D-pian-octopress-blog/</a><br/>
+      <a href='http://blog.devhobo.com/blog/2013/08/19/octopress-shiyong/'>http://blog.devhobo.com/blog/2013/08/19/octopress-shiyong/</a><br/>
       </p>
 
 </div>
@@ -602,6 +673,10 @@ GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIF
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/03/05/wamppei-zhi/">WAMP+ThinkPHP配置</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/11/07/ri-zhi-tong-ji-fen-xi-shell-slash-goaccess/">日志统计分析-Shell/Goaccess</a>
       </li>
     
@@ -617,15 +692,11 @@ GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIF
         <a href="/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/">MySQL:常用命令行</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/08/24/go-revel-gorplian-jie-mysql/">Go-Revel:Gorp连接MySQL</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/go/'>Go (2)</a></li><li><a href='/blog/categories/gorp/'>Gorp (1)</a></li><li><a href='/blog/categories/mysql/'>MySQL (3)</a></li><li><a href='/blog/categories/revel/'>Revel (2)</a></li><li><a href='/blog/categories/svn/'>SVN (1)</a></li><li><a href='/blog/categories/xi-tong/'>系统 (1)</a></li><li><a href='/blog/categories/sui-bi/'>随笔 (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/go/'>Go (2)</a></li><li><a href='/blog/categories/gorp/'>Gorp (1)</a></li><li><a href='/blog/categories/mysql/'>MySQL (3)</a></li><li><a href='/blog/categories/revel/'>Revel (2)</a></li><li><a href='/blog/categories/svn/'>SVN (1)</a></li><li><a href='/blog/categories/thinkphp/'>ThinkPHP (1)</a></li><li><a href='/blog/categories/wamp/'>WAMP (1)</a></li><li><a href='/blog/categories/gong-ju/'>工具 (1)</a></li><li><a href='/blog/categories/xi-tong/'>系统 (1)</a></li></ul>
 </section>
 
 
@@ -638,14 +709,15 @@ GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIF
   	<a href="http://www.meet-future.com">MEET Studio</a>
 	</p>
   <p>
-  	开发<br>
-  	Objective-C, Php <br>
-  	学习<br>
-  	Ruby, Go
+    移动互联网产品研发<br>
+  	Objective-C<br>
+    Php<br> 
+  	Go<br>
   </p>
-  <a href="http://weibo.com/hobo86">@Steven_oO</a> 新浪微博<br>
+  <!--
+  <a href=""></a> 新浪微博<br>
+  &#8211;>
   
-  <a href="https://github.com/hobo86">@Hobo86</a> on GitHub
   
 </section>
 
@@ -655,7 +727,7 @@ GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIF
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Hobo -
+  Copyright &copy; 2014 - Hobo -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>
   </span>
   <!--统计-->

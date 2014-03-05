@@ -4,7 +4,7 @@
   <title><![CDATA[Category: SVN | Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/blog/categories/svn/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2013-11-07T18:47:51+08:00</updated>
+  <updated>2014-03-05T17:11:54+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -19,7 +19,7 @@
     <updated>2013-11-07T18:15:00+08:00</updated>
     <id>http://blog.devhobo.com/blog/2013/11/07/svnshi-yong</id>
     <content type="html"><![CDATA[<p>1.系统
-Centos 6.4</p>
+</br>Centos 6.4</p>
 
 <p>2.安装svn
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -167,6 +167,26 @@ Centos 6.4</p>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="sr">&lt;h1&gt;chmod +x post-commit&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Mac下Versions中.a包无法上传问题
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cd</span> <span class="n">filepath</span>
+</span><span class='line'><span class="n">svn</span> <span class="n">add</span> <span class="n">libMobClickLibrary</span><span class="o">.</span><span class="n">a</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>删除版本控制 / 删除多级.svn文件
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;find . -type d -name &amp;ldquo;.svn&amp;rdquo;|xargs rm -rf;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>

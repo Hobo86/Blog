@@ -4,7 +4,7 @@
   <title><![CDATA[Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2013-11-07T18:47:51+08:00</updated>
+  <updated>2014-03-05T17:11:54+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -12,6 +12,146 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[WAMP+ThinkPHP配置]]></title>
+    <link href="http://blog.devhobo.com/blog/2014/03/05/wamppei-zhi/"/>
+    <updated>2014-03-05T18:30:00+08:00</updated>
+    <id>http://blog.devhobo.com/blog/2014/03/05/wamppei-zhi</id>
+    <content type="html"><![CDATA[<p>配置ThinkPHP开发环境
+</br>1、开启Rewrite支持.htaccess
+</br>2、自定义工程路径
+</br>3、自定义本地域名访问</p>
+
+<p>WAMP安装
+</br><a href="http://www.wampserver.com/en/#download-wrapper">http://www.wampserver.com/en/#download-wrapper</a></p>
+
+<figure class='code'><figcaption><span>编辑wamp/bin/apache/Apache2.x.x/conf/httpd.conf </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#开启rewrite，支持.htaccess</span>
+</span><span class='line'><span class="c1">#LoadModule rewrite_module modules/mod_rewrite.so去掉注释</span>
+</span><span class='line'><span class="no">LoadModule</span> <span class="n">rewrite_module</span> <span class="n">modules</span><span class="o">/</span><span class="n">mod_rewrite</span><span class="o">.</span><span class="n">so</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#开启httpd-vhosts，自定义域名和工程路径</span>
+</span><span class='line'><span class="c1">#Include conf/extra/httpd-vhosts.conf去掉注释</span>
+</span><span class='line'><span class="no">Include</span> <span class="n">conf</span><span class="o">/</span><span class="n">extra</span><span class="o">/</span><span class="n">httpd</span><span class="o">-</span><span class="n">vhosts</span><span class="o">.</span><span class="n">conf</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!--more-->
+
+
+<p></p>
+
+<p>自定义本地域名和工程路径</p>
+
+<figure class='code'><figcaption><span>编辑wamp/bin/apache/Apache2.x.x/conf/extra/httpd-vhosts.conf </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#自定义工程路径</span>
+</span><span class='line'><span class="c1">#d:projectpath工程路径</span>
+</span><span class='line'><span class="c1">#mylocalhost.com自定义域名</span>
+</span><span class='line'><span class="c1">#注意AllowOverride 是All，与wamp主界面不同</span>
+</span><span class='line'><span class="c1">#可以定义其他端口</span>
+</span><span class='line'><span class="o">&lt;</span><span class="no">VirtualHost</span> <span class="o">*</span><span class="p">:</span><span class="mi">80</span><span class="o">&gt;</span>
+</span><span class='line'>  <span class="no">DocumentRoot</span> <span class="ss">d</span><span class="p">:</span><span class="n">projectpath</span>
+</span><span class='line'>  <span class="no">ServerName</span> <span class="n">myhost</span><span class="o">.</span><span class="n">com</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="no">Directory</span> <span class="s2">&quot;d:projectpath&quot;</span><span class="o">&gt;</span>
+</span><span class='line'>      <span class="no">Options</span> <span class="no">Indexes</span> <span class="no">FollowSymLinks</span>
+</span><span class='line'>      <span class="no">AllowOverride</span> <span class="no">All</span>
+</span><span class='line'>      <span class="no">Order</span> <span class="n">allow</span><span class="p">,</span><span class="n">deny</span>
+</span><span class='line'>      <span class="no">Allow</span> <span class="n">from</span> <span class="n">all</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="sr">/Directory&gt; </span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="no">VirtualHost</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#添加wamp主界面，假设wamp安装在D盘</span>
+</span><span class='line'><span class="o">&lt;</span><span class="no">VirtualHost</span> <span class="o">*</span><span class="p">:</span><span class="mi">80</span><span class="o">&gt;</span>
+</span><span class='line'>  <span class="no">DocumentRoot</span> <span class="ss">d</span><span class="p">:</span><span class="n">wamp</span><span class="o">/</span><span class="n">www</span>
+</span><span class='line'>  <span class="no">ServerName</span> <span class="n">wamp</span><span class="o">.</span><span class="n">com</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="no">Directory</span> <span class="s2">&quot;d:wamp/www&quot;</span><span class="o">&gt;</span>
+</span><span class='line'>      <span class="no">Options</span> <span class="no">Indexes</span> <span class="no">FollowSymLinks</span>
+</span><span class='line'>      <span class="no">AllowOverride</span> <span class="no">None</span>
+</span><span class='line'>      <span class="no">Order</span> <span class="n">allow</span><span class="p">,</span><span class="n">deny</span>
+</span><span class='line'>      <span class="no">Allow</span> <span class="n">from</span> <span class="n">all</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="sr">/Directory&gt; </span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="no">VirtualHost</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>去掉URL中的index.php</p>
+
+<figure class='code'><figcaption><span>.htaccess </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="no">IfModule</span> <span class="n">mod_rewrite</span><span class="o">.</span><span class="n">c</span><span class="o">&gt;</span>
+</span><span class='line'><span class="no">RewriteEngine</span> <span class="n">on</span>
+</span><span class='line'><span class="no">RewriteCond</span> <span class="sx">%{SCRIPT_FILENAME}</span> <span class="o">!-</span><span class="n">f</span>
+</span><span class='line'><span class="no">RewriteCond</span> <span class="sx">%{SCRIPT_FILENAME}</span> <span class="o">!-</span><span class="n">d</span>
+</span><span class='line'><span class="no">RewriteRule</span> <span class="o">^</span><span class="p">(</span><span class="o">.</span><span class="n">*</span><span class="p">)</span><span class="err">$</span> <span class="n">index</span><span class="o">.</span><span class="n">php</span><span class="o">/</span><span class="vg">$1</span> <span class="o">[</span><span class="no">QAS</span><span class="p">,</span><span class="no">PT</span><span class="p">,</span><span class="n">L</span><span class="o">]</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/IfModule&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>修改系统hosts </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">127</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span>   <span class="n">myhost</span><span class="o">.</span><span class="n">com</span>
+</span><span class='line'><span class="mi">127</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span>    <span class="n">wamp</span><span class="o">.</span><span class="n">com</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>重启Apache</p>
+
+<p>查看成果吧
+</br>myhost.com
+</br>wamp.com</p>
+
+<p class='post-footer'>
+      原文地址
+      <a href='http://blog.devhobo.com/blog/2014/03/05/wamppei-zhi/'>http://blog.devhobo.com/blog/2014/03/05/wamppei-zhi/</a><br/>
+      </p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[日志统计分析-Shell/Goaccess]]></title>
@@ -116,7 +256,7 @@
     <updated>2013-11-07T18:15:00+08:00</updated>
     <id>http://blog.devhobo.com/blog/2013/11/07/svnshi-yong</id>
     <content type="html"><![CDATA[<p>1.系统
-Centos 6.4</p>
+</br>Centos 6.4</p>
 
 <p>2.安装svn</p>
 
@@ -219,6 +359,24 @@ Centos 6.4</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>Mac下Versions中.a包无法上传问题</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cd</span> <span class="n">filepath</span>
+</span><span class='line'><span class="n">svn</span> <span class="n">add</span> <span class="n">libMobClickLibrary</span><span class="o">.</span><span class="n">a</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>删除版本控制 / 删除多级.svn文件</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#find . -type d -name &quot;.svn&quot;|xargs rm -rf;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
 <p class='post-footer'>
       原文地址
       <a href='http://blog.devhobo.com/blog/2013/11/07/svnshi-yong/'>http://blog.devhobo.com/blog/2013/11/07/svnshi-yong/</a><br/>
@@ -233,97 +391,126 @@ Centos 6.4</p>
     <updated>2013-10-30T08:58:00+08:00</updated>
     <id>http://blog.devhobo.com/blog/2013/10/30/mysql-chang-yong-ming-ling-xing</id>
     <content type="html"><![CDATA[<p>登入
-mysql -h192.168.1.110  -uroot -ppassword</p>
+</br>mysql -h192.168.1.110  -uroot -ppassword</p>
 
 <p>登出
-quit/exit</p>
+</br>quit/exit</p>
 
 <p>查看数据库
-show databases;</p>
+</br>show databases;</p>
 
 <p>用户权限
-添加
-grant select on db.table to &lsquo;user&rsquo;@&lsquo;host&rsquo;;
-grant select,update on <em>.</em> to &lsquo;test&rsquo;@&lsquo;%&rsquo;;
-撤销
-revoke all on <em>.</em> from &lsquo;test&rsquo;@&lsquo;%&rsquo;;
-查看
-show grants;
-show grants for user@localhost</p>
+</br>添加
+</br>grant select on db.table to &lsquo;user&rsquo;@&lsquo;host&rsquo;;
+</br>grant select,update on <em>.</em> to &lsquo;test&rsquo;@&lsquo;%&rsquo;;
+</br>撤销
+</br>revoke all on <em>.</em> from &lsquo;test&rsquo;@&lsquo;%&rsquo;;
+</br>查看
+</br>show grants;
+</br>show grants for user@localhost</p>
 
 <p>删除用户
-delete from mysql.user where user=&lsquo;&rsquo; and host=&lsquo;&rsquo;;</p>
+</br>delete from mysql.user where user=&lsquo;&rsquo; and host=&lsquo;&rsquo;;</p>
 
 <p>设置密码
-update mysql.user set password=PASSWORD(&lsquo;123456&rsquo;) where user=&lsquo;root&rsquo;;</p>
+</br>update mysql.user set password=PASSWORD(&lsquo;123456&rsquo;) where user=&lsquo;root&rsquo;;</p>
 
 <p>配置远程连接
-GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIFIED BY &lsquo;password&rsquo; WITH GRANT OPTION;</p>
+</br>GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIFIED BY &lsquo;password&rsquo; WITH GRANT OPTION;</p>
 
 <!--more-->
 
 
 <p></p>
 
-<p>导出
-用mysqldump命令行<br/>
-命令格式<br/>
-mysqldump -u　用户名 -p 数据库名 > 数据库名.sql<br/>
-范例：<br/>
-mysqldump -u　root -p dbname > filepath.sql<br/>
-//To export tofile(data only)
-mysqldump -u [user]-p[pass]&mdash;no-create-db &mdash;no-create-info mydb > mydb.sql
-//To export tofile(structure only)
-mysqldump -u [user]-p[pass]&mdash;no-data mydb > mydb.sql
-//To import todatabase
-mysql -u [user]-p[pass] mydb &lt; mydb.sql</p>
+<p>导出<br/>
+</br>mysqldump -u　用户名 -p 数据库名 > 数据库名.sql</p>
 
-<p>导入
-mysql> use dbname             #切到要导入的数据库
-mysql> source filepath.sql</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span><span class="err">　</span><span class="n">root</span> <span class="o">-</span><span class="nb">p</span> <span class="n">dbname</span> <span class="o">&gt;</span> <span class="n">filepath</span><span class="o">.</span><span class="n">sql</span>
+</span><span class='line'><span class="c1">#To export tofile(data only)</span>
+</span><span class='line'><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> <span class="o">[</span><span class="n">user</span><span class="o">]-</span><span class="nb">p</span><span class="o">[</span><span class="n">pass</span><span class="o">]--</span><span class="n">no</span><span class="o">-</span><span class="n">create</span><span class="o">-</span><span class="n">db</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">create</span><span class="o">-</span><span class="n">info</span> <span class="n">mydb</span> <span class="o">&gt;</span> <span class="n">mydb</span><span class="o">.</span><span class="n">sql</span>
+</span><span class='line'><span class="c1">#To export tofile(structure only)</span>
+</span><span class='line'><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> <span class="o">[</span><span class="n">user</span><span class="o">]-</span><span class="nb">p</span><span class="o">[</span><span class="n">pass</span><span class="o">]--</span><span class="n">no</span><span class="o">-</span><span class="n">data</span> <span class="n">mydb</span> <span class="o">&gt;</span> <span class="n">mydb</span><span class="o">.</span><span class="n">sql</span>
+</span><span class='line'><span class="c1">#To import todatabase</span>
+</span><span class='line'><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="o">[</span><span class="n">user</span><span class="o">]-</span><span class="nb">p</span><span class="o">[</span><span class="n">pass</span><span class="o">]</span> <span class="n">mydb</span> <span class="o">&lt;</span> <span class="n">mydb</span><span class="o">.</span><span class="n">sql</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>变量查看/修改
-show variables like &lsquo;%slow%&rsquo;;
-set global slow_query_log= &lsquo;ON&rsquo;;</p>
 
-<p>查看状态
-如show status like &lsquo;Qca%&rsquo;;</p>
+<p>导入</p>
 
-<p>查看SQL中select条数
-show status like &lsquo;Com_sel%&rsquo;; 显示的是一次会话的值！
-show global status like &ldquo;Com_select&rdquo;;</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="n">use</span> <span class="n">dbname</span>             <span class="c1">#切到要导入的数据库</span>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="n">source</span> <span class="n">filepath</span><span class="o">.</span><span class="n">sql</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p> 找回密码？
-1、kill -TERM mysqld
-2、conf中加入skip-grant-tables
-3、service mysqld restart
-4、mysql -uroot -p
-5、修改密码
-6、改回原配置并重启</p>
+
+<p>变量查看/修改</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="n">show</span> <span class="n">variables</span> <span class="n">like</span> <span class="s1">&#39;%slow%&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="n">set</span> <span class="n">global</span> <span class="n">slow_query_log</span><span class="o">=</span> <span class="s1">&#39;ON&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">show</span> <span class="n">status</span> <span class="n">like</span> <span class="s1">&#39;Qca%&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#查看SQL中select条数</span>
+</span><span class='line'><span class="n">show</span> <span class="n">status</span> <span class="n">like</span> <span class="s1">&#39;Com_sel%&#39;</span><span class="p">;</span> <span class="c1">#显示的是一次会话的值！</span>
+</span><span class='line'><span class="n">show</span> <span class="n">global</span> <span class="n">status</span> <span class="n">like</span> <span class="s2">&quot;Com_select&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>找回密码？
+</br>1、kill -TERM mysqld
+</br>2、conf中加入skip-grant-tables
+</br>3、service mysqld restart
+</br>4、mysql -uroot -p
+</br>5、修改密码
+</br>6、改回原配置并重启</p>
 
 <p>Binlog：<a href="http://dev.mysql.com/doc/refman/5.7/en/mysqlbinlog.html">http://dev.mysql.com/doc/refman/5.7/en/mysqlbinlog.html</a>
-删除mysql-bin日志
-<a href="http://dev.mysql.com/doc/refman/5.7/en/purge-binary-logs.html">http://dev.mysql.com/doc/refman/5.7/en/purge-binary-logs.html</a>
-PURGE BINARY LOGS TO &lsquo;mysql-bin.010&rsquo;;
-PURGE BINARY LOGS BEFORE &lsquo;2008-04-02 22:46:26&rsquo;;</p>
+</br>删除mysql-bin日志
+</br><a href="http://dev.mysql.com/doc/refman/5.7/en/purge-binary-logs.html">http://dev.mysql.com/doc/refman/5.7/en/purge-binary-logs.html</a>
+</br>PURGE BINARY LOGS TO &lsquo;mysql-bin.010&rsquo;;
+</br>PURGE BINARY LOGS BEFORE &lsquo;2008-04-02 22:46:26&rsquo;;</p>
 
 <p>清空表并使自增归0
-TRUNCATE TABLE tablename</p>
+</br>TRUNCATE TABLE tablename</p>
 
 <p>Mac无法登陆
-Can&rsquo;t connect to MySQL server on &lsquo;127.0.0.1&rsquo; (61)
-StevenMacBookAir:~ Hobo$ sudo su &ndash;
-StevenMacBookAir:~ root# nohup /usr/local/mysql/bin/mysqld_safe &amp;
-[1] 464
-StevenMacBookAir:~ root# appending output to nohup.out
-exit
-logout
-StevenMacBookAir:~ Hobo$ <p class='post-footer'></p>
+</br>Can&rsquo;t connect to MySQL server on &lsquo;127.0.0.1&rsquo; (61)
+</br>StevenMacBookAir:~ Hobo$ sudo su &ndash;
+</br>StevenMacBookAir:~ root# nohup /usr/local/mysql/bin/mysqld_safe &amp;
+</br>[1] 464
+</br>StevenMacBookAir:~ root# appending output to nohup.out
+</br>exit
+</br>logout
+</br>StevenMacBookAir:~ Hobo$</p>
 
-<pre><code>  原文地址
-  &lt;a href='http://blog.devhobo.com/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/'&gt;http://blog.devhobo.com/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/&lt;/a&gt;&lt;br/&gt;
-  &lt;/p&gt;
-</code></pre>
+<p class='post-footer'>
+      原文地址
+      <a href='http://blog.devhobo.com/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/'>http://blog.devhobo.com/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/</a><br/>
+      </p>
+
 ]]></content>
   </entry>
   
@@ -713,10 +900,10 @@ StevenMacBookAir:~ Hobo$ <p class='post-footer'></p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[第一篇Octopress Blog]]></title>
-    <link href="http://blog.devhobo.com/blog/2013/08/19/di-%5B%3F%5D-pian-octopress-blog/"/>
+    <title type="html"><![CDATA[Octopress 使用]]></title>
+    <link href="http://blog.devhobo.com/blog/2013/08/19/octopress-shiyong/"/>
     <updated>2013-08-19T18:39:00+08:00</updated>
-    <id>http://blog.devhobo.com/blog/2013/08/19/di-[?]-pian-octopress-blog</id>
+    <id>http://blog.devhobo.com/blog/2013/08/19/octopress-shiyong</id>
     <content type="html"><![CDATA[
 
 <figure class='code'><figcaption><span>Git command </span></figcaption>
@@ -742,10 +929,16 @@ StevenMacBookAir:~ Hobo$ <p class='post-footer'></p>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">rake</span> <span class="n">preview</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#预览</span>
+</span><span class='line'><span class="n">rake</span> <span class="n">preview</span>
+</span><span class='line'><span class="cp">#发布</span>
 </span><span class='line'><span class="n">rake</span> <span class="n">generate</span>
 </span><span class='line'><span class="n">rake</span> <span class="n">deploy</span>
 </span><span class='line'>
+</span><span class='line'><span class="cp">#创建文章</span>
 </span><span class='line'><span class="n">rake</span> <span class="n">new_post</span><span class="p">[</span><span class="s">&quot;title&quot;</span><span class="p">]</span>
 </span><span class='line'>
 </span><span class='line'><span class="n">rake</span> <span class="n">new_page</span><span class="p">[</span><span class="n">super</span><span class="o">-</span><span class="n">awesome</span><span class="p">]</span>
@@ -759,7 +952,7 @@ StevenMacBookAir:~ Hobo$ <p class='post-footer'></p>
 
 <p class='post-footer'>
       原文地址
-      <a href='http://blog.devhobo.com/blog/2013/08/19/di-%5B%3F%5D-pian-octopress-blog/'>http://blog.devhobo.com/blog/2013/08/19/di-%5B%3F%5D-pian-octopress-blog/</a><br/>
+      <a href='http://blog.devhobo.com/blog/2013/08/19/octopress-shiyong/'>http://blog.devhobo.com/blog/2013/08/19/octopress-shiyong/</a><br/>
       </p>
 
 ]]></content>

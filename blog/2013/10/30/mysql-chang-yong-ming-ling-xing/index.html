@@ -115,97 +115,126 @@
 
 
 <div class="entry-content"><p>登入
-mysql -h192.168.1.110  -uroot -ppassword</p>
+</br>mysql -h192.168.1.110  -uroot -ppassword</p>
 
 <p>登出
-quit/exit</p>
+</br>quit/exit</p>
 
 <p>查看数据库
-show databases;</p>
+</br>show databases;</p>
 
 <p>用户权限
-添加
-grant select on db.table to &lsquo;user&rsquo;@&lsquo;host&rsquo;;
-grant select,update on <em>.</em> to &lsquo;test&rsquo;@&lsquo;%&rsquo;;
-撤销
-revoke all on <em>.</em> from &lsquo;test&rsquo;@&lsquo;%&rsquo;;
-查看
-show grants;
-show grants for user@localhost</p>
+</br>添加
+</br>grant select on db.table to &lsquo;user&rsquo;@&lsquo;host&rsquo;;
+</br>grant select,update on <em>.</em> to &lsquo;test&rsquo;@&lsquo;%&rsquo;;
+</br>撤销
+</br>revoke all on <em>.</em> from &lsquo;test&rsquo;@&lsquo;%&rsquo;;
+</br>查看
+</br>show grants;
+</br>show grants for user@localhost</p>
 
 <p>删除用户
-delete from mysql.user where user=&lsquo;&rsquo; and host=&lsquo;&rsquo;;</p>
+</br>delete from mysql.user where user=&lsquo;&rsquo; and host=&lsquo;&rsquo;;</p>
 
 <p>设置密码
-update mysql.user set password=PASSWORD(&lsquo;123456&rsquo;) where user=&lsquo;root&rsquo;;</p>
+</br>update mysql.user set password=PASSWORD(&lsquo;123456&rsquo;) where user=&lsquo;root&rsquo;;</p>
 
 <p>配置远程连接
-GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIFIED BY &lsquo;password&rsquo; WITH GRANT OPTION;</p>
+</br>GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIFIED BY &lsquo;password&rsquo; WITH GRANT OPTION;</p>
 
 <!--more-->
 
 
 <p></p>
 
-<p>导出
-用mysqldump命令行<br/>
-命令格式<br/>
-mysqldump -u　用户名 -p 数据库名 > 数据库名.sql<br/>
-范例：<br/>
-mysqldump -u　root -p dbname > filepath.sql<br/>
-//To export tofile(data only)
-mysqldump -u [user]-p[pass]&mdash;no-create-db &mdash;no-create-info mydb > mydb.sql
-//To export tofile(structure only)
-mysqldump -u [user]-p[pass]&mdash;no-data mydb > mydb.sql
-//To import todatabase
-mysql -u [user]-p[pass] mydb &lt; mydb.sql</p>
+<p>导出<br/>
+</br>mysqldump -u　用户名 -p 数据库名 > 数据库名.sql</p>
 
-<p>导入
-mysql> use dbname             #切到要导入的数据库
-mysql> source filepath.sql</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span><span class="err">　</span><span class="n">root</span> <span class="o">-</span><span class="nb">p</span> <span class="n">dbname</span> <span class="o">&gt;</span> <span class="n">filepath</span><span class="o">.</span><span class="n">sql</span>
+</span><span class='line'><span class="c1">#To export tofile(data only)</span>
+</span><span class='line'><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> <span class="o">[</span><span class="n">user</span><span class="o">]-</span><span class="nb">p</span><span class="o">[</span><span class="n">pass</span><span class="o">]--</span><span class="n">no</span><span class="o">-</span><span class="n">create</span><span class="o">-</span><span class="n">db</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">create</span><span class="o">-</span><span class="n">info</span> <span class="n">mydb</span> <span class="o">&gt;</span> <span class="n">mydb</span><span class="o">.</span><span class="n">sql</span>
+</span><span class='line'><span class="c1">#To export tofile(structure only)</span>
+</span><span class='line'><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> <span class="o">[</span><span class="n">user</span><span class="o">]-</span><span class="nb">p</span><span class="o">[</span><span class="n">pass</span><span class="o">]--</span><span class="n">no</span><span class="o">-</span><span class="n">data</span> <span class="n">mydb</span> <span class="o">&gt;</span> <span class="n">mydb</span><span class="o">.</span><span class="n">sql</span>
+</span><span class='line'><span class="c1">#To import todatabase</span>
+</span><span class='line'><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="o">[</span><span class="n">user</span><span class="o">]-</span><span class="nb">p</span><span class="o">[</span><span class="n">pass</span><span class="o">]</span> <span class="n">mydb</span> <span class="o">&lt;</span> <span class="n">mydb</span><span class="o">.</span><span class="n">sql</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>变量查看/修改
-show variables like &lsquo;%slow%&rsquo;;
-set global slow_query_log= &lsquo;ON&rsquo;;</p>
 
-<p>查看状态
-如show status like &lsquo;Qca%&rsquo;;</p>
+<p>导入</p>
 
-<p>查看SQL中select条数
-show status like &lsquo;Com_sel%&rsquo;; 显示的是一次会话的值！
-show global status like &ldquo;Com_select&rdquo;;</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="n">use</span> <span class="n">dbname</span>             <span class="c1">#切到要导入的数据库</span>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="n">source</span> <span class="n">filepath</span><span class="o">.</span><span class="n">sql</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p> 找回密码？
-1、kill -TERM mysqld
-2、conf中加入skip-grant-tables
-3、service mysqld restart
-4、mysql -uroot -p
-5、修改密码
-6、改回原配置并重启</p>
+
+<p>变量查看/修改</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="n">show</span> <span class="n">variables</span> <span class="n">like</span> <span class="s1">&#39;%slow%&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="n">set</span> <span class="n">global</span> <span class="n">slow_query_log</span><span class="o">=</span> <span class="s1">&#39;ON&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">show</span> <span class="n">status</span> <span class="n">like</span> <span class="s1">&#39;Qca%&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#查看SQL中select条数</span>
+</span><span class='line'><span class="n">show</span> <span class="n">status</span> <span class="n">like</span> <span class="s1">&#39;Com_sel%&#39;</span><span class="p">;</span> <span class="c1">#显示的是一次会话的值！</span>
+</span><span class='line'><span class="n">show</span> <span class="n">global</span> <span class="n">status</span> <span class="n">like</span> <span class="s2">&quot;Com_select&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>找回密码？
+</br>1、kill -TERM mysqld
+</br>2、conf中加入skip-grant-tables
+</br>3、service mysqld restart
+</br>4、mysql -uroot -p
+</br>5、修改密码
+</br>6、改回原配置并重启</p>
 
 <p>Binlog：<a href="http://dev.mysql.com/doc/refman/5.7/en/mysqlbinlog.html">http://dev.mysql.com/doc/refman/5.7/en/mysqlbinlog.html</a>
-删除mysql-bin日志
-<a href="http://dev.mysql.com/doc/refman/5.7/en/purge-binary-logs.html">http://dev.mysql.com/doc/refman/5.7/en/purge-binary-logs.html</a>
-PURGE BINARY LOGS TO &lsquo;mysql-bin.010&rsquo;;
-PURGE BINARY LOGS BEFORE &lsquo;2008-04-02 22:46:26&rsquo;;</p>
+</br>删除mysql-bin日志
+</br><a href="http://dev.mysql.com/doc/refman/5.7/en/purge-binary-logs.html">http://dev.mysql.com/doc/refman/5.7/en/purge-binary-logs.html</a>
+</br>PURGE BINARY LOGS TO &lsquo;mysql-bin.010&rsquo;;
+</br>PURGE BINARY LOGS BEFORE &lsquo;2008-04-02 22:46:26&rsquo;;</p>
 
 <p>清空表并使自增归0
-TRUNCATE TABLE tablename</p>
+</br>TRUNCATE TABLE tablename</p>
 
 <p>Mac无法登陆
-Can&rsquo;t connect to MySQL server on &lsquo;127.0.0.1&rsquo; (61)
-StevenMacBookAir:~ Hobo$ sudo su &ndash;
-StevenMacBookAir:~ root# nohup /usr/local/mysql/bin/mysqld_safe &amp;
-[1] 464
-StevenMacBookAir:~ root# appending output to nohup.out
-exit
-logout
-StevenMacBookAir:~ Hobo$ <p class='post-footer'></p>
+</br>Can&rsquo;t connect to MySQL server on &lsquo;127.0.0.1&rsquo; (61)
+</br>StevenMacBookAir:~ Hobo$ sudo su &ndash;
+</br>StevenMacBookAir:~ root# nohup /usr/local/mysql/bin/mysqld_safe &amp;
+</br>[1] 464
+</br>StevenMacBookAir:~ root# appending output to nohup.out
+</br>exit
+</br>logout
+</br>StevenMacBookAir:~ Hobo$</p>
 
-<pre><code>  原文地址
-  &lt;a href='http://blog.devhobo.com/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/'&gt;http://blog.devhobo.com/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/&lt;/a&gt;&lt;br/&gt;
-  &lt;/p&gt;
-</code></pre>
+<p class='post-footer'>
+      原文地址
+      <a href='http://blog.devhobo.com/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/'>http://blog.devhobo.com/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/</a><br/>
+      </p>
+
 </div>
 
 
@@ -299,6 +328,10 @@ var jiathis_config={
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/03/05/wamppei-zhi/">WAMP+ThinkPHP配置</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/11/07/ri-zhi-tong-ji-fen-xi-shell-slash-goaccess/">日志统计分析-Shell/Goaccess</a>
       </li>
     
@@ -314,15 +347,11 @@ var jiathis_config={
         <a href="/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/">MySQL:常用命令行</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/08/24/go-revel-gorplian-jie-mysql/">Go-Revel:Gorp连接MySQL</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/go/'>Go (2)</a></li><li><a href='/blog/categories/gorp/'>Gorp (1)</a></li><li><a href='/blog/categories/mysql/'>MySQL (3)</a></li><li><a href='/blog/categories/revel/'>Revel (2)</a></li><li><a href='/blog/categories/svn/'>SVN (1)</a></li><li><a href='/blog/categories/xi-tong/'>系统 (1)</a></li><li><a href='/blog/categories/sui-bi/'>随笔 (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/go/'>Go (2)</a></li><li><a href='/blog/categories/gorp/'>Gorp (1)</a></li><li><a href='/blog/categories/mysql/'>MySQL (3)</a></li><li><a href='/blog/categories/revel/'>Revel (2)</a></li><li><a href='/blog/categories/svn/'>SVN (1)</a></li><li><a href='/blog/categories/thinkphp/'>ThinkPHP (1)</a></li><li><a href='/blog/categories/wamp/'>WAMP (1)</a></li><li><a href='/blog/categories/gong-ju/'>工具 (1)</a></li><li><a href='/blog/categories/xi-tong/'>系统 (1)</a></li></ul>
 </section>
 
 
@@ -335,14 +364,15 @@ var jiathis_config={
   	<a href="http://www.meet-future.com">MEET Studio</a>
 	</p>
   <p>
-  	开发<br>
-  	Objective-C, Php <br>
-  	学习<br>
-  	Ruby, Go
+    移动互联网产品研发<br>
+  	Objective-C<br>
+    Php<br> 
+  	Go<br>
   </p>
-  <a href="http://weibo.com/hobo86">@Steven_oO</a> 新浪微博<br>
+  <!--
+  <a href=""></a> 新浪微博<br>
+  -->
   
-  <a href="https://github.com/hobo86">@Hobo86</a> on GitHub
   
 </section>
 
@@ -353,7 +383,7 @@ var jiathis_config={
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Hobo -
+  Copyright &copy; 2014 - Hobo -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>
   </span>
   <!--统计-->

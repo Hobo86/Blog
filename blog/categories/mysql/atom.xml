@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MySQL | Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/blog/categories/mysql/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2013-11-07T18:47:51+08:00</updated>
+  <updated>2014-03-05T17:11:54+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -72,92 +72,122 @@
     <updated>2013-10-30T08:58:00+08:00</updated>
     <id>http://blog.devhobo.com/blog/2013/10/30/mysql-chang-yong-ming-ling-xing</id>
     <content type="html"><![CDATA[<p>登入
-mysql -h192.168.1.110  -uroot -ppassword</p>
+</br>mysql -h192.168.1.110  -uroot -ppassword</p>
 
 <p>登出
-quit/exit</p>
+</br>quit/exit</p>
 
 <p>查看数据库
-show databases;</p>
+</br>show databases;</p>
 
 <p>用户权限
-添加
-grant select on db.table to &lsquo;user&rsquo;@&lsquo;host&rsquo;;
-grant select,update on <em>.</em> to &lsquo;test&rsquo;@&lsquo;%&rsquo;;
-撤销
-revoke all on <em>.</em> from &lsquo;test&rsquo;@&lsquo;%&rsquo;;
-查看
-show grants;
-show grants for user@localhost</p>
+</br>添加
+</br>grant select on db.table to &lsquo;user&rsquo;@&lsquo;host&rsquo;;
+</br>grant select,update on <em>.</em> to &lsquo;test&rsquo;@&lsquo;%&rsquo;;
+</br>撤销
+</br>revoke all on <em>.</em> from &lsquo;test&rsquo;@&lsquo;%&rsquo;;
+</br>查看
+</br>show grants;
+</br>show grants for user@localhost</p>
 
 <p>删除用户
-delete from mysql.user where user=&lsquo;&rsquo; and host=&lsquo;&rsquo;;</p>
+</br>delete from mysql.user where user=&lsquo;&rsquo; and host=&lsquo;&rsquo;;</p>
 
 <p>设置密码
-update mysql.user set password=PASSWORD(&lsquo;123456&rsquo;) where user=&lsquo;root&rsquo;;</p>
+</br>update mysql.user set password=PASSWORD(&lsquo;123456&rsquo;) where user=&lsquo;root&rsquo;;</p>
 
 <p>配置远程连接
-GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIFIED BY &lsquo;password&rsquo; WITH GRANT OPTION;</p>
+</br>GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIFIED BY &lsquo;password&rsquo; WITH GRANT OPTION;</p>
 
 <!--more-->
 
 
 <p></p>
 
-<p>导出
-用mysqldump命令行<br/>
-命令格式<br/>
-mysqldump -u　用户名 -p 数据库名 > 数据库名.sql<br/>
-范例：<br/>
-mysqldump -u　root -p dbname > filepath.sql<br/>
-//To export tofile(data only)
-mysqldump -u [user]-p[pass]&mdash;no-create-db &mdash;no-create-info mydb > mydb.sql
-//To export tofile(structure only)
-mysqldump -u [user]-p[pass]&mdash;no-data mydb > mydb.sql
-//To import todatabase
-mysql -u [user]-p[pass] mydb &lt; mydb.sql</p>
+<p>导出<br/>
+</br>mysqldump -u　用户名 -p 数据库名 > 数据库名.sql
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span><span class="err">　</span><span class="n">root</span> <span class="o">-</span><span class="nb">p</span> <span class="n">dbname</span> <span class="o">&gt;</span> <span class="n">filepath</span><span class="o">.</span><span class="n">sql</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;To export tofile(data only)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> <span class="o">[</span><span class="n">user</span><span class="o">]-</span><span class="nb">p</span><span class="o">[</span><span class="n">pass</span><span class="o">]&amp;</span><span class="n">mdash</span><span class="p">;</span><span class="n">no</span><span class="o">-</span><span class="n">create</span><span class="o">-</span><span class="n">db</span> <span class="o">&amp;</span><span class="n">mdash</span><span class="p">;</span><span class="n">no</span><span class="o">-</span><span class="n">create</span><span class="o">-</span><span class="n">info</span> <span class="n">mydb</span> <span class="o">&gt;</span> <span class="n">mydb</span><span class="o">.</span><span class="n">sql</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;To export tofile(structure only)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> <span class="o">[</span><span class="n">user</span><span class="o">]-</span><span class="nb">p</span><span class="o">[</span><span class="n">pass</span><span class="o">]&amp;</span><span class="n">mdash</span><span class="p">;</span><span class="n">no</span><span class="o">-</span><span class="n">data</span> <span class="n">mydb</span> <span class="o">&gt;</span> <span class="n">mydb</span><span class="o">.</span><span class="n">sql</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;To import todatabase&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="o">[</span><span class="n">user</span><span class="o">]-</span><span class="nb">p</span><span class="o">[</span><span class="n">pass</span><span class="o">]</span> <span class="n">mydb</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">mydb</span><span class="o">.</span><span class="n">sql</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>导入
-mysql> use dbname             #切到要导入的数据库
-mysql> source filepath.sql</p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="n">use</span> <span class="n">dbname</span>             <span class="c1">#切到要导入的数据库</span>
+</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="n">source</span> <span class="n">filepath</span><span class="o">.</span><span class="n">sql</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>变量查看/修改
-show variables like &lsquo;%slow%&rsquo;;
-set global slow_query_log= &lsquo;ON&rsquo;;</p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">show</span> <span class="n">variables</span> <span class="n">like</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">%</span><span class="n">slow</span><span class="sx">%&amp;rsquo;;</span>
+</span><span class='line'><span class="sx">set global slow_query_log= &amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">ON</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;show status like &amp;lsquo;Qca%&amp;rsquo;;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">查看</span><span class="no">SQL</span><span class="err">中</span><span class="nb">select</span><span class="err">条数</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;show status like &amp;lsquo;Com_sel%&amp;rsquo;; #显示的是一次会话的值！</span>
+</span><span class='line'><span class="sr">show global status like &amp;ldquo;Com_select&amp;rdquo;;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>查看状态
-如show status like &lsquo;Qca%&rsquo;;</p>
-
-<p>查看SQL中select条数
-show status like &lsquo;Com_sel%&rsquo;; 显示的是一次会话的值！
-show global status like &ldquo;Com_select&rdquo;;</p>
-
-<p> 找回密码？
-1、kill -TERM mysqld
-2、conf中加入skip-grant-tables
-3、service mysqld restart
-4、mysql -uroot -p
-5、修改密码
-6、改回原配置并重启</p>
+<p>找回密码？
+</br>1、kill -TERM mysqld
+</br>2、conf中加入skip-grant-tables
+</br>3、service mysqld restart
+</br>4、mysql -uroot -p
+</br>5、修改密码
+</br>6、改回原配置并重启</p>
 
 <p>Binlog：<a href="http://dev.mysql.com/doc/refman/5.7/en/mysqlbinlog.html">http://dev.mysql.com/doc/refman/5.7/en/mysqlbinlog.html</a>
-删除mysql-bin日志
-<a href="http://dev.mysql.com/doc/refman/5.7/en/purge-binary-logs.html">http://dev.mysql.com/doc/refman/5.7/en/purge-binary-logs.html</a>
-PURGE BINARY LOGS TO &lsquo;mysql-bin.010&rsquo;;
-PURGE BINARY LOGS BEFORE &lsquo;2008-04-02 22:46:26&rsquo;;</p>
+</br>删除mysql-bin日志
+</br><a href="http://dev.mysql.com/doc/refman/5.7/en/purge-binary-logs.html">http://dev.mysql.com/doc/refman/5.7/en/purge-binary-logs.html</a>
+</br>PURGE BINARY LOGS TO &lsquo;mysql-bin.010&rsquo;;
+</br>PURGE BINARY LOGS BEFORE &lsquo;2008-04-02 22:46:26&rsquo;;</p>
 
 <p>清空表并使自增归0
-TRUNCATE TABLE tablename</p>
+</br>TRUNCATE TABLE tablename</p>
 
 <p>Mac无法登陆
-Can&rsquo;t connect to MySQL server on &lsquo;127.0.0.1&rsquo; (61)
-StevenMacBookAir:~ Hobo$ sudo su &ndash;
-StevenMacBookAir:~ root# nohup /usr/local/mysql/bin/mysqld_safe &amp;
-[1] 464
-StevenMacBookAir:~ root# appending output to nohup.out
-exit
-logout
-StevenMacBookAir:~ Hobo$</p>
+</br>Can&rsquo;t connect to MySQL server on &lsquo;127.0.0.1&rsquo; (61)
+</br>StevenMacBookAir:~ Hobo$ sudo su &ndash;
+</br>StevenMacBookAir:~ root# nohup /usr/local/mysql/bin/mysqld_safe &amp;
+</br>[1] 464
+</br>StevenMacBookAir:~ root# appending output to nohup.out
+</br>exit
+</br>logout
+</br>StevenMacBookAir:~ Hobo$</p>
 ]]></content>
   </entry>
   
