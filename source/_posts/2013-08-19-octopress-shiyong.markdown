@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "第一篇Octopress Blog"
+title: "Octopress 使用"
 date: 2013-08-19 18:39
 comments: true
 categories: 
-- 随笔
+- 工具
 autor: Hobo
 ---
 {% codeblock Git command lang:ruby %}
@@ -14,10 +14,13 @@ git push origin master
 {% endcodeblock %}
 
 {% codeblock Rake command lang:objc %}
+#预览
 rake preview
+#发布
 rake generate
 rake deploy
 
+#创建文章
 rake new_post["title"]
 
 rake new_page[super-awesome]

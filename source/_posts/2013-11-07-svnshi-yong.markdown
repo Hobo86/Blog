@@ -9,7 +9,7 @@ keywords: SVN, 配置, 自动部署
 description: Centos 安装SVN，配置，自动部署等
 ---
 1.系统
-Centos 6.4 
+</br>Centos 6.4 
 
 2.安装svn
 {% codeblock lang:ruby %}
@@ -65,3 +65,17 @@ chown -R apache:apache $WEB
 {% codeblock lang:ruby %}
 #chmod +x post-commit
 {% endcodeblock %}
+
+
+Mac下Versions中.a包无法上传问题
+{% codeblock lang:ruby %}
+cd filepath
+svn add libMobClickLibrary.a 
+{% endcodeblock %}
+ 
+删除版本控制 / 删除多级.svn文件
+{% codeblock lang:ruby %}
+#find . -type d -name ".svn"|xargs rm -rf;
+{% endcodeblock %}
+
+
