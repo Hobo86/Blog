@@ -9,11 +9,16 @@
   
   <meta name="author" content="Hobo">
   
-  <meta name="description" content="配置ThinkPHP开发环境
-1、开启Rewrite支持.htaccess
-2、自定义工程路径
-3、自定义本地域名访问 WAMP安装
-http://www.wampserver.com/en/#download-wrapper 编辑wamp/bin/apache/Apache2.x.x/conf/ &hellip;">
+  <meta name="description" content="在BAE环境下有单独的Cache，同时也有Redis，可以同时用来做不同的Cache服务，先从Redis开始 1、Redis相关配置 conf.php 1
+2
+3
+4
+5
+6
+7
+8
+#BAE API Key与Secret Key
+&#39;BAE_AK&#39; =&gt; &#39;XXX&# &hellip;">
   <meta name="keywords" content="">
 
   <!-- http://t.co/dKP3o1e -->
@@ -92,6 +97,79 @@ http://www.wampserver.com/en/#download-wrapper 编辑wamp/bin/apache/Apache2.x.x
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/06/bae-redisshi-xian-thinkphpcache/">BAE Cache&Redis实现ThinkPHP的Cache驱动</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-06T19:00:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在BAE环境下有单独的Cache，同时也有Redis，可以同时用来做不同的Cache服务，先从Redis开始</p>
+
+<p>1、Redis相关配置</p>
+
+<figure class='code'><figcaption><span>conf.php </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#BAE API Key与Secret Key</span>
+</span><span class='line'><span class="s1">&#39;BAE_AK&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;XXX&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s1">&#39;BAE_SK&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;XXX&#39;</span><span class="p">,</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#BAE Redis扩展配置</span>
+</span><span class='line'><span class="s1">&#39;BAE_REDIS_HOST&#39;</span>   <span class="o">=&gt;</span>   <span class="s1">&#39;redis.duapp.com&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s1">&#39;BAE_REDIS_PORT&#39;</span>   <span class="o">=&gt;</span>   <span class="mi">80</span><span class="p">,</span>
+</span><span class='line'><span class="s1">&#39;BAE_REDIS_DBNAME&#39;</span> <span class="o">=&gt;</span>   <span class="s1">&#39;XXX&#39;</span><span class="p">,</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以选择将Redis是否设为默认缓存，如果不是，使用时注意切换</p>
+
+<figure class='code'><figcaption><span>使用切换 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vg">$cache</span> <span class="o">=</span> <span class="ss">Cache</span><span class="p">:</span><span class="ss">:getInstance</span><span class="p">(</span><span class="s1">&#39;Baeredis&#39;</span><span class="p">,</span><span class="n">array</span><span class="p">());</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2、Redis Cache 驱动</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/06/bae-redisshi-xian-thinkphpcache/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -673,6 +751,10 @@ http://www.wampserver.com/en/#download-wrapper 编辑wamp/bin/apache/Apache2.x.x
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/03/06/bae-redisshi-xian-thinkphpcache/">BAE Cache&Redis实现ThinkPHP的Cache驱动</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/03/05/wamppei-zhi/">WAMP+ThinkPHP配置</a>
       </li>
     
@@ -688,15 +770,11 @@ http://www.wampserver.com/en/#download-wrapper 编辑wamp/bin/apache/Apache2.x.x
         <a href="/blog/2013/11/07/svnshi-yong/">SVN:使用</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/">MySQL:常用命令行</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/go/'>Go (2)</a></li><li><a href='/blog/categories/gorp/'>Gorp (1)</a></li><li><a href='/blog/categories/mysql/'>MySQL (3)</a></li><li><a href='/blog/categories/revel/'>Revel (2)</a></li><li><a href='/blog/categories/svn/'>SVN (1)</a></li><li><a href='/blog/categories/thinkphp/'>ThinkPHP (1)</a></li><li><a href='/blog/categories/wamp/'>WAMP (1)</a></li><li><a href='/blog/categories/gong-ju/'>工具 (1)</a></li><li><a href='/blog/categories/xi-tong/'>系统 (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/bae/'>BAE (1)</a></li><li><a href='/blog/categories/cache/'>Cache (1)</a></li><li><a href='/blog/categories/go/'>Go (2)</a></li><li><a href='/blog/categories/gorp/'>Gorp (1)</a></li><li><a href='/blog/categories/mysql/'>MySQL (3)</a></li><li><a href='/blog/categories/redis/'>Redis (1)</a></li><li><a href='/blog/categories/revel/'>Revel (2)</a></li><li><a href='/blog/categories/svn/'>SVN (1)</a></li><li><a href='/blog/categories/thinkphp/'>ThinkPHP (2)</a></li><li><a href='/blog/categories/wamp/'>WAMP (1)</a></li><li><a href='/blog/categories/gong-ju/'>工具 (1)</a></li><li><a href='/blog/categories/xi-tong/'>系统 (1)</a></li></ul>
 </section>
 
 
