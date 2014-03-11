@@ -4,7 +4,7 @@
   <title><![CDATA[Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2014-03-06T19:48:00+08:00</updated>
+  <updated>2014-03-11T10:14:40+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -12,6 +12,117 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mac安装配置MongoDB+RockMongo]]></title>
+    <link href="http://blog.devhobo.com/blog/2014/03/11/mac-mongodb-rockmongo/"/>
+    <updated>2014-03-11T18:00:00+08:00</updated>
+    <id>http://blog.devhobo.com/blog/2014/03/11/mac-mongodb-rockmongo</id>
+    <content type="html"><![CDATA[<p>MongoDB安装
+</br>使用brew安装很方便
+</br><a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/">http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/</a></p>
+
+<p>安装完成后可以选择修改配置文件</p>
+
+<figure class='code'><figcaption><span>mongod.conf </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#dbpath,logpath,bind_ip</span>
+</span><span class='line'><span class="n">vi</span> <span class="sr">/usr/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mongod</span><span class="o">.</span><span class="n">conf</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!--more-->
+
+
+<p></p>
+
+<p>启动配置</p>
+
+<figure class='code'><figcaption><span>启动配置 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#为了方便使用配置.bash_profile</span>
+</span><span class='line'><span class="n">vi</span> <span class="o">~</span><span class="sr">/.bash_profile</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">#添加以下内容</span>
+</span><span class='line'><span class="sr">export PATH=$PATH:/us</span><span class="n">r</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="n">bin</span>
+</span><span class='line'><span class="k">alias</span> <span class="n">mongodb_start</span><span class="o">=</span><span class="s1">&#39;sudo launchctl load -w /usr/local/Cellar/mongodb/2.4.9/homebrew.mxcl.mongodb.plist&#39;</span>
+</span><span class='line'><span class="k">alias</span> <span class="n">mongodb_stop</span><span class="o">=</span><span class="s1">&#39;sudo launchctl unload -w /usr/local/Cellar/mongodb/2.4.9/homebrew.mxcl.mongodb.plist&#39;</span>
+</span><span class='line'><span class="k">alias</span> <span class="n">mongodb_restart</span><span class="o">=</span><span class="s1">&#39;mongodb_stop; mongodb_start;&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#这样直接使用mongodb_start,mongodb_stop,mongodb_restart很方便</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#启动</span>
+</span><span class='line'><span class="n">mongodb_start</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#配置用户名密码</span>
+</span><span class='line'><span class="n">mongo</span>
+</span><span class='line'><span class="n">db</span> <span class="n">show</span>
+</span><span class='line'><span class="n">use</span> <span class="nb">test</span>
+</span><span class='line'><span class="n">db</span><span class="o">.</span><span class="n">addUser</span><span class="p">(</span><span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="s2">&quot;123456&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#重启</span>
+</span><span class='line'><span class="n">mongodb_restart</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>管理工具RockMongo，下载后根据自己的PHP环境配置
+</br><a href="http://rockmongo.com/downloads">http://rockmongo.com/downloads</a></p>
+
+<p>安装php-mongo</p>
+
+<figure class='code'><figcaption><span>php-mongo </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#我用的php54，记下安装后的路径</span>
+</span><span class='line'><span class="n">brew</span> <span class="n">php54</span><span class="o">-</span><span class="n">mongo</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#配置php.ini</span>
+</span><span class='line'><span class="c1">#添加或者修改extension=&quot;mongo.so&quot;</span>
+</span><span class='line'><span class="n">extension</span><span class="o">=</span><span class="s2">&quot;/usr/local/Cellar/php54-mongo/1.4.5/mongo.so&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#启动/重启Php环境</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p class='post-footer'>
+      原文地址
+      <a href='http://blog.devhobo.com/blog/2014/03/11/mac-mongodb-rockmongo/'>http://blog.devhobo.com/blog/2014/03/11/mac-mongodb-rockmongo/</a><br/>
+      </p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[BAE Cache&Redis实现ThinkPHP的Cache驱动]]></title>

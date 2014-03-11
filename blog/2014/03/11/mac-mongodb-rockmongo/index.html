@@ -5,12 +5,17 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>MySQL:常用命令行 - Hobo Blog</title>
+  <title>Mac安装配置MongoDB+RockMongo - Hobo Blog</title>
   
   <meta name="author" content="Hobo">
   
-  <meta name="description" content="MySQL常用的命令行操作">
-  <meta name="keywords" content="MySQL, 权限, 导入, 导出, 命令">
+  <meta name="description" content="MongoDB安装
+使用brew安装很方便
+http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/ 安装完成后可以选择修改配置文件 mongod.conf 1
+2
+#dbpath,logpath,bind_ip
+vi / &hellip;">
+  <meta name="keywords" content="MongoDB,RockMongo">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +23,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.devhobo.com/blog/2013/10/30/mysql-chang-yong-ming-ling-xing">
+  <link rel="canonical" href="http://blog.devhobo.com/blog/2014/03/11/mac-mongodb-rockmongo">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Hobo Blog" type="application/atom+xml">
@@ -91,7 +96,7 @@
   
   <header>
     
-      <h1 class="entry-title">MySQL:常用命令行</h1>
+      <h1 class="entry-title">Mac安装配置MongoDB+RockMongo</h1>
     
     
       <p class="meta">
@@ -107,82 +112,38 @@
   
 
 
-<time datetime="2013-10-30T08:58:00+08:00" pubdate data-updated="true">Oct 30<span>th</span>, 2013</time>
+<time datetime="2014-03-11T18:00:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>登入
-</br>mysql -h192.168.1.110  -uroot -ppassword</p>
+<div class="entry-content"><p>MongoDB安装
+</br>使用brew安装很方便
+</br><a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/">http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/</a></p>
 
-<p>登出
-</br>quit/exit</p>
+<p>安装完成后可以选择修改配置文件</p>
 
-<p>查看数据库
-</br>show databases;</p>
+<figure class='code'><figcaption><span>mongod.conf </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#dbpath,logpath,bind_ip</span>
+</span><span class='line'><span class="n">vi</span> <span class="sr">/usr/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mongod</span><span class="o">.</span><span class="n">conf</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>用户权限
-</br>添加
-</br>grant select on db.table to &lsquo;user&rsquo;@&lsquo;host&rsquo;;
-</br>grant select,update on <em>.</em> to &lsquo;test&rsquo;@&lsquo;%&rsquo;;
-</br>撤销
-</br>revoke all on <em>.</em> from &lsquo;test&rsquo;@&lsquo;%&rsquo;;
-</br>查看
-</br>show grants;
-</br>show grants for user@localhost</p>
 
-<p>删除用户
-</br>delete from mysql.user where user=&lsquo;&rsquo; and host=&lsquo;&rsquo;;</p>
 
-<p>设置密码
-</br>update mysql.user set password=PASSWORD(&lsquo;123456&rsquo;) where user=&lsquo;root&rsquo;;</p>
-
-<p>配置远程连接
-</br>GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIFIED BY &lsquo;password&rsquo; WITH GRANT OPTION;</p>
 
 <!--more-->
 
 
 <p></p>
 
-<p>导出<br/>
-</br>mysqldump -u　用户名 -p 数据库名 > 数据库名.sql</p>
+<p>启动配置</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
-</span><span class='line'><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span><span class="err">　</span><span class="n">root</span> <span class="o">-</span><span class="nb">p</span> <span class="n">dbname</span> <span class="o">&gt;</span> <span class="n">filepath</span><span class="o">.</span><span class="n">sql</span>
-</span><span class='line'><span class="c1">#To export tofile(data only)</span>
-</span><span class='line'><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> <span class="o">[</span><span class="n">user</span><span class="o">]-</span><span class="nb">p</span><span class="o">[</span><span class="n">pass</span><span class="o">]--</span><span class="n">no</span><span class="o">-</span><span class="n">create</span><span class="o">-</span><span class="n">db</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">create</span><span class="o">-</span><span class="n">info</span> <span class="n">mydb</span> <span class="o">&gt;</span> <span class="n">mydb</span><span class="o">.</span><span class="n">sql</span>
-</span><span class='line'><span class="c1">#To export tofile(structure only)</span>
-</span><span class='line'><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> <span class="o">[</span><span class="n">user</span><span class="o">]-</span><span class="nb">p</span><span class="o">[</span><span class="n">pass</span><span class="o">]--</span><span class="n">no</span><span class="o">-</span><span class="n">data</span> <span class="n">mydb</span> <span class="o">&gt;</span> <span class="n">mydb</span><span class="o">.</span><span class="n">sql</span>
-</span><span class='line'><span class="c1">#To import todatabase</span>
-</span><span class='line'><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="o">[</span><span class="n">user</span><span class="o">]-</span><span class="nb">p</span><span class="o">[</span><span class="n">pass</span><span class="o">]</span> <span class="n">mydb</span> <span class="o">&lt;</span> <span class="n">mydb</span><span class="o">.</span><span class="n">sql</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>导入</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
-</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="n">use</span> <span class="n">dbname</span>             <span class="c1">#切到要导入的数据库</span>
-</span><span class='line'><span class="n">mysql</span><span class="o">&gt;</span> <span class="n">source</span> <span class="n">filepath</span><span class="o">.</span><span class="n">sql</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>变量查看/修改</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>启动配置 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -191,48 +152,74 @@
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
-</span><span class='line'><span class="n">show</span> <span class="n">variables</span> <span class="n">like</span> <span class="s1">&#39;%slow%&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="n">set</span> <span class="n">global</span> <span class="n">slow_query_log</span><span class="o">=</span> <span class="s1">&#39;ON&#39;</span><span class="p">;</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#为了方便使用配置.bash_profile</span>
+</span><span class='line'><span class="n">vi</span> <span class="o">~</span><span class="sr">/.bash_profile</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">show</span> <span class="n">status</span> <span class="n">like</span> <span class="s1">&#39;Qca%&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="sr">#添加以下内容</span>
+</span><span class='line'><span class="sr">export PATH=$PATH:/us</span><span class="n">r</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="n">bin</span>
+</span><span class='line'><span class="k">alias</span> <span class="n">mongodb_start</span><span class="o">=</span><span class="s1">&#39;sudo launchctl load -w /usr/local/Cellar/mongodb/2.4.9/homebrew.mxcl.mongodb.plist&#39;</span>
+</span><span class='line'><span class="k">alias</span> <span class="n">mongodb_stop</span><span class="o">=</span><span class="s1">&#39;sudo launchctl unload -w /usr/local/Cellar/mongodb/2.4.9/homebrew.mxcl.mongodb.plist&#39;</span>
+</span><span class='line'><span class="k">alias</span> <span class="n">mongodb_restart</span><span class="o">=</span><span class="s1">&#39;mongodb_stop; mongodb_start;&#39;</span>
 </span><span class='line'>
-</span><span class='line'><span class="c1">#查看SQL中select条数</span>
-</span><span class='line'><span class="n">show</span> <span class="n">status</span> <span class="n">like</span> <span class="s1">&#39;Com_sel%&#39;</span><span class="p">;</span> <span class="c1">#显示的是一次会话的值！</span>
-</span><span class='line'><span class="n">show</span> <span class="n">global</span> <span class="n">status</span> <span class="n">like</span> <span class="s2">&quot;Com_select&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="c1">#这样直接使用mongodb_start,mongodb_stop,mongodb_restart很方便</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#启动</span>
+</span><span class='line'><span class="n">mongodb_start</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#配置用户名密码</span>
+</span><span class='line'><span class="n">mongo</span>
+</span><span class='line'><span class="n">db</span> <span class="n">show</span>
+</span><span class='line'><span class="n">use</span> <span class="nb">test</span>
+</span><span class='line'><span class="n">db</span><span class="o">.</span><span class="n">addUser</span><span class="p">(</span><span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="s2">&quot;123456&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#重启</span>
+</span><span class='line'><span class="n">mongodb_restart</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>找回密码？
-</br>1、kill -TERM mysqld
-</br>2、conf中加入skip-grant-tables
-</br>3、service mysqld restart
-</br>4、mysql -uroot -p
-</br>5、修改密码
-</br>6、改回原配置并重启</p>
+<p>管理工具RockMongo，下载后根据自己的PHP环境配置
+</br><a href="http://rockmongo.com/downloads">http://rockmongo.com/downloads</a></p>
 
-<p>Binlog：<a href="http://dev.mysql.com/doc/refman/5.7/en/mysqlbinlog.html">http://dev.mysql.com/doc/refman/5.7/en/mysqlbinlog.html</a>
-</br>删除mysql-bin日志
-</br><a href="http://dev.mysql.com/doc/refman/5.7/en/purge-binary-logs.html">http://dev.mysql.com/doc/refman/5.7/en/purge-binary-logs.html</a>
-</br>PURGE BINARY LOGS TO &lsquo;mysql-bin.010&rsquo;;
-</br>PURGE BINARY LOGS BEFORE &lsquo;2008-04-02 22:46:26&rsquo;;</p>
+<p>安装php-mongo</p>
 
-<p>清空表并使自增归0
-</br>TRUNCATE TABLE tablename</p>
+<figure class='code'><figcaption><span>php-mongo </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#我用的php54，记下安装后的路径</span>
+</span><span class='line'><span class="n">brew</span> <span class="n">php54</span><span class="o">-</span><span class="n">mongo</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#配置php.ini</span>
+</span><span class='line'><span class="c1">#添加或者修改extension=&quot;mongo.so&quot;</span>
+</span><span class='line'><span class="n">extension</span><span class="o">=</span><span class="s2">&quot;/usr/local/Cellar/php54-mongo/1.4.5/mongo.so&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#启动/重启Php环境</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Mac无法登陆
-</br>Can&rsquo;t connect to MySQL server on &lsquo;127.0.0.1&rsquo; (61)
-</br>StevenMacBookAir:~ Hobo$ sudo su &ndash;
-</br>StevenMacBookAir:~ root# nohup /usr/local/mysql/bin/mysqld_safe &amp;
-</br>[1] 464
-</br>StevenMacBookAir:~ root# appending output to nohup.out
-</br>exit
-</br>logout
-</br>StevenMacBookAir:~ Hobo$</p>
+
+
 
 <p class='post-footer'>
       原文地址
-      <a href='http://blog.devhobo.com/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/'>http://blog.devhobo.com/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/</a><br/>
+      <a href='http://blog.devhobo.com/blog/2014/03/11/mac-mongodb-rockmongo/'>http://blog.devhobo.com/blog/2014/03/11/mac-mongodb-rockmongo/</a><br/>
       </p>
 
 </div>
@@ -259,12 +246,12 @@
   
 
 
-<time datetime="2013-10-30T08:58:00+08:00" pubdate data-updated="true">Oct 30<span>th</span>, 2013</time>
+<time datetime="2014-03-11T18:00:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/mysql/'>MySQL</a>
+    <a class='category' href='/blog/categories/mac/'>Mac</a>, <a class='category' href='/blog/categories/mongodb/'>MongoDB</a>, <a class='category' href='/blog/categories/php/'>PHP</a>, <a class='category' href='/blog/categories/rockmongo/'>RockMongo</a>
   
 </span><br>
 
@@ -310,10 +297,8 @@ var jiathis_config={
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/08/24/go-revel-gorplian-jie-mysql/" title="Previous Post: Go-Revel:Gorp连接MySQL">&laquo; Go-Revel:Gorp连接MySQL</a>
+        <a class="basic-alignment left" href="/blog/2014/03/06/bae-redisshi-xian-thinkphpcache/" title="Previous Post: BAE Cache&Redis实现ThinkPHP的Cache驱动">&laquo; BAE Cache&Redis实现ThinkPHP的Cache驱动</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/11/07/svnshi-yong/" title="Next Post: SVN:使用">SVN:使用 &raquo;</a>
       
     </p>
   </footer>

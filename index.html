@@ -9,16 +9,12 @@
   
   <meta name="author" content="Hobo">
   
-  <meta name="description" content="在BAE环境下有单独的Cache，同时也有Redis，可以同时用来做不同的Cache服务，先从Redis开始 1、Redis相关配置 conf.php 1
+  <meta name="description" content="MongoDB安装
+使用brew安装很方便
+http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/ 安装完成后可以选择修改配置文件 mongod.conf 1
 2
-3
-4
-5
-6
-7
-8
-#BAE API Key与Secret Key
-&#39;BAE_AK&#39; =&gt; &#39;XXX&# &hellip;">
+#dbpath,logpath,bind_ip
+vi / &hellip;">
   <meta name="keywords" content="">
 
   <!-- http://t.co/dKP3o1e -->
@@ -97,6 +93,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/11/mac-mongodb-rockmongo/">Mac安装配置MongoDB+RockMongo</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-11T18:00:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>MongoDB安装
+</br>使用brew安装很方便
+</br><a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/">http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/</a></p>
+
+<p>安装完成后可以选择修改配置文件</p>
+
+<figure class='code'><figcaption><span>mongod.conf </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#dbpath,logpath,bind_ip</span>
+</span><span class='line'><span class="n">vi</span> <span class="sr">/usr/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mongod</span><span class="o">.</span><span class="n">conf</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/11/mac-mongodb-rockmongo/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -751,6 +802,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/03/11/mac-mongodb-rockmongo/">Mac安装配置MongoDB+RockMongo</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/03/06/bae-redisshi-xian-thinkphpcache/">BAE Cache&Redis实现ThinkPHP的Cache驱动</a>
       </li>
     
@@ -766,15 +821,11 @@
         <a href="/blog/2013/11/07/mysql-you-hua-gong-ju/">MySql:优化工具</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/11/07/svnshi-yong/">SVN:使用</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/bae/'>BAE (1)</a></li><li><a href='/blog/categories/cache/'>Cache (1)</a></li><li><a href='/blog/categories/go/'>Go (2)</a></li><li><a href='/blog/categories/gorp/'>Gorp (1)</a></li><li><a href='/blog/categories/mysql/'>MySQL (3)</a></li><li><a href='/blog/categories/redis/'>Redis (1)</a></li><li><a href='/blog/categories/revel/'>Revel (2)</a></li><li><a href='/blog/categories/svn/'>SVN (1)</a></li><li><a href='/blog/categories/thinkphp/'>ThinkPHP (2)</a></li><li><a href='/blog/categories/wamp/'>WAMP (1)</a></li><li><a href='/blog/categories/gong-ju/'>工具 (1)</a></li><li><a href='/blog/categories/xi-tong/'>系统 (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/bae/'>BAE (1)</a></li><li><a href='/blog/categories/cache/'>Cache (1)</a></li><li><a href='/blog/categories/go/'>Go (2)</a></li><li><a href='/blog/categories/gorp/'>Gorp (1)</a></li><li><a href='/blog/categories/mac/'>Mac (1)</a></li><li><a href='/blog/categories/mongodb/'>MongoDB (1)</a></li><li><a href='/blog/categories/mysql/'>MySQL (3)</a></li><li><a href='/blog/categories/php/'>PHP (1)</a></li><li><a href='/blog/categories/redis/'>Redis (1)</a></li><li><a href='/blog/categories/revel/'>Revel (2)</a></li><li><a href='/blog/categories/rockmongo/'>RockMongo (1)</a></li><li><a href='/blog/categories/svn/'>SVN (1)</a></li><li><a href='/blog/categories/thinkphp/'>ThinkPHP (2)</a></li><li><a href='/blog/categories/wamp/'>WAMP (1)</a></li><li><a href='/blog/categories/gong-ju/'>工具 (1)</a></li><li><a href='/blog/categories/xi-tong/'>系统 (1)</a></li></ul>
 </section>
 
 
