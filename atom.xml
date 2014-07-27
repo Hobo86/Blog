@@ -4,7 +4,7 @@
   <title><![CDATA[Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2014-03-11T10:18:13+08:00</updated>
+  <updated>2014-07-27T10:37:18+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Redmine+Git+Gitolite]]></title>
+    <link href="http://blog.devhobo.com/blog/2014/04/15/redmine-plus-git-plus-gitolite/"/>
+    <updated>2014-04-15T18:29:00+08:00</updated>
+    <id>http://blog.devhobo.com/blog/2014/04/15/redmine-plus-git-plus-gitolite</id>
+    <content type="html"><![CDATA[<p class='post-footer'>
+      原文地址
+      <a href='http://blog.devhobo.com/blog/2014/04/15/redmine-plus-git-plus-gitolite/'>http://blog.devhobo.com/blog/2014/04/15/redmine-plus-git-plus-gitolite/</a><br/>
+      </p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Mac安装配置MongoDB+RockMongo]]></title>
@@ -982,7 +995,8 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Goaccess工具</p>
+<p>Goaccess工具
+<a href="http://sourceforge.net/projects/goaccess/">http://sourceforge.net/projects/goaccess/</a></p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>

@@ -5,19 +5,32 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>MySql:优化工具 - Hobo Blog</title>
+  <title>Hobo Blog</title>
   
   <meta name="author" content="Hobo">
   
-  <meta name="description" content="脚本优化tuning-primer.sh 1
+  <meta name="description" content="Git command 1
+2
+3
+git add .
+git commit -m &#39;update&#39;
+git push origin master Rake command 1
 2
 3
 4
-#cd /etc/ (my.conf所在目录)
-#wget http://www.day32.com/MySQL/tuning-primer.sh
-#chmod +x tuning-primer.sh
-#./tuning-primer.sh &hellip;">
-  <meta name="keywords" content="MySQL, 优化">
+5
+6
+7
+8
+9
+10
+11
+12
+13
+#预览
+rake preview
+#发布 &hellip;">
+  <meta name="keywords" content="">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -25,7 +38,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.devhobo.com/blog/2013/11/07/mysql-you-hua-gong-ju">
+  <link rel="canonical" href="http://blog.devhobo.com/blog/page/2">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Hobo Blog" type="application/atom+xml">
@@ -93,12 +106,15 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div>
-<article class="hentry" role="article">
+      <div class="blog-index">
   
+  
+  
+    <article>
+      
   <header>
     
-      <h1 class="entry-title">MySql:优化工具</h1>
+      <h1 class="entry-title"><a href="/blog/2013/08/19/octopress-shiyong/">Octopress 使用</a></h1>
     
     
       <p class="meta">
@@ -114,36 +130,54 @@
   
 
 
-<time datetime="2013-11-07T18:36:00+08:00" pubdate data-updated="true">Nov 7<span>th</span>, 2013</time>
+<time datetime="2013-08-19T18:39:00+08:00" pubdate data-updated="true">Aug 19<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>脚本优化tuning-primer.sh</p>
+  <div class="entry-content">
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Git command </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#cd /etc/   (my.conf所在目录)</span>
-</span><span class='line'><span class="c1">#wget http://www.day32.com/MySQL/tuning-primer.sh</span>
-</span><span class='line'><span class="c1">#chmod +x tuning-primer.sh</span>
-</span><span class='line'><span class="c1">#./tuning-primer.sh</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+</span><span class='line'><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s1">&#39;update&#39;</span>
+</span><span class='line'><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>优化工具Mysqltuner</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<figure class='code'><figcaption><span>Rake command </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">安装：</span>
-</span><span class='line'><span class="c1">#yum install -y mysqltuner</span>
-</span><span class='line'><span class="err">运行：</span>
-</span><span class='line'><span class="c1">#mysqltuner</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#预览</span>
+</span><span class='line'><span class="n">rake</span> <span class="n">preview</span>
+</span><span class='line'><span class="cp">#发布</span>
+</span><span class='line'><span class="n">rake</span> <span class="n">generate</span>
+</span><span class='line'><span class="n">rake</span> <span class="n">deploy</span>
+</span><span class='line'>
+</span><span class='line'><span class="cp">#创建文章</span>
+</span><span class='line'><span class="n">rake</span> <span class="n">new_post</span><span class="p">[</span><span class="s">&quot;title&quot;</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">rake</span> <span class="n">new_page</span><span class="p">[</span><span class="n">super</span><span class="o">-</span><span class="n">awesome</span><span class="p">]</span>
+</span><span class='line'><span class="cp"># creates /source/super-awesome/index.markdown</span>
+</span><span class='line'><span class="n">rake</span> <span class="n">new_page</span><span class="p">[</span><span class="n">super</span><span class="o">-</span><span class="n">awesome</span><span class="o">/</span><span class="n">page</span><span class="p">.</span><span class="n">html</span><span class="p">]</span>
+</span><span class='line'><span class="cp"># creates /source/super-awesome/page.html</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -151,95 +185,24 @@
 
 <p class='post-footer'>
       原文地址
-      <a href='http://blog.devhobo.com/blog/2013/11/07/mysql-you-hua-gong-ju/'>http://blog.devhobo.com/blog/2013/11/07/mysql-you-hua-gong-ju/</a><br/>
+      <a href='http://blog.devhobo.com/blog/2013/08/19/octopress-shiyong/'>http://blog.devhobo.com/blog/2013/08/19/octopress-shiyong/</a><br/>
       </p>
 
 </div>
-
-
-  <footer>
-    <p class="meta">
-      
+  
   
 
 
-<span class="byline author vcard">Posted by <span class="fn">Hobo</span></span>
-
-
-      
-
-
-
-
-
-
-
-
+    </article>
   
-
-
-<time datetime="2013-11-07T18:36:00+08:00" pubdate data-updated="true">Nov 7<span>th</span>, 2013</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/mysql/'>MySQL</a>
-  
-</span><br>
-
-
-    </p>
+  <div class="pagination">
     
-      <div class="sharing">
-  
-  
-  
-  
-  <style>
-    .flash-video{display:none;}
-  </style>
-    <!-- JiaThis Button BEGIN -->
-<div id="ckepop">
-	<span class="jiathis_txt">分享：</span>
-	<a class="jiathis_button_weixin">微信</a>
-	<a class="jiathis_button_tsina">新浪微博</a>
-	<a class="jiathis_button_t163">网易微博</a>
-	<a class="jiathis_button_douban">豆瓣</a>
-	<a href="http://www.jiathis.com/share?uid=1830844" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-	<a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-var jiathis_config={
-    data_track_clickback:true,
-    sm:"cqq,qzone,tqq,renren,ishare",
-    summary:"",
-    hideMore:false
-}
-</script>
-<script type="text/javascript" src="http://v2.jiathis.com/code_mini/jia.js?uid=1830844" charset="utf-8"></script>
-<!-- JiaThis Button END -->
-
-<!-- UY BEGIN -->
-<div id="uyan_frame"></div>
-<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1830844"></script>
-<!-- UY END -->
-  
-</div>
-
+    <a href="/blog/archives">Blog Archives</a>
     
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2013/11/07/svnshi-yong/" title="Previous Post: SVN:使用">&laquo; SVN:使用</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2013/11/07/ri-zhi-tong-ji-fen-xi-shell-slash-goaccess/" title="Next Post: 日志统计分析-Shell/Goaccess">日志统计分析-Shell/Goaccess &raquo;</a>
-      
-    </p>
-  </footer>
-</article>
-
+    <a class="next" href="/">Newer &rarr;</a>
+    
+  </div>
 </div>
-
 <aside class="sidebar">
   
     <section>
@@ -290,14 +253,13 @@ var jiathis_config={
   </p>
   <!--
   <a href=""></a> 新浪微博<br>
-  -->
+  &#8211;>
   
   
 </section>
 
   
 </aside>
-
 
     </div>
   </div>
