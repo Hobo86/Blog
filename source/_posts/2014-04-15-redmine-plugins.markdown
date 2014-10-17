@@ -8,10 +8,8 @@ categories:
 keywords: Redmine, Gitolite, Knowledgebase
 ---
 
-Gitolite
+Git版本库工具-Gitolite
 </br>https://github.com/CtrlC-Root/redmine-gitolite/
 
-Knowledgebase
-</br>https://github.com/alexbevi/redmine_knowledgebase
-
-<!--more--> 
+知识积累工具-Knowledgebase
+</br>https://github.com/alexbevi/redmine_knowledgebase/
