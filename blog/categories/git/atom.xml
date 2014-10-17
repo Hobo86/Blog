@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Git | Hobo Blog]]></title>
+  <link href="http://blog.devhobo.com/blog/categories/git/atom.xml" rel="self"/>
+  <link href="http://blog.devhobo.com/"/>
+  <updated>2014-10-17T13:52:15+08:00</updated>
+  <id>http://blog.devhobo.com/</id>
+  <author>
+    <name><![CDATA[Hobo]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[转]项目自动部署-Git]]></title>
+    <link href="http://blog.devhobo.com/blog/2014/10/17/xiang-mu-zi-dong-bu-shu-git/"/>
+    <updated>2014-10-17T13:29:00+08:00</updated>
+    <id>http://blog.devhobo.com/blog/2014/10/17/xiang-mu-zi-dong-bu-shu-git</id>
+    <content type="html"><![CDATA[<p>Git push后自动更新项目部署，"[deploy]&ldquo;部署的分支为master。</p>
+
+<p>Gist
+</br><a href="https://gist.github.com/icyleaf/566767">https://gist.github.com/icyleaf/566767</a></p>
+
+<!--more-->
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>post-receive </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;!/</span><span class="n">bin</span><span class="o">/</span><span class="n">sh</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;#&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">git</span> <span class="n">autodeploy</span> <span class="n">script</span> <span class="k">when</span> <span class="n">it</span> <span class="n">matches</span> <span class="n">the</span> <span class="n">string</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="o">[</span><span class="n">deploy</span><span class="o">]&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;#&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="vi">@author</span>    <span class="n">icyleaf</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;&amp;#109;&amp;#97;&amp;#105;&amp;#108;&amp;#x74;&amp;#111;&amp;#x3a;&amp;#105;&amp;#99;&amp;#121;&amp;#108;&amp;#x65;&amp;#97;&amp;#x66;&amp;#46;&amp;#x63;&amp;#x6e;&amp;#x40;&amp;#x67;&amp;#x6d;&amp;#97;&amp;#x69;&amp;#108;&amp;#x2e;&amp;#99;&amp;#x6f;&amp;#x6d;&quot;</span><span class="o">&gt;&amp;</span><span class="c1">#105;&amp;#99;&amp;#121;&amp;#108;&amp;#x65;&amp;#97;&amp;#102;&amp;#x2e;&amp;#x63;&amp;#110;&amp;#64;&amp;#103;&amp;#x6d;&amp;#97;&amp;#105;&amp;#108;&amp;#x2e;&amp;#99;&amp;#111;&amp;#109;&lt;/a&gt;&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="vi">@link</span>      <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;http://icyleaf.com&quot;</span><span class="o">&gt;</span><span class="ss">http</span><span class="p">:</span><span class="sr">//i</span><span class="n">cyleaf</span><span class="o">.</span><span class="n">com</span><span class="o">&lt;</span><span class="sr">/a&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="vi">@version</span>   <span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;#&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="ss">Usage</span><span class="p">:</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;1. put this into the post-receive hook file itself below&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">.</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">post</span><span class="o">-</span><span class="n">recive</span><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="mi">3</span><span class="o">.</span> <span class="no">Done</span><span class="o">!&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;Check the remote git repository whether it is bare&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">IS_BARE</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">git</span> <span class="n">rev</span><span class="o">-</span><span class="n">parse</span> <span class="o">&amp;</span><span class="n">mdash</span><span class="p">;</span><span class="n">is</span><span class="o">-</span><span class="n">bare</span><span class="o">-</span><span class="n">repository</span><span class="p">)</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="o">-</span><span class="n">z</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="vg">$IS_BARE</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;echo &amp;gt;&amp;amp;2 &quot;fatal: post-receive: IS_NOT_BARE&quot;</span>
+</span><span class='line'><span class="sr">exit 1</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;fi&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Get</span> <span class="n">the</span> <span class="n">latest</span> <span class="n">commit</span> <span class="n">subject</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;SUBJECT=$(git log -1 &amp;mdash;pretty=format:&amp;ldquo;%s&amp;rdquo;)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Deploy</span> <span class="n">the</span> <span class="no">HEAD</span> <span class="n">sources</span> <span class="n">to</span> <span class="n">publish</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;IS_PULL=$(echo &amp;ldquo;$SUBJECT&amp;rdquo; | grep &amp;ldquo;[deploy]&amp;rdquo;)</span>
+</span><span class='line'><span class="sr">if [ -z &amp;ldquo;$IS_PULL&amp;rdquo; ]; then&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">echo</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="mi">2</span> <span class="s2">&quot;tips: post-receive: IS_NOT_PULL&quot;</span>
+</span><span class='line'><span class="nb">exit</span> <span class="mi">1</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">fi</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;Check the deploy dir whether it exists&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">DEPLOY_DIR</span><span class="o">=</span><span class="sr">/home/i</span><span class="n">cyleaf</span><span class="o">/</span><span class="n">php</span><span class="o">/</span><span class="n">icyleaf</span><span class="o">/</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="o">-</span><span class="n">d</span> <span class="vg">$DEPLOY_DIR</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;echo &amp;gt;&amp;amp;2 &quot;fatal: post-receive: DEPLOY_DIR_NOT_EXIST: \&quot;$DEPLOY_DIR\&quot;&quot;</span>
+</span><span class='line'><span class="sr">exit 1</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;fi&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Check</span> <span class="n">the</span> <span class="n">deploy</span> <span class="n">dir</span> <span class="n">whether</span> <span class="n">it</span> <span class="n">is</span> <span class="n">git</span> <span class="n">repository</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;#&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">IS_GIT</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">git</span> <span class="n">rev</span><span class="o">-</span><span class="n">parse</span> <span class="o">&amp;</span><span class="n">mdash</span><span class="p">;</span><span class="n">git</span><span class="o">-</span><span class="n">dir</span> <span class="mi">2</span><span class="o">&gt;</span><span class="sr">/dev/nu</span><span class="n">ll</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;if [ -z &amp;ldquo;$IS_GIT&amp;rdquo; ]; then&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">echo</span> <span class="o">&gt;&amp;</span><span class="n">amp</span><span class="p">;</span><span class="mi">2</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="ss">fatal</span><span class="p">:</span> <span class="n">post</span><span class="o">-</span><span class="ss">receive</span><span class="p">:</span> <span class="no">IS_NOT_GIT</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;exit 1&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">fi</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;Goto the deploy dir and pull the latest sources&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">cd</span> <span class="vg">$DEPLOY_DIR</span>
+</span><span class='line'><span class="n">env</span> <span class="o">-</span><span class="n">i</span> <span class="n">git</span> <span class="n">reset</span> <span class="o">&amp;</span><span class="n">mdash</span><span class="p">;</span><span class="n">hard</span>
+</span><span class='line'><span class="n">env</span> <span class="o">-</span><span class="n">i</span> <span class="n">git</span> <span class="n">pull</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: RockMongo | Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/blog/categories/rockmongo/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2014-10-17T13:26:20+08:00</updated>
+  <updated>2014-10-17T13:52:15+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -23,13 +23,22 @@
 </br><a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/">http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/</a></p>
 
 <p>安装完成后可以选择修改配置文件
-{% codeblock mongod.conf lang:ruby %}</p>
-
-<h1>dbpath,logpath,bind_ip</h1>
-
-<p>vi /usr/local/etc/mongod.conf</p>
-
-<p>{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>mongod.conf </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;dbpath,logpath,bind_ip&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">vi</span> <span class="sr">/usr/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mongod</span><span class="o">.</span><span class="n">conf</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <!--more-->
 
@@ -37,56 +46,103 @@
 <p></p>
 
 <p>启动配置
-{% codeblock 启动配置 lang:ruby %}</p>
-
-<h1>为了方便使用配置.bash_profile</h1>
-
-<p>vi ~/.bash_profile</p>
-
-<h1>添加以下内容</h1>
-
-<p>export PATH=$PATH:/usr/local/opt/mongodb/bin
-alias mongodb_start=&lsquo;sudo launchctl load -w /usr/local/Cellar/mongodb/2.4.9/homebrew.mxcl.mongodb.plist&rsquo;
-alias mongodb_stop=&lsquo;sudo launchctl unload -w /usr/local/Cellar/mongodb/2.4.9/homebrew.mxcl.mongodb.plist&rsquo;
-alias mongodb_restart=&lsquo;mongodb_stop; mongodb_start;&rsquo;</p>
-
-<h1>这样直接使用mongodb_start,mongodb_stop,mongodb_restart很方便</h1>
-
-<h1>启动</h1>
-
-<p>mongodb_start</p>
-
-<h1>配置用户名密码</h1>
-
-<p>mongo
-db show
-use test
-db.addUser(&ldquo;root&rdquo;, &ldquo;123456&rdquo;)</p>
-
-<h1>重启</h1>
-
-<p>mongodb_restart
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>启动配置 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;为了方便使用配置.bash_profile&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">vi</span> <span class="o">~</span><span class="sr">/.bash_profile&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">添加以下内容</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;export PATH=$PATH:/us</span><span class="n">r</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="n">bin</span>
+</span><span class='line'><span class="k">alias</span> <span class="n">mongodb_start</span><span class="o">=&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">sudo</span> <span class="n">launchctl</span> <span class="nb">load</span> <span class="o">-</span><span class="n">w</span> <span class="sr">/usr/</span><span class="n">local</span><span class="o">/</span><span class="no">Cellar</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="mi">2</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">9</span><span class="o">/</span><span class="n">homebrew</span><span class="o">.</span><span class="n">mxcl</span><span class="o">.</span><span class="n">mongodb</span><span class="o">.</span><span class="n">plist</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span><span class='line'><span class="k">alias</span> <span class="n">mongodb_stop</span><span class="o">=&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">sudo</span> <span class="n">launchctl</span> <span class="n">unload</span> <span class="o">-</span><span class="n">w</span> <span class="sr">/usr/</span><span class="n">local</span><span class="o">/</span><span class="no">Cellar</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="mi">2</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">9</span><span class="o">/</span><span class="n">homebrew</span><span class="o">.</span><span class="n">mxcl</span><span class="o">.</span><span class="n">mongodb</span><span class="o">.</span><span class="n">plist</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span><span class='line'><span class="k">alias</span> <span class="n">mongodb_restart</span><span class="o">=&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">mongodb_stop</span><span class="p">;</span> <span class="n">mongodb_start</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;这样直接使用mongodb_start,mongodb_stop,mongodb_restart很方便&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">启动</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;mongodb_start&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">配置用户名密码</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;mongo</span>
+</span><span class='line'><span class="sr">db show</span>
+</span><span class='line'><span class="sr">use test</span>
+</span><span class='line'><span class="sr">db.addUser(&amp;ldquo;root&amp;rdquo;, &amp;ldquo;123456&amp;rdquo;)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">重启</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;mongodb_restart</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>管理工具RockMongo，下载后根据自己的PHP环境配置
 </br><a href="http://rockmongo.com/downloads">http://rockmongo.com/downloads</a></p>
 
 <p>安装php-mongo
-{% codeblock php-mongo lang:ruby %}</p>
-
-<h1>我用的php54，记下安装后的路径</h1>
-
-<p>brew php54-mongo</p>
-
-<h1>配置php.ini</h1>
-
-<h1>添加或者修改extension=&ldquo;mongo.so&rdquo;</h1>
-
-<p>extension=&ldquo;/usr/local/Cellar/php54-mongo/1.4.5/mongo.so&rdquo;</p>
-
-<h1>启动/重启Php环境</h1>
-
-<p>{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>php-mongo </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;我用的php54，记下安装后的路径&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">brew</span> <span class="n">php54</span><span class="o">-</span><span class="n">mongo</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;配置php.ini&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">添加或者修改</span><span class="n">extension</span><span class="o">=&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">mongo</span><span class="o">.</span><span class="n">so</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;extension=&amp;ldquo;/us</span><span class="n">r</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="no">Cellar</span><span class="o">/</span><span class="n">php54</span><span class="o">-</span><span class="n">mongo</span><span class="o">/</span><span class="mi">1</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">5</span><span class="o">/</span><span class="n">mongo</span><span class="o">.</span><span class="n">so</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;启动/</span><span class="err">重启</span><span class="no">Php</span><span class="err">环境</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 ]]></content>
   </entry>
   

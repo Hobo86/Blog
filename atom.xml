@@ -4,7 +4,7 @@
   <title><![CDATA[Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2014-10-17T13:26:09+08:00</updated>
+  <updated>2014-10-17T13:52:15+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -12,6 +12,133 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[转]项目自动部署-Git]]></title>
+    <link href="http://blog.devhobo.com/blog/2014/10/17/xiang-mu-zi-dong-bu-shu-git/"/>
+    <updated>2014-10-17T13:29:00+08:00</updated>
+    <id>http://blog.devhobo.com/blog/2014/10/17/xiang-mu-zi-dong-bu-shu-git</id>
+    <content type="html"><![CDATA[<p>Git push后自动更新项目部署，&#8221;[deploy]&ldquo;部署的分支为master。</p>
+
+<p>Gist
+</br><a href="https://gist.github.com/icyleaf/566767">https://gist.github.com/icyleaf/566767</a></p>
+
+<!--more-->
+
+
+
+
+<figure class='code'><figcaption><span>post-receive </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#!/bin/sh</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="c1"># git autodeploy script when it matches the string &quot;[deploy]&quot;</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="c1"># @author    icyleaf &lt;icyleaf.cn@gmail.com&gt;</span>
+</span><span class='line'><span class="c1"># @link      http://icyleaf.com</span>
+</span><span class='line'><span class="c1"># @version   0.1</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="c1"># Usage:</span>
+</span><span class='line'><span class="c1">#       1. put this into the post-receive hook file itself below</span>
+</span><span class='line'><span class="c1">#       2. `chmod +x post-recive` </span>
+</span><span class='line'><span class="c1">#       3. Done!</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Check the remote git repository whether it is bare</span>
+</span><span class='line'><span class="no">IS_BARE</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">git</span> <span class="n">rev</span><span class="o">-</span><span class="n">parse</span> <span class="o">--</span><span class="n">is</span><span class="o">-</span><span class="n">bare</span><span class="o">-</span><span class="n">repository</span><span class="p">)</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="o">-</span><span class="n">z</span> <span class="s2">&quot;$IS_BARE&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span><span class='line'>  <span class="n">echo</span> <span class="o">&gt;&amp;</span><span class="mi">2</span> <span class="s2">&quot;fatal: post-receive: IS_NOT_BARE&quot;</span>
+</span><span class='line'>  <span class="nb">exit</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">fi</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Get the latest commit subject</span>
+</span><span class='line'><span class="no">SUBJECT</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">git</span> <span class="n">log</span> <span class="o">-</span><span class="mi">1</span> <span class="o">--</span><span class="n">pretty</span><span class="o">=</span><span class="nb">format</span><span class="ss">:&quot;%s&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Deploy the HEAD sources to publish</span>
+</span><span class='line'><span class="no">IS_PULL</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">echo</span> <span class="s2">&quot;$SUBJECT&quot;</span> <span class="o">|</span> <span class="n">grep</span> <span class="s2">&quot;\[deploy\]&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="o">-</span><span class="n">z</span> <span class="s2">&quot;$IS_PULL&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span><span class='line'>  <span class="n">echo</span> <span class="o">&gt;&amp;</span><span class="mi">2</span> <span class="s2">&quot;tips: post-receive: IS_NOT_PULL&quot;</span>
+</span><span class='line'>  <span class="nb">exit</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">fi</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Check the deploy dir whether it exists</span>
+</span><span class='line'><span class="no">DEPLOY_DIR</span><span class="o">=</span><span class="sr">/home/i</span><span class="n">cyleaf</span><span class="o">/</span><span class="n">php</span><span class="o">/</span><span class="n">icyleaf</span><span class="o">/</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="o">-</span><span class="n">d</span> <span class="vg">$DEPLOY_DIR</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+</span><span class='line'>  <span class="n">echo</span> <span class="o">&gt;&amp;</span><span class="mi">2</span> <span class="s2">&quot;fatal: post-receive: DEPLOY_DIR_NOT_EXIST: </span><span class="se">\&quot;</span><span class="s2">$DEPLOY_DIR</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="nb">exit</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">fi</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Check the deploy dir whether it is git repository</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="c1">#IS_GIT=$(git rev-parse --git-dir 2&gt;/dev/null)</span>
+</span><span class='line'><span class="c1">#if [ -z &quot;$IS_GIT&quot; ]; then</span>
+</span><span class='line'><span class="c1">#    echo &gt;&amp;2 &quot;fatal: post-receive: IS_NOT_GIT&quot;</span>
+</span><span class='line'><span class="c1">#    exit 1</span>
+</span><span class='line'><span class="c1">#fi</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Goto the deploy dir and pull the latest sources</span>
+</span><span class='line'><span class="n">cd</span> <span class="vg">$DEPLOY_DIR</span>
+</span><span class='line'><span class="n">env</span> <span class="o">-</span><span class="n">i</span> <span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">hard</span>
+</span><span class='line'><span class="n">env</span> <span class="o">-</span><span class="n">i</span> <span class="n">git</span> <span class="n">pull</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p class='post-footer'>
+      原文地址
+      <a href='http://blog.devhobo.com/blog/2014/10/17/xiang-mu-zi-dong-bu-shu-git/'>http://blog.devhobo.com/blog/2014/10/17/xiang-mu-zi-dong-bu-shu-git/</a><br/>
+      </p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Redmine Plugins]]></title>

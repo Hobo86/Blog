@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ThinkPHP | Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/blog/categories/thinkphp/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2014-10-17T13:26:20+08:00</updated>
+  <updated>2014-10-17T13:52:15+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -21,25 +21,42 @@
     <content type="html"><![CDATA[<p>在BAE环境下有单独的Cache，同时也有Redis，可以同时用来做不同的Cache服务，先从Redis开始</p>
 
 <p>1、Redis相关配置
-{% codeblock conf.php lang:ruby %}</p>
-
-<h1>BAE API Key与Secret Key</h1>
-
-<p>&lsquo;BAE_AK&rsquo;    => &lsquo;XXX&rsquo;,
-&lsquo;BAE_SK&rsquo;    => &lsquo;XXX&rsquo;,</p>
-
-<h1>BAE Redis扩展配置</h1>
-
-<p>&lsquo;BAE_REDIS_HOST&rsquo;   =>   &lsquo;redis.duapp.com&rsquo;,
-&lsquo;BAE_REDIS_PORT&rsquo;   =>   80,
-&lsquo;BAE_REDIS_DBNAME&rsquo; =>   &lsquo;XXX&rsquo;,</p>
-
-<p>{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>conf.php </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;BAE API Key与Secret Key&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">BAE_AK</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>    <span class="o">=&gt;</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">XXX</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span>
+</span><span class='line'><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">BAE_SK</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>    <span class="o">=&gt;</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">XXX</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;BAE Redis扩展配置&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">BAE_REDIS_HOST</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>   <span class="o">=&gt;</span>   <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">redis</span><span class="o">.</span><span class="n">duapp</span><span class="o">.</span><span class="n">com</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span>
+</span><span class='line'><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">BAE_REDIS_PORT</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>   <span class="o">=&gt;</span>   <span class="mi">80</span><span class="p">,</span>
+</span><span class='line'><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">BAE_REDIS_DBNAME</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="o">=&gt;</span>   <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">XXX</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>可以选择将Redis是否设为默认缓存，如果不是，使用时注意切换
-{% codeblock 使用切换 lang:ruby %}
-$cache = Cache::getInstance(&lsquo;Baeredis&rsquo;,array());
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>使用切换 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vg">$cache</span> <span class="o">=</span> <span class="ss">Cache</span><span class="p">:</span><span class="ss">:getInstance</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">Baeredis</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span><span class="n">array</span><span class="p">());</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>2、Redis Cache 驱动</p>
 
@@ -47,335 +64,664 @@ $cache = Cache::getInstance(&lsquo;Baeredis&rsquo;,array());
 
 
 <p>
-{% codeblock CacheBaeredis.class.php lang:ruby %}</p>
-
-<h1>根据CacheRedis.class.php修改</h1>
-
-<p>&lt;?php</p>
-
-<p>defined(&lsquo;THINK_PATH&rsquo;) or exit();</p>
-
-<p>class CacheBaeredis extends Cache {</p>
-
-<pre><code> /**
- * 架构函数
- * @param array $options 缓存参数
- * @access public
- */
-public function __construct($options=array()) {
-    if ( !extension_loaded('redis') ) {
-        throw_exception(L('_NOT_SUPPERT_').':redis');
-    }
-    if(empty($options)) {
-        $options = array (
-            'host'          =&gt; C('BAE_REDIS_HOST') ? C('BAE_REDIS_HOST') : '127.0.0.1',
-            'port'          =&gt; C('BAE_REDIS_PORT') ? C('BAE_REDIS_PORT') : 80,
-            'timeout'       =&gt; C('DATA_CACHE_TIMEOUT') ? C('DATA_CACHE_TIMEOUT') : false,
-            'persistent'    =&gt; false,
-        );
-    }
-    $this-&gt;options =  $options;
-    $this-&gt;options['expire'] =  isset($options['expire'])?  $options['expire']  :   C('DATA_CACHE_TIME');
-    $this-&gt;options['prefix'] =  isset($options['prefix'])?  $options['prefix']  :   C('DATA_CACHE_PREFIX');        
-    $this-&gt;options['length'] =  isset($options['length'])?  $options['length']  :   0;        
-
-    try {
-        /*建立连接后，在进行集合操作前，需要先进行auth验证*/
-        $this-&gt;handler = new Redis();
-        $ret;
-        if ($options['timeout'] === false) {
-            $ret = $this-&gt;handler-&gt;connect($options['host'], $options['port']);
-        }
-        else {
-            $ret = $this-&gt;handler-&gt;connect($options['host'], $options['port'], $options['timeout']);
-        }
-
-        if ($ret === false) {
-            throw new RedisException($this-&gt;handler-&gt;getLastError());
-        }
-
-        $user = C('BAE_AK');
-        $pwd = C('BAE_SK');
-        $dbname = C('BAE_REDIS_DBNAME');
-
-        $ret = $this-&gt;handler-&gt;auth($user . "-" . $pwd . "-" . $dbname);
-        if ($ret === false) {
-            throw new RedisException($this-&gt;handler-&gt;getLastError());
-        }
-
-    } catch (RedisException $e) {
-        throw_exception('BAE Redis:'.$e-&gt;getMessage());
-    }
-
-
-}
-
-/**
- * 读取缓存
- * @access public
- * @param string $name 缓存变量名
- * @return mixed
- */
-public function get($name) {
-    N('cache_read',1);
-    $value = $this-&gt;handler-&gt;get($this-&gt;options['prefix'].$name);
-    $jsonData  = json_decode( $value, true );
-    return ($jsonData === NULL) ? $value : $jsonData;   //检测是否为JSON数据 true 返回JSON解析数组, false返回源数据
-}
-
-/**
- * 写入缓存
- * @access public
- * @param string $name 缓存变量名
- * @param mixed $value  存储数据
- * @param integer $expire  有效时间（秒）
- * @return boolen
- */
-public function set($name, $value, $expire = null) {
-    N('cache_write',1);
-    if(is_null($expire)) {
-        $expire  =  $this-&gt;options['expire'];
-    }
-    $name   =   $this-&gt;options['prefix'].$name;
-    //对数组/对象数据进行缓存处理，保证数据完整性
-    $value  =  (is_object($value) || is_array($value)) ? json_encode($value) : $value;
-
-    //相对CacheRedis的驱动增加了expire&gt;0的判断
-    if(is_int($expire) &amp; $expire &gt; 0) {
-        $result = $this-&gt;handler-&gt;setex($name, $expire, $value);
-    }else{
-        $result = $this-&gt;handler-&gt;set($name, $value);
-    }
-    if($result &amp;&amp; $this-&gt;options['length']&gt;0) {
-        // 记录缓存队列
-        $this-&gt;queue($name);
-    }
-    return $result;
-}
-
-/**
- * 删除缓存
- * @access public
- * @param string $name 缓存变量名
- * @return boolen
- */
-public function rm($name) {
-    return $this-&gt;handler-&gt;delete($this-&gt;options['prefix'].$name);
-}
-
-/**
- * 清除缓存
- * @access public
- * @return boolen
- */
-public function clear() {
-    return $this-&gt;handler-&gt;flushDB();
-}
-</code></pre>
-
-<p>}
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>CacheBaeredis.class.php </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;根据CacheRedis.class.php修改&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;&amp;</span><span class="n">lt</span><span class="p">;?</span><span class="n">php</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;defined(&amp;lsquo;THINK_PATH&amp;rsquo;) or exit();&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">CacheBaeredis</span> <span class="n">extends</span> <span class="no">Cache</span> <span class="p">{</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt; /</span><span class="o">**</span>
+</span><span class='line'> <span class="o">*</span> <span class="err">架构函数</span>
+</span><span class='line'> <span class="o">*</span> <span class="vi">@param</span> <span class="n">array</span> <span class="vg">$options</span> <span class="err">缓存参数</span>
+</span><span class='line'> <span class="o">*</span> <span class="vi">@access</span> <span class="kp">public</span>
+</span><span class='line'> <span class="o">*/</span>
+</span><span class='line'><span class="kp">public</span> <span class="n">function</span> <span class="n">__construct</span><span class="p">(</span><span class="vg">$options</span><span class="o">=</span><span class="n">array</span><span class="p">())</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">extension_loaded</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">throw_exception</span><span class="p">(</span><span class="n">L</span><span class="p">(</span><span class="s1">&#39;_NOT_SUPPERT_&#39;</span><span class="p">)</span><span class="o">.</span><span class="s1">&#39;:redis&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">empty</span><span class="p">(</span><span class="vg">$options</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>        <span class="vg">$options</span> <span class="o">=</span> <span class="n">array</span> <span class="p">(</span>
+</span><span class='line'>            <span class="s1">&#39;host&#39;</span>          <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">C</span><span class="p">(</span><span class="s1">&#39;BAE_REDIS_HOST&#39;</span><span class="p">)</span> <span class="p">?</span> <span class="n">C</span><span class="p">(</span><span class="s1">&#39;BAE_REDIS_HOST&#39;</span><span class="p">)</span> <span class="p">:</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
+</span><span class='line'>            <span class="s1">&#39;port&#39;</span>          <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">C</span><span class="p">(</span><span class="s1">&#39;BAE_REDIS_PORT&#39;</span><span class="p">)</span> <span class="p">?</span> <span class="n">C</span><span class="p">(</span><span class="s1">&#39;BAE_REDIS_PORT&#39;</span><span class="p">)</span> <span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+</span><span class='line'>            <span class="s1">&#39;timeout&#39;</span>       <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">C</span><span class="p">(</span><span class="s1">&#39;DATA_CACHE_TIMEOUT&#39;</span><span class="p">)</span> <span class="p">?</span> <span class="n">C</span><span class="p">(</span><span class="s1">&#39;DATA_CACHE_TIMEOUT&#39;</span><span class="p">)</span> <span class="p">:</span> <span class="kp">false</span><span class="p">,</span>
+</span><span class='line'>            <span class="s1">&#39;persistent&#39;</span>    <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="kp">false</span><span class="p">,</span>
+</span><span class='line'>        <span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">options</span> <span class="o">=</span>  <span class="vg">$options</span><span class="p">;</span>
+</span><span class='line'>    <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">options</span><span class="o">[</span><span class="s1">&#39;expire&#39;</span><span class="o">]</span> <span class="o">=</span>  <span class="n">isset</span><span class="p">(</span><span class="vg">$options</span><span class="o">[</span><span class="s1">&#39;expire&#39;</span><span class="o">]</span><span class="p">)?</span>  <span class="vg">$options</span><span class="o">[</span><span class="s1">&#39;expire&#39;</span><span class="o">]</span>  <span class="p">:</span>   <span class="n">C</span><span class="p">(</span><span class="s1">&#39;DATA_CACHE_TIME&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">options</span><span class="o">[</span><span class="s1">&#39;prefix&#39;</span><span class="o">]</span> <span class="o">=</span>  <span class="n">isset</span><span class="p">(</span><span class="vg">$options</span><span class="o">[</span><span class="s1">&#39;prefix&#39;</span><span class="o">]</span><span class="p">)?</span>  <span class="vg">$options</span><span class="o">[</span><span class="s1">&#39;prefix&#39;</span><span class="o">]</span>  <span class="p">:</span>   <span class="n">C</span><span class="p">(</span><span class="s1">&#39;DATA_CACHE_PREFIX&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">options</span><span class="o">[</span><span class="s1">&#39;length&#39;</span><span class="o">]</span> <span class="o">=</span>  <span class="n">isset</span><span class="p">(</span><span class="vg">$options</span><span class="o">[</span><span class="s1">&#39;length&#39;</span><span class="o">]</span><span class="p">)?</span>  <span class="vg">$options</span><span class="o">[</span><span class="s1">&#39;length&#39;</span><span class="o">]</span>  <span class="p">:</span>   <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">try</span> <span class="p">{</span>
+</span><span class='line'>        <span class="sr">/*建立连接后，在进行集合操作前，需要先进行auth验证*/</span>
+</span><span class='line'>        <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">handler</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">Redis</span><span class="p">();</span>
+</span><span class='line'>        <span class="vg">$ret</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="vg">$options</span><span class="o">[</span><span class="s1">&#39;timeout&#39;</span><span class="o">]</span> <span class="o">===</span> <span class="kp">false</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="vg">$ret</span> <span class="o">=</span> <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">handler</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">connect</span><span class="p">(</span><span class="vg">$options</span><span class="o">[</span><span class="s1">&#39;host&#39;</span><span class="o">]</span><span class="p">,</span> <span class="vg">$options</span><span class="o">[</span><span class="s1">&#39;port&#39;</span><span class="o">]</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>            <span class="vg">$ret</span> <span class="o">=</span> <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">handler</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">connect</span><span class="p">(</span><span class="vg">$options</span><span class="o">[</span><span class="s1">&#39;host&#39;</span><span class="o">]</span><span class="p">,</span> <span class="vg">$options</span><span class="o">[</span><span class="s1">&#39;port&#39;</span><span class="o">]</span><span class="p">,</span> <span class="vg">$options</span><span class="o">[</span><span class="s1">&#39;timeout&#39;</span><span class="o">]</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="vg">$ret</span> <span class="o">===</span> <span class="kp">false</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="kp">throw</span> <span class="kp">new</span> <span class="no">RedisException</span><span class="p">(</span><span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">handler</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">getLastError</span><span class="p">());</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="vg">$user</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="s1">&#39;BAE_AK&#39;</span><span class="p">);</span>
+</span><span class='line'>        <span class="vg">$pwd</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="s1">&#39;BAE_SK&#39;</span><span class="p">);</span>
+</span><span class='line'>        <span class="vg">$dbname</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="s1">&#39;BAE_REDIS_DBNAME&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="vg">$ret</span> <span class="o">=</span> <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">handler</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">auth</span><span class="p">(</span><span class="vg">$user</span> <span class="o">.</span> <span class="s2">&quot;-&quot;</span> <span class="o">.</span> <span class="vg">$pwd</span> <span class="o">.</span> <span class="s2">&quot;-&quot;</span> <span class="o">.</span> <span class="vg">$dbname</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="vg">$ret</span> <span class="o">===</span> <span class="kp">false</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="kp">throw</span> <span class="kp">new</span> <span class="no">RedisException</span><span class="p">(</span><span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">handler</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">getLastError</span><span class="p">());</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span> <span class="kp">catch</span> <span class="p">(</span><span class="no">RedisException</span> <span class="vg">$e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">throw_exception</span><span class="p">(</span><span class="s1">&#39;BAE Redis:&#39;</span><span class="o">.</span><span class="vg">$e</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">getMessage</span><span class="p">());</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">/**</span>
+</span><span class='line'><span class="sr"> * 读取缓存</span>
+</span><span class='line'><span class="sr"> * @access public</span>
+</span><span class='line'><span class="sr"> * @param string $name 缓存变量名</span>
+</span><span class='line'><span class="sr"> * @return mixed</span>
+</span><span class='line'><span class="sr"> */</span>
+</span><span class='line'><span class="kp">public</span> <span class="n">function</span> <span class="n">get</span><span class="p">(</span><span class="vg">$name</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">N</span><span class="p">(</span><span class="s1">&#39;cache_read&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>    <span class="vg">$value</span> <span class="o">=</span> <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">handler</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">get</span><span class="p">(</span><span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">options</span><span class="o">[</span><span class="s1">&#39;prefix&#39;</span><span class="o">].</span><span class="vg">$name</span><span class="p">);</span>
+</span><span class='line'>    <span class="vg">$jsonData</span>  <span class="o">=</span> <span class="n">json_decode</span><span class="p">(</span> <span class="vg">$value</span><span class="p">,</span> <span class="kp">true</span> <span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">(</span><span class="vg">$jsonData</span> <span class="o">===</span> <span class="no">NULL</span><span class="p">)</span> <span class="p">?</span> <span class="vg">$value</span> <span class="p">:</span> <span class="vg">$jsonData</span><span class="p">;</span>   <span class="sr">//</span><span class="err">检测是否为</span><span class="no">JSON</span><span class="err">数据</span> <span class="kp">true</span> <span class="err">返回</span><span class="no">JSON</span><span class="err">解析数组</span><span class="p">,</span> <span class="kp">false</span><span class="err">返回源数据</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">/**</span>
+</span><span class='line'><span class="sr"> * 写入缓存</span>
+</span><span class='line'><span class="sr"> * @access public</span>
+</span><span class='line'><span class="sr"> * @param string $name 缓存变量名</span>
+</span><span class='line'><span class="sr"> * @param mixed $value  存储数据</span>
+</span><span class='line'><span class="sr"> * @param integer $expire  有效时间（秒）</span>
+</span><span class='line'><span class="sr"> * @return boolen</span>
+</span><span class='line'><span class="sr"> */</span>
+</span><span class='line'><span class="kp">public</span> <span class="n">function</span> <span class="n">set</span><span class="p">(</span><span class="vg">$name</span><span class="p">,</span> <span class="vg">$value</span><span class="p">,</span> <span class="vg">$expire</span> <span class="o">=</span> <span class="n">null</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">N</span><span class="p">(</span><span class="s1">&#39;cache_write&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">is_null</span><span class="p">(</span><span class="vg">$expire</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>        <span class="vg">$expire</span>  <span class="o">=</span>  <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">options</span><span class="o">[</span><span class="s1">&#39;expire&#39;</span><span class="o">]</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="vg">$name</span>   <span class="o">=</span>   <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">options</span><span class="o">[</span><span class="s1">&#39;prefix&#39;</span><span class="o">].</span><span class="vg">$name</span><span class="p">;</span>
+</span><span class='line'>    <span class="sr">//</span><span class="err">对数组</span><span class="o">/</span><span class="err">对象数据进行缓存处理，保证数据完整性</span>
+</span><span class='line'>    <span class="vg">$value</span>  <span class="o">=</span>  <span class="p">(</span><span class="n">is_object</span><span class="p">(</span><span class="vg">$value</span><span class="p">)</span> <span class="o">||</span> <span class="n">is_array</span><span class="p">(</span><span class="vg">$value</span><span class="p">))</span> <span class="p">?</span> <span class="n">json_encode</span><span class="p">(</span><span class="vg">$value</span><span class="p">)</span> <span class="p">:</span> <span class="vg">$value</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="sr">//</span><span class="err">相对</span><span class="no">CacheRedis</span><span class="err">的驱动增加了</span><span class="n">expire</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="mi">0</span><span class="err">的判断</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">is_int</span><span class="p">(</span><span class="vg">$expire</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="vg">$expire</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="vg">$result</span> <span class="o">=</span> <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">handler</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">setex</span><span class="p">(</span><span class="vg">$name</span><span class="p">,</span> <span class="vg">$expire</span><span class="p">,</span> <span class="vg">$value</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span><span class='line'>        <span class="vg">$result</span> <span class="o">=</span> <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">handler</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">set</span><span class="p">(</span><span class="vg">$name</span><span class="p">,</span> <span class="vg">$value</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="vg">$result</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">options</span><span class="o">[</span><span class="s1">&#39;length&#39;</span><span class="o">]&amp;</span><span class="n">gt</span><span class="p">;</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="sr">//</span> <span class="err">记录缓存队列</span>
+</span><span class='line'>        <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">queue</span><span class="p">(</span><span class="vg">$name</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="vg">$result</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">/**</span>
+</span><span class='line'><span class="sr"> * 删除缓存</span>
+</span><span class='line'><span class="sr"> * @access public</span>
+</span><span class='line'><span class="sr"> * @param string $name 缓存变量名</span>
+</span><span class='line'><span class="sr"> * @return boolen</span>
+</span><span class='line'><span class="sr"> */</span>
+</span><span class='line'><span class="kp">public</span> <span class="n">function</span> <span class="n">rm</span><span class="p">(</span><span class="vg">$name</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">handler</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">delete</span><span class="p">(</span><span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">options</span><span class="o">[</span><span class="s1">&#39;prefix&#39;</span><span class="o">].</span><span class="vg">$name</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">/**</span>
+</span><span class='line'><span class="sr"> * 清除缓存</span>
+</span><span class='line'><span class="sr"> * @access public</span>
+</span><span class='line'><span class="sr"> * @return boolen</span>
+</span><span class='line'><span class="sr"> */</span>
+</span><span class='line'><span class="kp">public</span> <span class="n">function</span> <span class="n">clear</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">handler</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">flushDB</span><span class="p">();</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>3、BAE Cache驱动及配置</p>
 
-<p>{% codeblock 配置 lang:ruby %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>配置 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;BAE API Key与Secret Key，前面已经有配置&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">BAE_AK</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>    <span class="o">=&gt;</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">XXX</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span>
+</span><span class='line'><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">BAE_SK</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>    <span class="o">=&gt;</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">XXX</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;设置自己的CacheID（资源名称）、Host和Port&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">DATA_CACHE_TYPE</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>   <span class="o">=&gt;</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">Bae</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span>       <span class="sr">//</span><span class="err">设为默认</span>
+</span><span class='line'><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">DATA_CACHE_ID</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>     <span class="o">=&gt;</span>  <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">XXX</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span>
+</span><span class='line'><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">MEMCACHE_HOST</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>     <span class="o">=&gt;</span>  <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">cache</span><span class="o">.</span><span class="n">duapp</span><span class="o">.</span><span class="n">com</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span>
+</span><span class='line'><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">MEMCACHE_PORT</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>     <span class="o">=&gt;</span>  <span class="mo">000</span><span class="p">,</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;require_once(BAE_API_ROOT_PATH . &amp;lsquo;BaeMemcache.class.php&amp;rsquo;);&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">需要</span><span class="no">BAE</span><span class="err">相关的驱动文件，可以在</span><span class="n">index</span><span class="o">.</span><span class="n">php</span><span class="err">入口中添加</span><span class="no">Root</span> <span class="no">Path</span><span class="err">方便使用，也可以自己修改定义</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;define(&amp;lsquo;BAE_API_ROOT_PATH&amp;rsquo;, &amp;lsquo;你的BAE驱动文件路径&amp;rsquo;);&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h1>BAE API Key与Secret Key，前面已经有配置</h1>
-
-<p>&lsquo;BAE_AK&rsquo;    => &lsquo;XXX&rsquo;,
-&lsquo;BAE_SK&rsquo;    => &lsquo;XXX&rsquo;,</p>
-
-<h1>设置自己的CacheID（资源名称）、Host和Port</h1>
-
-<p>&lsquo;DATA_CACHE_TYPE&rsquo;   => &lsquo;Bae&rsquo;,       //设为默认
-&lsquo;DATA_CACHE_ID&rsquo;     =>  &lsquo;XXX&rsquo;,
-&lsquo;MEMCACHE_HOST&rsquo;     =>  &lsquo;cache.duapp.com&rsquo;,
-&lsquo;MEMCACHE_PORT&rsquo;     =>  000,</p>
-
-<h1>require_once(BAE_API_ROOT_PATH . &lsquo;BaeMemcache.class.php&rsquo;);</h1>
-
-<h1>需要BAE相关的驱动文件，可以在index.php入口中添加Root Path方便使用，也可以自己修改定义</h1>
-
-<p>define(&lsquo;BAE_API_ROOT_PATH&rsquo;, &lsquo;你的BAE驱动文件路径&rsquo;);</p>
-
-<p>{% endcodeblock %}</p>
-
-<p>{% codeblock CacheBae.class.php lang:ruby %}</p>
-
-<p>&lt;?php
-class CacheBae extends Cache {</p>
-
-<pre><code>static $_cache;
-private $_handler;
-
-/**
- +----------------------------------------------------------
- * 架构函数
- +----------------------------------------------------------
- * @access public
- +----------------------------------------------------------
- */
-public function __construct($options='') {
-    if(!empty($options)) {
-        $this-&gt;options =  $options;
-    }
-    $this-&gt;options['expire'] = isset($options['expire'])?$options['expire']:C('DATA_CACHE_TIME');
-    $this-&gt;options['length']  =  isset($options['length'])?$options['length']:0;
-    $this-&gt;options['queque']  =  'bae';
-    $this-&gt;init();
-}
-
-/**
- +----------------------------------------------------------
- * 初始化检查
- +----------------------------------------------------------
- * @access private
- +----------------------------------------------------------
- * @return boolen
- +----------------------------------------------------------
- */
-private function init() {
-    require_once(BAE_API_ROOT_PATH . 'BaeMemcache.class.php');
-    /*Cache配置信息，可查询Cache详情页*/
-    $cacheid = C('DATA_CACHE_ID');
-    $host = C('MEMCACHE_HOST');
-    $port = C('MEMCACHE_PORT');
-    $user = C('BAE_AK');
-    $pwd = C('BAE_SK');
-
-    $this-&gt;_handler = new BaeMemcache($cacheid,$host. ': '. $port, $user, $pwd);
-    $this-&gt;connected = true;
-}
-
-/**
- +----------------------------------------------------------
- * 是否连接
- +----------------------------------------------------------
- * @access public
- +----------------------------------------------------------
- * @return boolen
- +----------------------------------------------------------
- */
-private function isConnected() {
-    return $this-&gt;connected;
-}
-/**
- +----------------------------------------------------------
- * 读取缓存
- +----------------------------------------------------------
- * @access public
- +----------------------------------------------------------
- * @param string $name 缓存变量名
- +----------------------------------------------------------
- * @return mixed
- +----------------------------------------------------------
- */
-public function get($name) {
-    N('cache_read',1);
-$content = $this-&gt;_handler-&gt;get($name);
-if(false !== $content ){
-        if(C('DATA_CACHE_COMPRESS') &amp;&amp; function_exists('gzcompress')) {
-    $content = substr($content,0,-1);  //remvoe \0 in the end
-    }
-        if(C('DATA_CACHE_CHECK')) {//开启数据校验
-            $check  =  substr($content,0, 32);
-            $content   =  substr($content,32);
-            if($check != md5($content)) {//校验错误
-                return false;
-            }
-        }
-        if(C('DATA_CACHE_COMPRESS') &amp;&amp; function_exists('gzcompress')) {
-            //启用数据压缩
-            $content   =   gzuncompress($content);
-        }
-        $content    =   unserialize($content);
-    return $content;
-    }
-    else {
-        return false;
-    }
-}
-
-/**
- +----------------------------------------------------------
- * 写入缓存
- +----------------------------------------------------------
- * @access public
- +----------------------------------------------------------
- * @param string $name 缓存变量名
- * @param mixed $value  存储数据
- * @param int $expire  有效时间 0为永久
- +----------------------------------------------------------
- * @return boolen
- +----------------------------------------------------------
- */
-public function set($name,$value,$expire=null) {
-    N('cache_write',1);
-    if(is_null($expire)) {
-        $expire =  $this-&gt;options['expire'];
-    }
-    $data   =   serialize($value);
-    if( C('DATA_CACHE_COMPRESS') &amp;&amp; function_exists('gzcompress')) {
-        //数据压缩
-    //    $data   =   gzcompress($data,3);
-      $data =  gzencode($data) . "\0";
-    }
-    if(C('DATA_CACHE_CHECK')) {//开启数据校验
-        $check  =  md5($data);
-    }else {
-        $check  =  '';
-    }
-$data = $check.$data;
-$result =  $this-&gt;_handler-&gt;set($name,$data,0,intval($expire));
-    if($result) {
-        if($this-&gt;options['length']&gt;0) {
-            // 记录缓存队列
-            $this-&gt;queue($name);
-        }
-    return true;
-    }else {
-        return false;
-    }
-}
-
-/**
- +----------------------------------------------------------
- * 删除缓存
- +----------------------------------------------------------
- * @access public
- +----------------------------------------------------------
- * @param string $name 缓存变量名
- +----------------------------------------------------------
- * @return boolen
- +----------------------------------------------------------
- */
-public function rm($name) {
-    return $this-&gt;_handler-&gt;delete($name);
-}
-static function queueSet($name,$value)
-{
-$h = new BaeMemcache();
-if ( $h-&gt;set($name,$value) ){
-    self::$_cache = array($name =&gt; $value);
-}
-}
-static function queueGet($name)
-{
-if(isset(self::$_cache[$name]))
-    return self::$_cache[$name];
-$h = new BaeMemcache();
-$r = $h-&gt;get($name);
-if ( false === $r ){
-    return false;
-}
-self::$_cache[$name] = $r;
-return $r;
-}
-</code></pre>
-
-<p>}</p>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>CacheBae.class.php </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+<span class='line-number'>172</span>
+<span class='line-number'>173</span>
+<span class='line-number'>174</span>
+<span class='line-number'>175</span>
+<span class='line-number'>176</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;&amp;lt;?php</span>
+</span><span class='line'><span class="sr">class CacheBae extends Cache {&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">static</span> <span class="vg">$_cache</span><span class="p">;</span>
+</span><span class='line'><span class="kp">private</span> <span class="vg">$_handler</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">/**</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * 架构函数</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * @access public</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> */</span>
+</span><span class='line'><span class="kp">public</span> <span class="n">function</span> <span class="n">__construct</span><span class="p">(</span><span class="vg">$options</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">empty</span><span class="p">(</span><span class="vg">$options</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>        <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">options</span> <span class="o">=</span>  <span class="vg">$options</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">options</span><span class="o">[</span><span class="s1">&#39;expire&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">isset</span><span class="p">(</span><span class="vg">$options</span><span class="o">[</span><span class="s1">&#39;expire&#39;</span><span class="o">]</span><span class="p">)?</span><span class="vg">$options</span><span class="o">[</span><span class="s1">&#39;expire&#39;</span><span class="o">]</span><span class="ss">:C</span><span class="p">(</span><span class="s1">&#39;DATA_CACHE_TIME&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">options</span><span class="o">[</span><span class="s1">&#39;length&#39;</span><span class="o">]</span>  <span class="o">=</span>  <span class="n">isset</span><span class="p">(</span><span class="vg">$options</span><span class="o">[</span><span class="s1">&#39;length&#39;</span><span class="o">]</span><span class="p">)?</span><span class="vg">$options</span><span class="o">[</span><span class="s1">&#39;length&#39;</span><span class="o">]</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">options</span><span class="o">[</span><span class="s1">&#39;queque&#39;</span><span class="o">]</span>  <span class="o">=</span>  <span class="s1">&#39;bae&#39;</span><span class="p">;</span>
+</span><span class='line'>    <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">init</span><span class="p">();</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">/**</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * 初始化检查</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * @access private</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * @return boolen</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> */</span>
+</span><span class='line'><span class="kp">private</span> <span class="n">function</span> <span class="n">init</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">require_once</span><span class="p">(</span><span class="no">BAE_API_ROOT_PATH</span> <span class="o">.</span> <span class="s1">&#39;BaeMemcache.class.php&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="sr">/*Cache配置信息，可查询Cache详情页*/</span>
+</span><span class='line'>    <span class="vg">$cacheid</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="s1">&#39;DATA_CACHE_ID&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="vg">$host</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="s1">&#39;MEMCACHE_HOST&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="vg">$port</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="s1">&#39;MEMCACHE_PORT&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="vg">$user</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="s1">&#39;BAE_AK&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="vg">$pwd</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="s1">&#39;BAE_SK&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">_handler</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">BaeMemcache</span><span class="p">(</span><span class="vg">$cacheid</span><span class="p">,</span><span class="vg">$host</span><span class="o">.</span> <span class="s1">&#39;: &#39;</span><span class="o">.</span> <span class="vg">$port</span><span class="p">,</span> <span class="vg">$user</span><span class="p">,</span> <span class="vg">$pwd</span><span class="p">);</span>
+</span><span class='line'>    <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">connected</span> <span class="o">=</span> <span class="kp">true</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">/**</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * 是否连接</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * @access public</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * @return boolen</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> */</span>
+</span><span class='line'><span class="kp">private</span> <span class="n">function</span> <span class="n">isConnected</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">connected</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="sr">/**</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * 读取缓存</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * @access public</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * @param string $name 缓存变量名</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * @return mixed</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> */</span>
+</span><span class='line'><span class="kp">public</span> <span class="n">function</span> <span class="n">get</span><span class="p">(</span><span class="vg">$name</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">N</span><span class="p">(</span><span class="s1">&#39;cache_read&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'><span class="vg">$content</span> <span class="o">=</span> <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">_handler</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">get</span><span class="p">(</span><span class="vg">$name</span><span class="p">);</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="kp">false</span> <span class="o">!==</span> <span class="vg">$content</span> <span class="p">){</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">C</span><span class="p">(</span><span class="s1">&#39;DATA_CACHE_COMPRESS&#39;</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">function_exists</span><span class="p">(</span><span class="s1">&#39;gzcompress&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>    <span class="vg">$content</span> <span class="o">=</span> <span class="n">substr</span><span class="p">(</span><span class="vg">$content</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>  <span class="sr">//</span><span class="n">remvoe</span> <span class="p">\</span><span class="mi">0</span> <span class="k">in</span> <span class="n">the</span> <span class="k">end</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">C</span><span class="p">(</span><span class="s1">&#39;DATA_CACHE_CHECK&#39;</span><span class="p">))</span> <span class="p">{</span><span class="o">//</span><span class="err">开启数据校验</span>
+</span><span class='line'>            <span class="vg">$check</span>  <span class="o">=</span>  <span class="n">substr</span><span class="p">(</span><span class="vg">$content</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">);</span>
+</span><span class='line'>            <span class="vg">$content</span>   <span class="o">=</span>  <span class="n">substr</span><span class="p">(</span><span class="vg">$content</span><span class="p">,</span><span class="mi">32</span><span class="p">);</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="vg">$check</span> <span class="o">!=</span> <span class="n">md5</span><span class="p">(</span><span class="vg">$content</span><span class="p">))</span> <span class="p">{</span><span class="o">//</span><span class="err">校验错误</span>
+</span><span class='line'>                <span class="k">return</span> <span class="kp">false</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">C</span><span class="p">(</span><span class="s1">&#39;DATA_CACHE_COMPRESS&#39;</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">function_exists</span><span class="p">(</span><span class="s1">&#39;gzcompress&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>            <span class="sr">//</span><span class="err">启用数据压缩</span>
+</span><span class='line'>            <span class="vg">$content</span>   <span class="o">=</span>   <span class="n">gzuncompress</span><span class="p">(</span><span class="vg">$content</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="vg">$content</span>    <span class="o">=</span>   <span class="n">unserialize</span><span class="p">(</span><span class="vg">$content</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="vg">$content</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="kp">false</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">/**</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * 写入缓存</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * @access public</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * @param string $name 缓存变量名</span>
+</span><span class='line'><span class="sr"> * @param mixed $value  存储数据</span>
+</span><span class='line'><span class="sr"> * @param int $expire  有效时间 0为永久</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * @return boolen</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> */</span>
+</span><span class='line'><span class="kp">public</span> <span class="n">function</span> <span class="n">set</span><span class="p">(</span><span class="vg">$name</span><span class="p">,</span><span class="vg">$value</span><span class="p">,</span><span class="vg">$expire</span><span class="o">=</span><span class="n">null</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">N</span><span class="p">(</span><span class="s1">&#39;cache_write&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">is_null</span><span class="p">(</span><span class="vg">$expire</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>        <span class="vg">$expire</span> <span class="o">=</span>  <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">options</span><span class="o">[</span><span class="s1">&#39;expire&#39;</span><span class="o">]</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="vg">$data</span>   <span class="o">=</span>   <span class="n">serialize</span><span class="p">(</span><span class="vg">$value</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span> <span class="n">C</span><span class="p">(</span><span class="s1">&#39;DATA_CACHE_COMPRESS&#39;</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">function_exists</span><span class="p">(</span><span class="s1">&#39;gzcompress&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>        <span class="sr">//</span><span class="err">数据压缩</span>
+</span><span class='line'>    <span class="sr">//</span>    <span class="vg">$data</span>   <span class="o">=</span>   <span class="n">gzcompress</span><span class="p">(</span><span class="vg">$data</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</span><span class='line'>      <span class="vg">$data</span> <span class="o">=</span>  <span class="n">gzencode</span><span class="p">(</span><span class="vg">$data</span><span class="p">)</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\0</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">C</span><span class="p">(</span><span class="s1">&#39;DATA_CACHE_CHECK&#39;</span><span class="p">))</span> <span class="p">{</span><span class="o">//</span><span class="err">开启数据校验</span>
+</span><span class='line'>        <span class="vg">$check</span>  <span class="o">=</span>  <span class="n">md5</span><span class="p">(</span><span class="vg">$data</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>        <span class="vg">$check</span>  <span class="o">=</span>  <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="vg">$data</span> <span class="o">=</span> <span class="vg">$check</span><span class="o">.</span><span class="vg">$data</span><span class="p">;</span>
+</span><span class='line'><span class="vg">$result</span> <span class="o">=</span>  <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">_handler</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">set</span><span class="p">(</span><span class="vg">$name</span><span class="p">,</span><span class="vg">$data</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">intval</span><span class="p">(</span><span class="vg">$expire</span><span class="p">));</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="vg">$result</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">options</span><span class="o">[</span><span class="s1">&#39;length&#39;</span><span class="o">]&amp;</span><span class="n">gt</span><span class="p">;</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="sr">//</span> <span class="err">记录缓存队列</span>
+</span><span class='line'>            <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">queue</span><span class="p">(</span><span class="vg">$name</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="kp">true</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="kp">false</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">/**</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * 删除缓存</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * @access public</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * @param string $name 缓存变量名</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> * @return boolen</span>
+</span><span class='line'><span class="sr"> +----------------------------------------------------------</span>
+</span><span class='line'><span class="sr"> */</span>
+</span><span class='line'><span class="kp">public</span> <span class="n">function</span> <span class="n">rm</span><span class="p">(</span><span class="vg">$name</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="vg">$this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">_handler</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">delete</span><span class="p">(</span><span class="vg">$name</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="n">static</span> <span class="n">function</span> <span class="n">queueSet</span><span class="p">(</span><span class="vg">$name</span><span class="p">,</span><span class="vg">$value</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'><span class="vg">$h</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">BaeMemcache</span><span class="p">();</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span> <span class="vg">$h</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">set</span><span class="p">(</span><span class="vg">$name</span><span class="p">,</span><span class="vg">$value</span><span class="p">)</span> <span class="p">){</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">::</span><span class="vg">$_cache</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="vg">$name</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="vg">$value</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="n">static</span> <span class="n">function</span> <span class="n">queueGet</span><span class="p">(</span><span class="vg">$name</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="n">isset</span><span class="p">(</span><span class="nb">self</span><span class="o">::</span><span class="vg">$_cache</span><span class="o">[</span><span class="vg">$name</span><span class="o">]</span><span class="p">))</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nb">self</span><span class="o">::</span><span class="vg">$_cache</span><span class="o">[</span><span class="vg">$name</span><span class="o">]</span><span class="p">;</span>
+</span><span class='line'><span class="vg">$h</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">BaeMemcache</span><span class="p">();</span>
+</span><span class='line'><span class="vg">$r</span> <span class="o">=</span> <span class="vg">$h</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">get</span><span class="p">(</span><span class="vg">$name</span><span class="p">);</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span> <span class="kp">false</span> <span class="o">===</span> <span class="vg">$r</span> <span class="p">){</span>
+</span><span class='line'>    <span class="k">return</span> <span class="kp">false</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nb">self</span><span class="o">::</span><span class="vg">$_cache</span><span class="o">[</span><span class="vg">$name</span><span class="o">]</span> <span class="o">=</span> <span class="vg">$r</span><span class="p">;</span>
+</span><span class='line'><span class="k">return</span> <span class="vg">$r</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 ]]></content>
   </entry>
   
@@ -392,21 +738,38 @@ return $r;
 <p>WAMP安装
 </br><a href="http://www.wampserver.com/en/#download-wrapper">http://www.wampserver.com/en/#download-wrapper</a></p>
 
-<p>{% codeblock 编辑wamp/bin/apache/Apache2.x.x/conf/httpd.conf lang:ruby %}</p>
-
-<h1>开启rewrite，支持.htaccess</h1>
-
-<h1>LoadModule rewrite_module modules/mod_rewrite.so去掉注释</h1>
-
-<p>LoadModule rewrite_module modules/mod_rewrite.so</p>
-
-<h1>开启httpd-vhosts，自定义域名和工程路径</h1>
-
-<h1>Include conf/extra/httpd-vhosts.conf去掉注释</h1>
-
-<p>Include conf/extra/httpd-vhosts.conf</p>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>编辑wamp/bin/apache/Apache2.x.x/conf/httpd.conf </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;开启rewrite，支持.htaccess&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">LoadModule</span> <span class="n">rewrite_module</span> <span class="n">modules</span><span class="o">/</span><span class="n">mod_rewrite</span><span class="o">.</span><span class="n">so</span><span class="err">去掉注释</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;LoadModule rewrite_module modules/mo</span><span class="n">d_rewrite</span><span class="o">.</span><span class="n">so</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;开启httpd-vhosts，自定义域名和工程路径&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Include</span> <span class="n">conf</span><span class="o">/</span><span class="n">extra</span><span class="o">/</span><span class="n">httpd</span><span class="o">-</span><span class="n">vhosts</span><span class="o">.</span><span class="n">conf</span><span class="err">去掉注释</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;Include conf/ex</span><span class="n">tra</span><span class="o">/</span><span class="n">httpd</span><span class="o">-</span><span class="n">vhosts</span><span class="o">.</span><span class="n">conf</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <!--more-->
 
@@ -414,68 +777,133 @@ return $r;
 <p></p>
 
 <p>自定义本地域名和工程路径
-{% codeblock 编辑wamp/bin/apache/Apache2.x.x/conf/extra/httpd-vhosts.conf lang:ruby %}</p>
-
-<h1>自定义工程路径</h1>
-
-<h1>d:projectpath工程路径</h1>
-
-<h1>mylocalhost.com自定义域名</h1>
-
-<h1>注意AllowOverride 是All，与wamp主界面不同</h1>
-
-<h1>可以定义其他端口</h1>
-
-<p><VirtualHost *:80><br/>
-  DocumentRoot d:projectpath
-  ServerName myhost.com
-  <Directory "d:projectpath"></p>
-
-<pre><code>  Options Indexes FollowSymLinks 
-  AllowOverride All 
-  Order allow,deny 
-  Allow from all 
-</code></pre>
-
-<p>  </Directory>
-</VirtualHost></p>
-
-<h1>添加wamp主界面，假设wamp安装在D盘</h1>
-
-<p><VirtualHost *:80><br/>
-  DocumentRoot d:wamp/www
-  ServerName wamp.com
-  <Directory "d:wamp/www"></p>
-
-<pre><code>  Options Indexes FollowSymLinks 
-  AllowOverride None 
-  Order allow,deny 
-  Allow from all 
-</code></pre>
-
-<p>  </Directory>
-</VirtualHost></p>
-
-<p>{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>编辑wamp/bin/apache/Apache2.x.x/conf/extra/httpd-vhosts.conf </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;自定义工程路径&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="ss">d</span><span class="p">:</span><span class="n">projectpath</span><span class="err">工程路径</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;mylocalhost.com自定义域名&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">注意</span><span class="no">AllowOverride</span> <span class="err">是</span><span class="no">All</span><span class="err">，与</span><span class="n">wamp</span><span class="err">主界面不同</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;可以定义其他端口&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;&lt;</span><span class="no">VirtualHost</span> <span class="o">*</span><span class="p">:</span><span class="mi">80</span><span class="o">&gt;&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'>  <span class="no">DocumentRoot</span> <span class="ss">d</span><span class="p">:</span><span class="n">projectpath</span>
+</span><span class='line'>  <span class="no">ServerName</span> <span class="n">myhost</span><span class="o">.</span><span class="n">com</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="no">Directory</span> <span class="s2">&quot;d:projectpath&quot;</span><span class="o">&gt;&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;  Options Indexes FollowSymLinks </span>
+</span><span class='line'><span class="sr">  AllowOverride All </span>
+</span><span class='line'><span class="sr">  Order allow,deny </span>
+</span><span class='line'><span class="sr">  Allow from all </span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  &lt;/</span><span class="no">Directory</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/VirtualHost&gt;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">添加</span><span class="n">wamp</span><span class="err">主界面，假设</span><span class="n">wamp</span><span class="err">安装在</span><span class="n">D</span><span class="err">盘</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;&lt;VirtualHost *:80&gt;&lt;br/</span><span class="o">&gt;</span>
+</span><span class='line'>  <span class="no">DocumentRoot</span> <span class="ss">d</span><span class="p">:</span><span class="n">wamp</span><span class="o">/</span><span class="n">www</span>
+</span><span class='line'>  <span class="no">ServerName</span> <span class="n">wamp</span><span class="o">.</span><span class="n">com</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="no">Directory</span> <span class="s2">&quot;d:wamp/www&quot;</span><span class="o">&gt;&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;  Options Indexes FollowSymLinks </span>
+</span><span class='line'><span class="sr">  AllowOverride None </span>
+</span><span class='line'><span class="sr">  Order allow,deny </span>
+</span><span class='line'><span class="sr">  Allow from all </span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  &lt;/</span><span class="no">Directory</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/VirtualHost&gt;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>去掉URL中的index.php
-{% codeblock .htaccess lang:ruby %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>.htaccess </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;&lt;IfModule mod_rewrite.c&gt;</span>
+</span><span class='line'><span class="sr">RewriteEngine on</span>
+</span><span class='line'><span class="sr">RewriteCond %{SCRIPT_FILENAME} !-f</span>
+</span><span class='line'><span class="sr">RewriteCond %{SCRIPT_FILENAME} !-d</span>
+</span><span class='line'><span class="sr">RewriteRule ^(.*)$ index.php/</span><span class="vg">$1</span> <span class="o">[</span><span class="no">QAS</span><span class="p">,</span><span class="no">PT</span><span class="p">,</span><span class="n">L</span><span class="o">]</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/IfModule&gt;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p><IfModule mod_rewrite.c>
-RewriteEngine on
-RewriteCond %{SCRIPT_FILENAME} !-f
-RewriteCond %{SCRIPT_FILENAME} !-d
-RewriteRule ^(.*)$ index.php/$1 [QAS,PT,L]
-</IfModule></p>
-
-<p>{% endcodeblock %}</p>
-
-<p>{% codeblock 修改系统hosts lang:ruby %}</p>
-
-<p>127.0.0.1   myhost.com
-127.0.0.1   wamp.com</p>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>修改系统hosts </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;127.0.0.1   myhost.com</span>
+</span><span class='line'><span class="sr">127.0.0.1   wamp.com&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>重启Apache</p>
 

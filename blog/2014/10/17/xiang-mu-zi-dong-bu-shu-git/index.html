@@ -5,17 +5,28 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Mac安装配置MongoDB+RockMongo - Hobo Blog</title>
+  <title>[转]项目自动部署-Git - Hobo Blog</title>
   
   <meta name="author" content="Hobo">
   
-  <meta name="description" content="MongoDB安装
-使用brew安装很方便
-http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/ 安装完成后可以选择修改配置文件 mongod.conf 1
+  <meta name="description" content="Git push后自动更新项目部署，&#8221;[deploy]&ldquo;部署的分支为master。 Gist
+https://gist.github.com/icyleaf/566767 post-receive 1
 2
-#dbpath,logpath,bind_ip
-vi / &hellip;">
-  <meta name="keywords" content="MongoDB,RockMongo">
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16 &hellip;">
+  <meta name="keywords" content="Git, 部署">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -23,7 +34,7 @@ vi / &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.devhobo.com/blog/2014/03/11/mac-mongodb-rockmongo">
+  <link rel="canonical" href="http://blog.devhobo.com/blog/2014/10/17/xiang-mu-zi-dong-bu-shu-git">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Hobo Blog" type="application/atom+xml">
@@ -96,7 +107,7 @@ vi / &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Mac安装配置MongoDB+RockMongo</h1>
+      <h1 class="entry-title">[转]项目自动部署-Git</h1>
     
     
       <p class="meta">
@@ -112,37 +123,24 @@ vi / &hellip;">
   
 
 
-<time datetime="2014-03-11T18:00:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2014</time>
+<time datetime="2014-10-17T13:29:00+08:00" pubdate data-updated="true">Oct 17<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>MongoDB安装
-</br>使用brew安装很方便
-</br><a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/">http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/</a></p>
+<div class="entry-content"><p>Git push后自动更新项目部署，&#8221;[deploy]&ldquo;部署的分支为master。</p>
 
-<p>安装完成后可以选择修改配置文件</p>
-
-<figure class='code'><figcaption><span>mongod.conf </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#dbpath,logpath,bind_ip</span>
-</span><span class='line'><span class="n">vi</span> <span class="sr">/usr/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mongod</span><span class="o">.</span><span class="n">conf</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
+<p>Gist
+</br><a href="https://gist.github.com/icyleaf/566767">https://gist.github.com/icyleaf/566767</a></p>
 
 <!--more-->
 
 
-<p></p>
 
-<p>启动配置</p>
 
-<figure class='code'><figcaption><span>启动配置 </span></figcaption>
+<figure class='code'><figcaption><span>post-receive </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -165,53 +163,82 @@ vi / &hellip;">
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#为了方便使用配置.bash_profile</span>
-</span><span class='line'><span class="n">vi</span> <span class="o">~</span><span class="sr">/.bash_profile</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#!/bin/sh</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="c1"># git autodeploy script when it matches the string &quot;[deploy]&quot;</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="c1"># @author    icyleaf &lt;icyleaf.cn@gmail.com&gt;</span>
+</span><span class='line'><span class="c1"># @link      http://icyleaf.com</span>
+</span><span class='line'><span class="c1"># @version   0.1</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="c1"># Usage:</span>
+</span><span class='line'><span class="c1">#       1. put this into the post-receive hook file itself below</span>
+</span><span class='line'><span class="c1">#       2. `chmod +x post-recive` </span>
+</span><span class='line'><span class="c1">#       3. Done!</span>
 </span><span class='line'>
-</span><span class='line'><span class="sr">#添加以下内容</span>
-</span><span class='line'><span class="sr">export PATH=$PATH:/us</span><span class="n">r</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="n">bin</span>
-</span><span class='line'><span class="k">alias</span> <span class="n">mongodb_start</span><span class="o">=</span><span class="s1">&#39;sudo launchctl load -w /usr/local/Cellar/mongodb/2.4.9/homebrew.mxcl.mongodb.plist&#39;</span>
-</span><span class='line'><span class="k">alias</span> <span class="n">mongodb_stop</span><span class="o">=</span><span class="s1">&#39;sudo launchctl unload -w /usr/local/Cellar/mongodb/2.4.9/homebrew.mxcl.mongodb.plist&#39;</span>
-</span><span class='line'><span class="k">alias</span> <span class="n">mongodb_restart</span><span class="o">=</span><span class="s1">&#39;mongodb_stop; mongodb_start;&#39;</span>
+</span><span class='line'><span class="c1"># Check the remote git repository whether it is bare</span>
+</span><span class='line'><span class="no">IS_BARE</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">git</span> <span class="n">rev</span><span class="o">-</span><span class="n">parse</span> <span class="o">--</span><span class="n">is</span><span class="o">-</span><span class="n">bare</span><span class="o">-</span><span class="n">repository</span><span class="p">)</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="o">-</span><span class="n">z</span> <span class="s2">&quot;$IS_BARE&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span><span class='line'>  <span class="n">echo</span> <span class="o">&gt;&amp;</span><span class="mi">2</span> <span class="s2">&quot;fatal: post-receive: IS_NOT_BARE&quot;</span>
+</span><span class='line'>  <span class="nb">exit</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">fi</span>
 </span><span class='line'>
-</span><span class='line'><span class="c1">#这样直接使用mongodb_start,mongodb_stop,mongodb_restart很方便</span>
+</span><span class='line'><span class="c1"># Get the latest commit subject</span>
+</span><span class='line'><span class="no">SUBJECT</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">git</span> <span class="n">log</span> <span class="o">-</span><span class="mi">1</span> <span class="o">--</span><span class="n">pretty</span><span class="o">=</span><span class="nb">format</span><span class="ss">:&quot;%s&quot;</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="c1">#启动</span>
-</span><span class='line'><span class="n">mongodb_start</span>
+</span><span class='line'><span class="c1"># Deploy the HEAD sources to publish</span>
+</span><span class='line'><span class="no">IS_PULL</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">echo</span> <span class="s2">&quot;$SUBJECT&quot;</span> <span class="o">|</span> <span class="n">grep</span> <span class="s2">&quot;\[deploy\]&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="o">-</span><span class="n">z</span> <span class="s2">&quot;$IS_PULL&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span><span class='line'>  <span class="n">echo</span> <span class="o">&gt;&amp;</span><span class="mi">2</span> <span class="s2">&quot;tips: post-receive: IS_NOT_PULL&quot;</span>
+</span><span class='line'>  <span class="nb">exit</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">fi</span>
 </span><span class='line'>
-</span><span class='line'><span class="c1">#配置用户名密码</span>
-</span><span class='line'><span class="n">mongo</span>
-</span><span class='line'><span class="n">db</span> <span class="n">show</span>
-</span><span class='line'><span class="n">use</span> <span class="nb">test</span>
-</span><span class='line'><span class="n">db</span><span class="o">.</span><span class="n">addUser</span><span class="p">(</span><span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="s2">&quot;123456&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="c1"># Check the deploy dir whether it exists</span>
+</span><span class='line'><span class="no">DEPLOY_DIR</span><span class="o">=</span><span class="sr">/home/i</span><span class="n">cyleaf</span><span class="o">/</span><span class="n">php</span><span class="o">/</span><span class="n">icyleaf</span><span class="o">/</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="o">-</span><span class="n">d</span> <span class="vg">$DEPLOY_DIR</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+</span><span class='line'>  <span class="n">echo</span> <span class="o">&gt;&amp;</span><span class="mi">2</span> <span class="s2">&quot;fatal: post-receive: DEPLOY_DIR_NOT_EXIST: </span><span class="se">\&quot;</span><span class="s2">$DEPLOY_DIR</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="nb">exit</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">fi</span>
 </span><span class='line'>
-</span><span class='line'><span class="c1">#重启</span>
-</span><span class='line'><span class="n">mongodb_restart</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>管理工具RockMongo，下载后根据自己的PHP环境配置
-</br><a href="http://rockmongo.com/downloads">http://rockmongo.com/downloads</a></p>
-
-<p>安装php-mongo</p>
-
-<figure class='code'><figcaption><span>php-mongo </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#我用的php54，记下安装后的路径</span>
-</span><span class='line'><span class="n">brew</span> <span class="n">php54</span><span class="o">-</span><span class="n">mongo</span>
+</span><span class='line'><span class="c1"># Check the deploy dir whether it is git repository</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="c1">#IS_GIT=$(git rev-parse --git-dir 2&gt;/dev/null)</span>
+</span><span class='line'><span class="c1">#if [ -z &quot;$IS_GIT&quot; ]; then</span>
+</span><span class='line'><span class="c1">#    echo &gt;&amp;2 &quot;fatal: post-receive: IS_NOT_GIT&quot;</span>
+</span><span class='line'><span class="c1">#    exit 1</span>
+</span><span class='line'><span class="c1">#fi</span>
 </span><span class='line'>
-</span><span class='line'><span class="c1">#配置php.ini</span>
-</span><span class='line'><span class="c1">#添加或者修改extension=&quot;mongo.so&quot;</span>
-</span><span class='line'><span class="n">extension</span><span class="o">=</span><span class="s2">&quot;/usr/local/Cellar/php54-mongo/1.4.5/mongo.so&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">#启动/重启Php环境</span>
+</span><span class='line'><span class="c1"># Goto the deploy dir and pull the latest sources</span>
+</span><span class='line'><span class="n">cd</span> <span class="vg">$DEPLOY_DIR</span>
+</span><span class='line'><span class="n">env</span> <span class="o">-</span><span class="n">i</span> <span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">hard</span>
+</span><span class='line'><span class="n">env</span> <span class="o">-</span><span class="n">i</span> <span class="n">git</span> <span class="n">pull</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -219,7 +246,7 @@ vi / &hellip;">
 
 <p class='post-footer'>
       原文地址
-      <a href='http://blog.devhobo.com/blog/2014/03/11/mac-mongodb-rockmongo/'>http://blog.devhobo.com/blog/2014/03/11/mac-mongodb-rockmongo/</a><br/>
+      <a href='http://blog.devhobo.com/blog/2014/10/17/xiang-mu-zi-dong-bu-shu-git/'>http://blog.devhobo.com/blog/2014/10/17/xiang-mu-zi-dong-bu-shu-git/</a><br/>
       </p>
 
 </div>
@@ -246,12 +273,12 @@ vi / &hellip;">
   
 
 
-<time datetime="2014-03-11T18:00:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2014</time>
+<time datetime="2014-10-17T13:29:00+08:00" pubdate data-updated="true">Oct 17<span>th</span>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/mac/'>Mac</a>, <a class='category' href='/blog/categories/mongodb/'>MongoDB</a>, <a class='category' href='/blog/categories/rockmongo/'>RockMongo</a>
+    <a class='category' href='/blog/categories/git/'>Git</a>
   
 </span><br>
 
@@ -297,10 +324,8 @@ var jiathis_config={
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/03/06/bae-redisshi-xian-thinkphpcache/" title="Previous Post: BAE Cache&Redis实现ThinkPHP的Cache驱动">&laquo; BAE Cache&Redis实现ThinkPHP的Cache驱动</a>
+        <a class="basic-alignment left" href="/blog/2014/04/15/redmine-plugins/" title="Previous Post: Redmine Plugins">&laquo; Redmine Plugins</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/04/15/redmine-plugins/" title="Next Post: Redmine Plugins">Redmine Plugins &raquo;</a>
       
     </p>
   </footer>
