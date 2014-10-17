@@ -4,7 +4,7 @@
   <title><![CDATA[Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2014-10-17T14:26:34+08:00</updated>
+  <updated>2014-10-17T18:54:16+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -12,6 +12,72 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Centos VSFTP配置]]></title>
+    <link href="http://blog.devhobo.com/blog/2014/10/17/centos-vsftp/"/>
+    <updated>2014-10-17T16:18:00+08:00</updated>
+    <id>http://blog.devhobo.com/blog/2014/10/17/centos-vsftp</id>
+    <content type="html"><![CDATA[<p>安装</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">yum</span> <span class="n">install</span> <span class="n">vsftp</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>配置</p>
+
+<figure class='code'><figcaption><span>/etc/vsftpd/vsftpd.conf </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">关闭匿名登录</span>
+</span><span class='line'><span class="c1">#anonymous_enable=NO</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">user_list</span><span class="err">中的说明是</span><span class="n">userlist_deny</span>
+</span><span class='line'><span class="c1">#userlist_enable=NO</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">FTP</span> <span class="n">root</span>
+</span><span class='line'><span class="c1">#local_root=/mnt/ftp</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>添加登录用户</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">添加用户</span>
+</span><span class='line'><span class="c1">#useradd Hobo</span>
+</span><span class='line'><span class="err">设置密码</span>
+</span><span class='line'><span class="c1">#passwd Hobo</span>
+</span><span class='line'><span class="err">加入</span><span class="n">user_list</span>
+</span><span class='line'><span class="c1">#echo Hobo &gt;&gt; /etc/vsftpd/user_list</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>重启</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#service vsftpd restart</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p class='post-footer'>
+      原文地址
+      <a href='http://blog.devhobo.com/blog/2014/10/17/centos-vsftp/'>http://blog.devhobo.com/blog/2014/10/17/centos-vsftp/</a><br/>
+      </p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MySQL Backup]]></title>

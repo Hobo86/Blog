@@ -9,8 +9,8 @@
   
   <meta name="author" content="Hobo">
   
-  <meta name="description" content="MySQL备份脚本，支持mysqldump,mysqlhotcopy,tar三种方式，+定时任务自动备份。 Gist
-https://gist.github.com/Hobo86/effd4b45b50f576bf4d1 crontab 1
+  <meta name="description" content="安装 1
+yum install vsftp 配置 /etc/vsftpd/vsftpd.conf 1
 2
 3
 4
@@ -18,9 +18,9 @@ https://gist.github.com/Hobo86/effd4b45b50f576bf4d1 crontab 1
 6
 7
 8
-9
-10
-11 &hellip;">
+关闭匿名登录
+#anonymous_enable=NO user_list中的说明是userlist_deny
+#userlist_enable=NO FTP &hellip;">
   <meta name="keywords" content="">
 
   <!-- http://t.co/dKP3o1e -->
@@ -99,6 +99,99 @@ https://gist.github.com/Hobo86/effd4b45b50f576bf4d1 crontab 1
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/10/17/centos-vsftp/">Centos VSFTP配置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-17T16:18:00+08:00" pubdate data-updated="true">Oct 17<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>安装</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">yum</span> <span class="n">install</span> <span class="n">vsftp</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>配置</p>
+
+<figure class='code'><figcaption><span>/etc/vsftpd/vsftpd.conf </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">关闭匿名登录</span>
+</span><span class='line'><span class="c1">#anonymous_enable=NO</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">user_list</span><span class="err">中的说明是</span><span class="n">userlist_deny</span>
+</span><span class='line'><span class="c1">#userlist_enable=NO</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">FTP</span> <span class="n">root</span>
+</span><span class='line'><span class="c1">#local_root=/mnt/ftp</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>添加登录用户</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">添加用户</span>
+</span><span class='line'><span class="c1">#useradd Hobo</span>
+</span><span class='line'><span class="err">设置密码</span>
+</span><span class='line'><span class="c1">#passwd Hobo</span>
+</span><span class='line'><span class="err">加入</span><span class="n">user_list</span>
+</span><span class='line'><span class="c1">#echo Hobo &gt;&gt; /etc/vsftpd/user_list</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>重启</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#service vsftpd restart</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p class='post-footer'>
+      原文地址
+      <a href='http://blog.devhobo.com/blog/2014/10/17/centos-vsftp/'>http://blog.devhobo.com/blog/2014/10/17/centos-vsftp/</a><br/>
+      </p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -699,73 +792,6 @@ https://gist.github.com/Hobo86/effd4b45b50f576bf4d1 crontab 1
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/">MySQL:常用命令行</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-30T08:58:00+08:00" pubdate data-updated="true">Oct 30<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>登入
-</br>mysql -h192.168.1.110  -uroot -ppassword</p>
-
-<p>登出
-</br>quit/exit</p>
-
-<p>查看数据库
-</br>show databases;</p>
-
-<p>用户权限
-</br>添加
-</br>grant select on db.table to &lsquo;user&rsquo;@&lsquo;host&rsquo;;
-</br>grant select,update on <em>.</em> to &lsquo;test&rsquo;@&lsquo;%&rsquo;;
-</br>撤销
-</br>revoke all on <em>.</em> from &lsquo;test&rsquo;@&lsquo;%&rsquo;;
-</br>查看
-</br>show grants;
-</br>show grants for user@localhost</p>
-
-<p>删除用户
-</br>delete from mysql.user where user=&lsquo;&rsquo; and host=&lsquo;&rsquo;;</p>
-
-<p>设置密码
-</br>update mysql.user set password=PASSWORD(&lsquo;123456&rsquo;) where user=&lsquo;root&rsquo;;</p>
-
-<p>配置远程连接
-</br>GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;%&rsquo; IDENTIFIED BY &lsquo;password&rsquo; WITH GRANT OPTION;</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/10/30/mysql-chang-yong-ming-ling-xing/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -781,6 +807,10 @@ https://gist.github.com/Hobo86/effd4b45b50f576bf4d1 crontab 1
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/10/17/centos-vsftp/">Centos VSFTP配置</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/10/17/mysql-backup/">MySQL Backup</a>
       </li>
     
@@ -794,10 +824,6 @@ https://gist.github.com/Hobo86/effd4b45b50f576bf4d1 crontab 1
     
       <li class="post">
         <a href="/blog/2014/03/11/mac-mongodb-rockmongo/">Mac安装配置MongoDB+RockMongo</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/06/bae-redisshi-xian-thinkphpcache/">BAE Cache&Redis实现ThinkPHP的Cache驱动</a>
       </li>
     
   </ul>
