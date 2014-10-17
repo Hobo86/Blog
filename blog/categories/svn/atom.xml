@@ -4,7 +4,7 @@
   <title><![CDATA[Category: SVN | Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/blog/categories/svn/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2014-07-27T12:42:13+08:00</updated>
+  <updated>2014-10-17T12:27:39+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -22,75 +22,41 @@
 </br>Centos 6.4</p>
 
 <p>2.安装svn
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;yum install subversion&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+{% codeblock lang:ruby %}</p>
+
+<h1>yum install subversion</h1>
+
+<p>{% endcodeblock %}
 3.建立版本库
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;mkdir /mn</span><span class="n">t</span><span class="o">/</span><span class="n">svndata</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+{% codeblock lang:ruby %}</p>
+
+<h1>mkdir /mnt/svndata</h1>
+
+<p>{% endcodeblock %}
 启动服务
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;svnserve -d -r /mn</span><span class="n">t</span><span class="o">/</span><span class="n">svndata</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;svnadmin create /mn</span><span class="n">t</span><span class="o">/</span><span class="n">svndata</span><span class="o">/</span><span class="n">svn</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+{% codeblock lang:ruby %}</p>
+
+<h1>svnserve -d -r /mnt/svndata</h1>
+
+<h1>svnadmin create /mnt/svndata/svn</h1>
+
+<p>{% endcodeblock %}
 4.修改配置
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;cd /mn</span><span class="n">t</span><span class="o">/</span><span class="n">svndata</span><span class="o">/</span><span class="n">svn</span><span class="o">/</span><span class="n">conf</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;vi svnserve.conf&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">anon</span><span class="o">-</span><span class="n">access</span><span class="o">=</span><span class="n">none</span>
-</span><span class='line'><span class="n">auth</span><span class="o">-</span><span class="n">access</span><span class="o">=</span><span class="n">write</span>
-</span><span class='line'><span class="n">password</span><span class="o">-</span><span class="n">db</span><span class="o">=</span><span class="n">passwd</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;vi passwd&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;[</span><span class="n">users</span><span class="o">]</span>
-</span><span class='line'><span class="n">hobo</span><span class="o">=</span><span class="mi">123456</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock lang:ruby %}</p>
+
+<h1>cd /mnt/svndata/svn/conf</h1>
+
+<h1>vi svnserve.conf</h1>
+
+<p>anon-access=none
+auth-access=write
+password-db=passwd</p>
+
+<h1>vi passwd</h1>
+
+<p>[users]
+hobo=123456
+{% endcodeblock %}</p>
 
 <!--more-->
 
@@ -99,97 +65,55 @@
 5.实现SVN与WEB同步</p>
 
 <p>1)checkout一个test项目
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;svn co svn:/</span><span class="o">/</span><span class="n">localhost</span><span class="o">/</span><span class="n">svn</span> <span class="sr">/mnt/</span><span class="n">www</span><span class="o">/</span><span class="n">webroot</span><span class="o">/</span><span class="nb">test</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+{% codeblock lang:ruby %}</p>
+
+<h1>svn co svn://localhost/svn /mnt/www/webroot/test</h1>
+
+<p>{% endcodeblock %}
 2)修改权限为WEB用户
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;chown -R apache:apache /mn</span><span class="n">t</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">webroot</span><span class="o">/</span><span class="nb">test</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+{% codeblock lang:ruby %}</p>
+
+<h1>chown -R apache:apache /mnt/www/webroot/test</h1>
+
+<p>{% endcodeblock %}
 3)建立同步脚本
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;cd /mn</span><span class="n">t</span><span class="o">/</span><span class="n">svndata</span><span class="o">/</span><span class="n">svn</span><span class="o">/</span><span class="n">hooks</span><span class="o">/&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;cp post-commit.tmpl post-commit&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+{% codeblock lang:ruby %}</p>
+
+<h1>cd /mnt/svndata/svn/hooks/</h1>
+
+<h1>cp post-commit.tmpl post-commit</h1>
+
+<p>{% endcodeblock %}
 4)编辑post-commit，添加同步脚本
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;vi post-commit&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">export</span> <span class="no">LANG</span><span class="o">=</span><span class="n">en_US</span><span class="o">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
-</span><span class='line'><span class="no">SVN</span><span class="o">=</span><span class="sr">/usr/</span><span class="n">bin</span><span class="o">/</span><span class="n">svn</span>
-</span><span class='line'><span class="no">WEB_TEST</span><span class="o">=</span><span class="sr">/mnt/</span><span class="n">www</span><span class="o">/</span><span class="n">webroot</span><span class="o">/</span><span class="nb">test</span>
-</span><span class='line'><span class="vg">$SVN</span> <span class="n">update</span> <span class="vg">$WEB_TEST</span> <span class="err">–</span><span class="n">username</span> <span class="n">hobo</span> <span class="err">–</span><span class="n">password</span> <span class="mi">123456</span>
-</span><span class='line'><span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="ss">apache</span><span class="p">:</span><span class="n">apache</span> <span class="vg">$WEB</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+{% codeblock lang:ruby %}</p>
+
+<h1>vi post-commit</h1>
+
+<p>export LANG=en_US.UTF-8
+SVN=/usr/bin/svn
+WEB_TEST=/mnt/www/webroot/test
+$SVN update $WEB_TEST –username hobo –password 123456
+chown -R apache:apache $WEB
+{% endcodeblock %}
 5)增加脚本执行权限
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;chmod +x post-commit&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock lang:ruby %}</p>
+
+<h1>chmod +x post-commit</h1>
+
+<p>{% endcodeblock %}</p>
 
 <p>Mac下Versions中.a包无法上传问题
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cd</span> <span class="n">filepath</span>
-</span><span class='line'><span class="n">svn</span> <span class="n">add</span> <span class="n">libMobClickLibrary</span><span class="o">.</span><span class="n">a</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock lang:ruby %}
+cd filepath
+svn add libMobClickLibrary.a
+{% endcodeblock %}</p>
 
 <p>删除版本控制 / 删除多级.svn文件
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;find . -type d -name &amp;ldquo;.svn&amp;rdquo;|xargs rm -rf;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock lang:ruby %}</p>
+
+<h1>find . -type d -name &ldquo;.svn&rdquo;|xargs rm -rf;</h1>
+
+<p>{% endcodeblock %}</p>
 ]]></content>
   </entry>
   

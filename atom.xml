@@ -4,7 +4,7 @@
   <title><![CDATA[Hobo Blog]]></title>
   <link href="http://blog.devhobo.com/atom.xml" rel="self"/>
   <link href="http://blog.devhobo.com/"/>
-  <updated>2014-07-27T12:42:13+08:00</updated>
+  <updated>2014-10-17T12:27:29+08:00</updated>
   <id>http://blog.devhobo.com/</id>
   <author>
     <name><![CDATA[Hobo]]></name>
@@ -14,15 +14,25 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Redmine+Git+Gitolite]]></title>
-    <link href="http://blog.devhobo.com/blog/2014/04/15/redmine-plus-git-plus-gitolite/"/>
-    <updated>2014-04-15T18:29:00+08:00</updated>
-    <id>http://blog.devhobo.com/blog/2014/04/15/redmine-plus-git-plus-gitolite</id>
-    <content type="html"><![CDATA[<p class='post-footer'>
-      原文地址
-      <a href='http://blog.devhobo.com/blog/2014/04/15/redmine-plus-git-plus-gitolite/'>http://blog.devhobo.com/blog/2014/04/15/redmine-plus-git-plus-gitolite/</a><br/>
-      </p>
+    <title type="html"><![CDATA[Redmine Plugins]]></title>
+    <link href="http://blog.devhobo.com/blog/2014/04/15/redmine-plugins/"/>
+    <updated>2014-04-15T12:09:00+08:00</updated>
+    <id>http://blog.devhobo.com/blog/2014/04/15/redmine-plugins</id>
+    <content type="html"><![CDATA[<p>Gitolite
+</br><a href="https://github.com/CtrlC-Root/redmine-gitolite/">https://github.com/CtrlC-Root/redmine-gitolite/</a></p>
 
+<p>Knowledgebase
+</br><a href="https://github.com/alexbevi/redmine_knowledgebase">https://github.com/alexbevi/redmine_knowledgebase</a></p>
+
+<!--more-->
+
+
+<p> <p class='post-footer'></p>
+
+<pre><code>  原文地址
+  &lt;a href='http://blog.devhobo.com/blog/2014/04/15/redmine-plugins/'&gt;http://blog.devhobo.com/blog/2014/04/15/redmine-plugins/&lt;/a&gt;&lt;br/&gt;
+  &lt;/p&gt;
+</code></pre>
 ]]></content>
   </entry>
   
